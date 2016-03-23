@@ -1,0 +1,38 @@
+<resources>
+    <string name="M0">Return to success</string>
+    <string name="M1001">Unable to upload file</string>
+    <string name="M1002">Could not delete files from the cloud</string>
+    <string name="M1003">Unable to upload file</string>
+    <string name="M1004">Could not delete files from the cloud</string>
+    <string name="M1005">Unable find the download file</string>
+    <string name="M1007">upload file is exiting</string>
+    <string name="M1008">Cloud platform internal processing timeout</string>
+    <string name="M2001">User cannot be authenticated</string>
+    <string name="M2002">Could not find the user asssociated device</string>
+    <string name="M2003">User do not have permission to use the device</string>
+    <string name="M2501">Login logic in user name or password error</string>
+    <string name="M2502">Token has expired,please log in again</string>
+    <string name="M2503">User have been locked,please contact the administrator</string>
+    <string name="M2504">The user does not have the access rights</string>
+    <string name="M2505">The user has not verified,please log in again</string>
+    <string name="M2506">The mailbox has been registered,please re select the mailbox</string>
+    <string name="M2507">Activation link has expired,please re select the mailbox</string>
+    <string name="M2508">Redistered mail operation is frequent,please wait</string>
+    <string name="M2509">Activation link verification code error</string>
+    <string name="M2510">Activation link user has been activated</string>
+    <string name="M2511">The user has not yet perfected the necessary information</string>
+    <string name="M2512">Safety question answer error</string>
+    <string name="M2513">Modify the user personal information</string>
+    <string name="M3002">The device does not match ,can not reply data</string>
+    <string name="M2004">Uable to find the solication of equipment</string>
+    <string name="M2005">An equipment failure</string>
+    <string name="connect_failed">Connection failure!</string>
+    <string name="failed">Failure</string>
+    <string name="connect_server_failed">Connection sever failure!</string>
+    <string name="zero_ten">Zero one two three four five six seven eight nine ten</string>
+    <string name="M1006">Download queue is full, please try again later</string>
+    <string name="M3001">Equipment can not be upgraded to a specified version</string>
+    <string name="M2601">token invalid</string>
+
+
+</resources>
