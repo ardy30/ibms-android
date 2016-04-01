@@ -1,18 +1,15 @@
 package com.ehomeclouds.eastsoft.channel.http.base;
 
 /**
- * Created by sun on 2015/6/4 0004.
+ * Created by ll on 2016/3/31.
  */
 public class LoginRequest {
-    private String email;
-    private String password;
+    public String username;
+    public String password;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public LoginRequest(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public String getPassword() {
@@ -23,4 +20,11 @@ public class LoginRequest {
         this.password = password;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setEmail(String username) {
+        this.username = username;
+    }
 }

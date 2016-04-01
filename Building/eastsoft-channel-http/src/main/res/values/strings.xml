@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="timeout">连接超时，请重试</string>
+    <string name="http_error_body_failed">请求失败，请重试</string>
+
+</resources>

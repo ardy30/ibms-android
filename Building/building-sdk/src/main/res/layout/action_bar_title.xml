@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/width52"
+    android:background="@drawable/top_title_bg"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/mtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="TextView"
+        style="@style/title_text_style" />
+
+    <ImageButton
+        android:id="@+id/title_left_btn"
+        android:layout_width="@dimen/width30"
+        android:layout_height="@dimen/width30"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/width10"
+        android:layout_alignParentLeft="true"
+        android:background="#00000000"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/title_left_textView"
+        android:layout_width="@dimen/width70"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:clickable="true"
+        android:gravity="center"
+        android:text=""
+        style="@style/text_18_fff_sel"/>
+
+    <ImageButton
+        android:id="@+id/title_right_btn"
+        android:layout_width="@dimen/width30"
+        android:layout_height="@dimen/width30"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/width10"
+        android:background="#00000000"
+        android:scaleType="fitXY" />
+    <!--android:textColor="@color/textview_sel"-->
+    <TextView
+        android:id="@+id/title_right_textView"
+        android:layout_width="@dimen/width70"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:gravity="center"
+        android:text=""
+        android:textSize="@dimen/textsize18"
+        />
+</RelativeLayout>

@@ -1,23 +1,15 @@
 package com.ehomeclouds.eastsoft.channel.mqtt;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.wifi.WifiManager;
+
 import android.os.Build;
-import android.os.Bundle;
-import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.eastsoft.building.model.RxBus;
 import com.ehomeclouds.eastsoft.channel.mqtt.model.MqttConnectStatus;
 import com.ehomeclouds.eastsoft.channel.mqtt.model.MqttData;
-import com.ehomeclouds.eastsoft.channel.mqtt.util.ActionUtil;
-import com.ehomeclouds.eastsoft.channel.mqtt.util.KeyUtil;
 import com.ehomeclouds.eastsoft.channel.mqtt.util.MyTag;
-import com.ehomeclouds.eastsoft.model.eventbus.RxBus;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -61,7 +53,8 @@ public class MqttManeger {
         return mqttManeger;
     }
 
-    public void connect(String userName, String passWord) {
+    public void connect(String host,String userName, String passWord) {
+        this.host=host;
         this.userName = userName;
         this.passWord = passWord;
         initMqttClient();

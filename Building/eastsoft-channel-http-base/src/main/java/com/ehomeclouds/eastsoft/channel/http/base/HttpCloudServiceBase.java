@@ -116,12 +116,10 @@ public abstract class HttpCloudServiceBase {
                 if (headers.values(StringStaticUtils.RESULT_CODE).size()>0&&
                         headers.values(StringStaticUtils.RESULT_CODE).get(0).equals(StringStaticUtils.TOKEN_INVALID)) {
                     try {
-                        LoginRequest loginRequest = new LoginRequest();
                         SharedPreferences sharedPreferences=context.getSharedPreferences(StringStaticUtils.SHAREP_NAME,Context.MODE_PRIVATE);
                         String email=sharedPreferences.getString(StringStaticUtils.SHAREP_EMAIL, "");
                         String psd=sharedPreferences.getString(StringStaticUtils.SHAREP_PSD,"");
-                        loginRequest.setEmail(email);
-                        loginRequest.setPassword(psd);
+                        LoginRequest loginRequest = new LoginRequest(email,psd);
                         Call<LoginResponse> call = getRetrofit(context).create(api.class).loginIn(loginRequest);
                         retrofit.Response<LoginResponse> loginResponseResponse = call.execute();
                         String newToken = loginResponseResponse.headers().get(StringStaticUtils.TOKEN);
