@@ -5,4 +5,7 @@ package com.ehomeclouds.eastsoft.channel.http.request;
  */
 public class GetGroupListRequest extends BaseRequest {
 
+    public GetGroupListRequest(long userId) {
+        this.userId=userId;
+    }
 }

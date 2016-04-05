@@ -8,4 +8,9 @@ public class CtrlGroupRequest {
     public long userId;
     public boolean ctrlLabel;
 
+    public CtrlGroupRequest( long userId,long groupId, boolean ctrlLabel) {
+        this.groupId = groupId;
+        this.userId = userId;
+        this.ctrlLabel = ctrlLabel;
+    }
 }

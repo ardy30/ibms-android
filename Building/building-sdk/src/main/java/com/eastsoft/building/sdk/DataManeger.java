@@ -8,6 +8,7 @@ public class DataManeger {
     public String brokerUsername;
     public String  brokerPassword;
     public String brokerDomain;
+    public long userId;
     private static DataManeger dataManeger=null;
 
     public static  DataManeger getInstance(){

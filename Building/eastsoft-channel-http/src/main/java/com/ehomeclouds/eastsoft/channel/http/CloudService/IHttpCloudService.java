@@ -4,13 +4,16 @@ import com.ehomeclouds.eastsoft.channel.http.base.LoginRequest;
 import com.ehomeclouds.eastsoft.channel.http.base.LoginResponse;
 import com.ehomeclouds.eastsoft.channel.http.request.BaseRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.CtrlGroupRequest;
+import com.ehomeclouds.eastsoft.channel.http.request.GetDeviceListRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetDeviceTypeRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetGroupDeviceRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetGroupListRequest;
+import com.ehomeclouds.eastsoft.channel.http.request.GetScenarioDeviceRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetScenarioListRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.StartScenarioRequest;
 import com.ehomeclouds.eastsoft.channel.http.response.BaseResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetAreaListResponse;
+import com.ehomeclouds.eastsoft.channel.http.response.GetDeviceListResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetDeviceTypeResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetGroupDeviceResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetGroupListResponse;
@@ -49,7 +52,7 @@ public  interface IHttpCloudService {
     public Call<GetScenarioListResponse> getScenarioList(@Body GetScenarioListRequest getScenarioListRequest);
 
     @POST("mobile/qryProfileDevice")//获取某个情景模式下的设备列表
-    public Call<GetScenarioDeviceResponse> getScenarioDeviceList(@Body GetGroupDeviceRequest getGroupDeviceRequest);
+    public Call<GetScenarioDeviceResponse> getScenarioDeviceList(@Body GetScenarioDeviceRequest getScenarioDeviceRequest);
 
     @POST("mobile/doProfile")//启动情景模式
     public Call<BaseResponse> startScenario(@Body StartScenarioRequest startScenarioRequest);
@@ -59,6 +62,9 @@ public  interface IHttpCloudService {
 
     @POST("mobile/qryAreaInfo")//获取区域列表
     public Call<GetAreaListResponse> getAreaList(@Body BaseRequest baseRequest);
+
+    @POST("/mobile/qryDeviceByArea")//获取设备列表
+    public Call<GetDeviceListResponse> getDeviceList(@Body GetDeviceListRequest  getDeviceListRequest);
 
 
 

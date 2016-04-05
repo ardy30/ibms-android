@@ -18,6 +18,25 @@ import java.security.cert.CertificateException;
 import java.util.ArrayList;
 
 import com.ehomeclouds.eastsoft.channel.http.R;
+import com.ehomeclouds.eastsoft.channel.http.base.Util.StringStaticUtils;
+import com.ehomeclouds.eastsoft.channel.http.base.protocol.DecodeCloudHeader;
+import com.ehomeclouds.eastsoft.channel.http.request.BaseRequest;
+import com.ehomeclouds.eastsoft.channel.http.request.CtrlGroupRequest;
+import com.ehomeclouds.eastsoft.channel.http.request.GetDeviceListRequest;
+import com.ehomeclouds.eastsoft.channel.http.request.GetDeviceTypeRequest;
+import com.ehomeclouds.eastsoft.channel.http.request.GetGroupDeviceRequest;
+import com.ehomeclouds.eastsoft.channel.http.request.GetGroupListRequest;
+import com.ehomeclouds.eastsoft.channel.http.request.GetScenarioDeviceRequest;
+import com.ehomeclouds.eastsoft.channel.http.request.GetScenarioListRequest;
+import com.ehomeclouds.eastsoft.channel.http.request.StartScenarioRequest;
+import com.ehomeclouds.eastsoft.channel.http.response.BaseResponse;
+import com.ehomeclouds.eastsoft.channel.http.response.GetAreaListResponse;
+import com.ehomeclouds.eastsoft.channel.http.response.GetDeviceListResponse;
+import com.ehomeclouds.eastsoft.channel.http.response.GetDeviceTypeResponse;
+import com.ehomeclouds.eastsoft.channel.http.response.GetGroupDeviceResponse;
+import com.ehomeclouds.eastsoft.channel.http.response.GetGroupListResponse;
+import com.ehomeclouds.eastsoft.channel.http.response.GetScenarioDeviceResponse;
+import com.ehomeclouds.eastsoft.channel.http.response.GetScenarioListResponse;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -54,28 +73,290 @@ public class HttpCloudService extends HttpCloudServiceBase {
         return iHttpCloudService;
     }
 
-    public void loginIn(String userId,String psd, final Iview iview){
-        LoginRequest loginRequest=new LoginRequest(userId,psd);
-        Call<LoginResponse> call=iHttpCloudService.loginIn(loginRequest);
+    public void loginIn(String userId, String psd, final Iview iview) {
+        LoginRequest loginRequest = new LoginRequest(userId, psd);
+        Call<LoginResponse> call = iHttpCloudService.loginIn(loginRequest);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Response<LoginResponse> response) {
-                if (response.errorBody()!=null){
+                if (response.errorBody() != null) {
                     iview.onFailed(getErrorString());
-                }else{
+                } else {
 
+                    LoginResponse loginResponse = response.body();
+                    if (loginResponse.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                        iview.onSuccess(loginResponse);
+                    } else {
+                        iview.onFailed(getResuleCodeString(loginResponse.resultCode));
+                    }
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
+                iview.onFailed(getFailedString());
+            }
+        });
+    }
+    public void getGroupList(long userId,int pageNumber ,int pageSize,final Iview iview){
+        GetGroupListRequest getGroupListRequest=new GetGroupListRequest(userId);
+        getGroupListRequest.pageNumber=pageNumber;
+        getGroupListRequest.pageSize=pageSize;
+        Call<GetGroupListResponse> call = iHttpCloudService.getGroupList(getGroupListRequest);
+        call.enqueue(new Callback<GetGroupListResponse>() {
+            @Override
+            public void onResponse(Response<GetGroupListResponse> response) {
+                if (response.errorBody() != null) {
+                    iview.onFailed(getErrorString());
+                } else {
+
+                    GetGroupListResponse resp = response.body();
+                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                        iview.onSuccess(resp.list);
+                    } else {
+                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                iview.onFailed(getFailedString());
+            }
+        });
+
+
+    }
+    public void ctrlGroup(long userId,long groupId,boolean on,final  Iview iview){
+        CtrlGroupRequest ctrlGroupRequest=new CtrlGroupRequest(userId,groupId,on);
+        Call<BaseResponse> call= iHttpCloudService.ctrlGroup(ctrlGroupRequest);
+        call.enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Response<BaseResponse> response) {
+                if (response.errorBody() != null) {
+                    iview.onFailed(getErrorString());
+                } else {
+                    BaseResponse resp = response.body();
+                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                        iview.onSuccess("");
+                    } else {
+                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                iview.onFailed(getFailedString());
+            }
+        });
+    }
+
+    public void getGroupDeviceList(long userId,int pageNumber ,int pageSize,long groupId,final Iview iview){
+
+        GetGroupDeviceRequest getGroupDeviceRequest=new GetGroupDeviceRequest(userId,groupId);
+        getGroupDeviceRequest.pageNumber=pageNumber;
+        getGroupDeviceRequest.pageSize=pageSize;
+        Call<GetGroupDeviceResponse> call=iHttpCloudService.getGroupDeviceList(getGroupDeviceRequest);
+        call.enqueue(new Callback<GetGroupDeviceResponse>() {
+            @Override
+            public void onResponse(Response<GetGroupDeviceResponse> response) {
+                if (response.errorBody() != null) {
+                    iview.onFailed(getErrorString());
+                } else {
+
+                    GetGroupDeviceResponse resp = response.body();
+                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                        iview.onSuccess(resp.list);
+                    } else {
+                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                iview.onFailed(getFailedString());
 
             }
         });
     }
 
-    public String getErrorString(){
-        return  context.getResources().getString(R.string.http_error_body_failed);
+    public void getScenarioList(long userId,int pageNumber ,int pageSize,final Iview iview){
+        GetScenarioListRequest getScenarioListRequest=new GetScenarioListRequest(userId);
+        getScenarioListRequest.pageNumber=pageNumber;
+        getScenarioListRequest.pageSize=pageSize;
+        Call<GetScenarioListResponse> call = iHttpCloudService.getScenarioList(getScenarioListRequest);
+        call.enqueue(new Callback<GetScenarioListResponse>() {
+            @Override
+            public void onResponse(Response<GetScenarioListResponse> response) {
+                if (response.errorBody() != null) {
+                    iview.onFailed(getErrorString());
+                } else {
+
+                    GetScenarioListResponse resp = response.body();
+                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                        iview.onSuccess(resp.list);
+                    } else {
+                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                iview.onFailed(getFailedString());
+            }
+        });
     }
 
+    public void getScenarioDeviceList(long userId,int pageNumber ,int pageSize,long scenarioId,final Iview iview){
+
+        GetScenarioDeviceRequest getGroupDeviceRequest=new GetScenarioDeviceRequest(userId,scenarioId);
+        getGroupDeviceRequest.pageNumber=pageNumber;
+        getGroupDeviceRequest.pageSize=pageSize;
+        Call<GetScenarioDeviceResponse> call=iHttpCloudService.getScenarioDeviceList(getGroupDeviceRequest);
+        call.enqueue(new Callback<GetScenarioDeviceResponse>() {
+            @Override
+            public void onResponse(Response<GetScenarioDeviceResponse> response) {
+                if (response.errorBody() != null) {
+                    iview.onFailed(getErrorString());
+                } else {
+
+                    GetScenarioDeviceResponse resp = response.body();
+                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                        iview.onSuccess(resp.list);
+                    } else {
+                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                iview.onFailed(getFailedString());
+
+            }
+        });
+    }
+
+    public void startScenario(long userId,long scenarioId ,final Iview iview){
+        StartScenarioRequest startScenarioRequest=new StartScenarioRequest(userId,scenarioId);
+        iHttpCloudService.startScenario(startScenarioRequest);
+        Call<BaseResponse> call= iHttpCloudService.startScenario(startScenarioRequest);
+        call.enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Response<BaseResponse> response) {
+                if (response.errorBody() != null) {
+                    iview.onFailed(getErrorString());
+                } else {
+                    BaseResponse resp = response.body();
+                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                        iview.onSuccess("");
+                    } else {
+                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                iview.onFailed(getFailedString());
+            }
+        });
+
+    }
+    public void getDeviceTypeList(long userId,final Iview iview){
+        GetDeviceTypeRequest getDeviceTypeRequest=new GetDeviceTypeRequest(userId);
+        Call<GetDeviceTypeResponse> call=iHttpCloudService.getDeviceTypeList(getDeviceTypeRequest);
+        call.enqueue(new Callback<GetDeviceTypeResponse>() {
+            @Override
+            public void onResponse(Response<GetDeviceTypeResponse> response) {
+                if (response.errorBody() != null) {
+                    iview.onFailed(getErrorString());
+                } else {
+
+                    GetDeviceTypeResponse resp = response.body();
+                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                        iview.onSuccess(resp.list);
+                    } else {
+                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                iview.onFailed(getFailedString());
+
+            }
+        });
+    }
+
+    public void getAreaList(long userId,final Iview iview){
+        BaseRequest baseRequest=new BaseRequest();
+        baseRequest.userId=userId;
+        Call<GetAreaListResponse> call=iHttpCloudService.getAreaList(baseRequest);
+        call.enqueue(new Callback<GetAreaListResponse>() {
+            @Override
+            public void onResponse(Response<GetAreaListResponse> response) {
+                if (response.errorBody() != null) {
+                    iview.onFailed(getErrorString());
+                } else {
+
+                    GetAreaListResponse resp = response.body();
+                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                        iview.onSuccess(resp.list);
+                    } else {
+                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                iview.onFailed(getFailedString());
+
+            }
+        });
+    }
+    public void getDeviceList(long userId,long areaId, String deviceTypeCode,final Iview iview){
+        GetDeviceListRequest getDeviceListRequest=new GetDeviceListRequest(userId,areaId,deviceTypeCode);
+
+        Call<GetDeviceListResponse> call=iHttpCloudService.getDeviceList(getDeviceListRequest);
+        call.enqueue(new Callback<GetDeviceListResponse>() {
+            @Override
+            public void onResponse(Response<GetDeviceListResponse> response) {
+                if (response.errorBody() != null) {
+                    iview.onFailed(getErrorString());
+                } else {
+
+                    GetDeviceListResponse resp = response.body();
+                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                        iview.onSuccess(resp.list);
+                    } else {
+                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                iview.onFailed(getFailedString());
+
+            }
+        });
+    }
+
+
+    public String getErrorString() {
+        return context.getResources().getString(R.string.http_error_body_failed);
+    }
+    public String getResuleCodeString(String resultCode) {
+        return DecodeCloudHeader.getResultCodeMessage(Integer.parseInt(resultCode), context);
+    }
+    public String getFailedString(){
+        return context.getResources().getString(R.string.http_failed);
+
+    }
 }

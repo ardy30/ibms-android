@@ -9,4 +9,6 @@ public class LoginResponse {
     public String  brokerPassword;
     public String brokerDomain;
     public long userId;
+    public String resultCode;
+
 }

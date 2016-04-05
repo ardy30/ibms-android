@@ -6,4 +6,9 @@ package com.ehomeclouds.eastsoft.channel.http.request;
 public class GetScenarioDeviceRequest extends BaseRequest {
     public long profileId;
 
+    public GetScenarioDeviceRequest(long userId, long profileId) {
+        this.userId = userId;
+        this.profileId = profileId;
+    }
+
 }

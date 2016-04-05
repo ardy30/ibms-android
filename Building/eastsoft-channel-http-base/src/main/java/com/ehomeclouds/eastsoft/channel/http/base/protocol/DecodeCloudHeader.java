@@ -74,7 +74,7 @@ public class DecodeCloudHeader {
 //    }
 
 
-    private static String getResultCodeMessage(int code, Context ctx) {
+    public static String getResultCodeMessage(int code, Context ctx) {
         String msg = "Error";
         switch (code) {
             case 0:
