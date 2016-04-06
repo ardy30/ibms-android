@@ -18,6 +18,7 @@ import java.security.cert.CertificateException;
 import java.util.ArrayList;
 
 import com.ehomeclouds.eastsoft.channel.http.R;
+import com.ehomeclouds.eastsoft.channel.http.base.Util.GenerateUtils;
 import com.ehomeclouds.eastsoft.channel.http.base.Util.StringStaticUtils;
 import com.ehomeclouds.eastsoft.channel.http.base.protocol.DecodeCloudHeader;
 import com.ehomeclouds.eastsoft.channel.http.request.BaseRequest;
@@ -73,7 +74,7 @@ public class HttpCloudService extends HttpCloudServiceBase {
         return iHttpCloudService;
     }
 
-    public void loginIn(String userId, String psd, final Iview iview) {
+    public void loginIn(final String userId, String psd, final Iview iview) {
         LoginRequest loginRequest = new LoginRequest(userId, psd);
         Call<LoginResponse> call = iHttpCloudService.loginIn(loginRequest);
         call.enqueue(new Callback<LoginResponse>() {
@@ -84,8 +85,10 @@ public class HttpCloudService extends HttpCloudServiceBase {
                 } else {
 
                     LoginResponse loginResponse = response.body();
-                    if (loginResponse.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
-                        iview.onSuccess(loginResponse);
+                    String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
+
+                    if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                        getScenarioList(loginResponse.userId, 1,GenerateUtils.PAGE_SIZE,iview);
                     } else {
                         iview.onFailed(getResuleCodeString(loginResponse.resultCode));
                     }
@@ -110,8 +113,11 @@ public class HttpCloudService extends HttpCloudServiceBase {
                     iview.onFailed(getErrorString());
                 } else {
 
+
                     GetGroupListResponse resp = response.body();
-                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                    String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
+
+                    if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess(resp.list);
                     } else {
                         iview.onFailed(getResuleCodeString(resp.resultCode));
@@ -137,7 +143,9 @@ public class HttpCloudService extends HttpCloudServiceBase {
                     iview.onFailed(getErrorString());
                 } else {
                     BaseResponse resp = response.body();
-                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                    String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
+
+                    if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess("");
                     } else {
                         iview.onFailed(getResuleCodeString(resp.resultCode));
@@ -166,7 +174,9 @@ public class HttpCloudService extends HttpCloudServiceBase {
                 } else {
 
                     GetGroupDeviceResponse resp = response.body();
-                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                    String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
+
+                    if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess(resp.list);
                     } else {
                         iview.onFailed(getResuleCodeString(resp.resultCode));
@@ -195,7 +205,9 @@ public class HttpCloudService extends HttpCloudServiceBase {
                 } else {
 
                     GetScenarioListResponse resp = response.body();
-                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                    String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
+
+                    if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess(resp.list);
                     } else {
                         iview.onFailed(getResuleCodeString(resp.resultCode));
@@ -224,7 +236,9 @@ public class HttpCloudService extends HttpCloudServiceBase {
                 } else {
 
                     GetScenarioDeviceResponse resp = response.body();
-                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                    String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
+
+                    if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess(resp.list);
                     } else {
                         iview.onFailed(getResuleCodeString(resp.resultCode));
@@ -251,7 +265,9 @@ public class HttpCloudService extends HttpCloudServiceBase {
                     iview.onFailed(getErrorString());
                 } else {
                     BaseResponse resp = response.body();
-                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                    String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
+
+                    if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess("");
                     } else {
                         iview.onFailed(getResuleCodeString(resp.resultCode));
@@ -277,7 +293,9 @@ public class HttpCloudService extends HttpCloudServiceBase {
                 } else {
 
                     GetDeviceTypeResponse resp = response.body();
-                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                    String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
+
+                    if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess(resp.list);
                     } else {
                         iview.onFailed(getResuleCodeString(resp.resultCode));
@@ -305,7 +323,9 @@ public class HttpCloudService extends HttpCloudServiceBase {
                 } else {
 
                     GetAreaListResponse resp = response.body();
-                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                    String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
+
+                    if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess(resp.list);
                     } else {
                         iview.onFailed(getResuleCodeString(resp.resultCode));
@@ -332,7 +352,9 @@ public class HttpCloudService extends HttpCloudServiceBase {
                 } else {
 
                     GetDeviceListResponse resp = response.body();
-                    if (resp.resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
+                    String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
+
+                    if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess(resp.list);
                     } else {
                         iview.onFailed(getResuleCodeString(resp.resultCode));

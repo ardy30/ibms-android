@@ -26,6 +26,7 @@ dependencies {
     compile 'com.android.support:support-v4:21.0.3'
     compile project(':eastsoft-channel-mqtt')
     compile project(':eastsoft-channel-http')
+    compile 'com.github.traex.rippleeffect:library:1.3'
 
 }
 

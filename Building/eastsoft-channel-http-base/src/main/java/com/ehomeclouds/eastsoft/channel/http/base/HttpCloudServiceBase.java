@@ -68,7 +68,7 @@ public abstract class HttpCloudServiceBase {
         } else {
             url = "https://" + ip + ":" + port + "/";
         }
-        url = "http://129.1.18.131:8080";
+        url = "http://129.1.18.98:8080";
         Retrofit restAdapter = new Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())

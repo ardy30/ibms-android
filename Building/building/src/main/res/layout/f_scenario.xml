@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <include layout="@layout/action_bar_title"/>
     <ListView
         android:id="@+id/listview"
         android:layout_width="fill_parent"

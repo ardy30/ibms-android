@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.slidingtest.MainActivity" >
+
+     <!-- <ImageView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="0dp"
+         android:src="@drawable/login_backgroud" 
+         android:scaleType="fitXY">
+     </ImageView> -->
+     <FrameLayout
+        android:id="@+id/contents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f0f0ed" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+                 >
+            </ImageView>
+            
+            <ImageView 
+                android:id="@+id/main_logo"
+                android:layout_width="@dimen/width90"
+                android:layout_height="@dimen/width90"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/width152"
+                android:background="@drawable/icon_logol"
+                />
+            
+            <TextView 
+                android:id="@+id/slogan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width300"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/textsize18"
+                android:textColor="#3a3a3a"
+                android:text="@string/app_name_space"
+                />
+            
+            <!--<ImageView -->
+                <!--android:id="@+id/main_progressbar"-->
+                <!--android:layout_width="@dimen/width35"-->
+                <!--android:layout_height="@dimen/width35"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginTop="@dimen/width260"-->
+                <!--android:background="@drawable/loading_bg"-->
+                <!--android:visibility="invisible"-->
+                <!--/>-->
+        </RelativeLayout>
+
+         <!--<RelativeLayout-->
+             <!--android:layout_width="match_parent"-->
+             <!--android:layout_height="wrap_content">-->
+             <!--<ImageView-->
+                 <!--android:layout_width="@dimen/width277"-->
+                 <!--android:layout_height="@dimen/width76"-->
+                 <!--android:layout_alignParentBottom="true"-->
+                 <!--android:layout_centerHorizontal="true"-->
+                 <!--android:background="@drawable/login_buttom_icon"/>-->
+         <!--</RelativeLayout>-->
+    </FrameLayout>
+    
+</RelativeLayout>

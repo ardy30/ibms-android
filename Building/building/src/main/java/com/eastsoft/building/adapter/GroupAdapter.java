@@ -7,21 +7,20 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 import com.eastsoft.building.R;
 
 import java.util.List;
 
 /**
- * Created by ll on 2015/5/27 0027.
+ * Created by ll on 2016/4/6.
  */
-public class ScenarioAdapter extends BaseAdapter {
+public class GroupAdapter  extends BaseAdapter {
     private final List<CommontAdapterData> adapterDatas;
-    IOnStartScenario iOnStartScenario;
+    IOnGroupClick iOnGroupClick;
 
-    public ScenarioAdapter(List<CommontAdapterData> adapterDatas, IOnStartScenario iOnStartScenario) {
+    public GroupAdapter(List<CommontAdapterData> adapterDatas, IOnGroupClick iOnStartScenario) {
         this.adapterDatas = adapterDatas;
-        this.iOnStartScenario=iOnStartScenario;
+        this.iOnGroupClick =iOnStartScenario;
     }
 
 
@@ -48,10 +47,18 @@ public class ScenarioAdapter extends BaseAdapter {
             final ItemHolder holder = new ItemHolder();
             holder.name = (TextView) convertView.findViewById(R.id.item_name);
             holder.button= (Button) convertView.findViewById(R.id.item_btn_1);
+            holder.button= (Button) convertView.findViewById(R.id.item_btn_1);
+            holder.button2= (Button) convertView.findViewById(R.id.item_btn_2);
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    iOnStartScenario.onStartScenario(holder.id);
+                    iOnGroupClick.onClickGroup(holder.id,true);
+                }
+            });
+            holder.button2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    iOnGroupClick.onClickGroup(holder.id,false);
                 }
             });
             convertView.setTag(holder);
@@ -68,11 +75,12 @@ public class ScenarioAdapter extends BaseAdapter {
     class ItemHolder {
         public TextView name;
         public Button button;
+        public Button button2;
         public long id;
 
     }
-    public interface  IOnStartScenario{
-        public void onStartScenario(long id);
+    public interface  IOnGroupClick{
+        public void onClickGroup(long id,boolean on);
     }
 
 
