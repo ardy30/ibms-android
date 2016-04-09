@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Created by ll on 2016/3/31.
  */
-public class GroupFragment extends BaseFragment implements Iview {
+public class GroupFragment extends BaseFragment {
     private ListView listView;
     private List<CommontAdapterData> adapterList=new LinkedList<>();
     private GroupAdapter groupAdapter;
@@ -91,17 +91,5 @@ public class GroupFragment extends BaseFragment implements Iview {
         });
     }
 
-    @Override
-    public void onSuccess(Object object) {
-        showToast(getString(R.string.success));
-    }
-    @Override
-    public void onFailed(String errorStr) {
-        showToast(errorStr);
-    }
 
-    @Override
-    public void showProgress(boolean show) {
-
-    }
 }

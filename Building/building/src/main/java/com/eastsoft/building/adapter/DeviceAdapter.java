@@ -49,25 +49,28 @@ public class DeviceAdapter extends BaseAdapter {
             holder.button= (Button) convertView.findViewById(R.id.item_btn_1);
             holder.button= (Button) convertView.findViewById(R.id.item_btn_1);
             holder.button2= (Button) convertView.findViewById(R.id.item_btn_2);
-            holder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    iOnDeviceClick.onClickSwitch(position, true);
-                }
-            });
-            holder.button2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    iOnDeviceClick.onClickSwitch(position, false);
-                }
-            });
+
             convertView.setTag(holder);
 
         }
         ItemHolder itemHolder = (ItemHolder) convertView.getTag();
 
-        CommontAdapterData adapterData = adapterDatas.get(position);
+        final CommontAdapterData adapterData = adapterDatas.get(position);
         itemHolder.name.setText(adapterData.name);
+
+        itemHolder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iOnDeviceClick.onClickSwitch(adapterData.dk, true);
+            }
+        });
+        itemHolder.button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iOnDeviceClick.onClickSwitch(adapterData.dk, false);
+            }
+        });
+
         return convertView;
     }
 
@@ -79,8 +82,8 @@ public class DeviceAdapter extends BaseAdapter {
 
     }
     public interface  IOnDeviceClick{
-        public void onClickSwitch(int pos,boolean on);
-        public void onClickDetail(int pos);
+        public void onClickSwitch(String dk,boolean on);
+        public void onClickDetail(String dk);
     }
 
 

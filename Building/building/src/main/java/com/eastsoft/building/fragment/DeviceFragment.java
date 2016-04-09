@@ -43,40 +43,91 @@ public class DeviceFragment extends BaseFragment {
     private ListView listView;
     private List<CommontAdapterData> adapterList = new LinkedList<>();
     private DeviceAdapter deviceAdapter;
-    private View ly_area,ly_type;
+    private View ly_area, ly_type;
     private PopupWindow popupWindow;
-    private  View popView;
-    private int checkedPos=0;
-    TextView text_area,text_type;
+    private View popView;
+    TextView text_area, text_type;
     private DevicePresenter devicePresenter;
+    private long areaId;
+    private String deviceTypeCode = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.f_device, container, false);
-        devicePresenter=new DevicePresenter(httpCloudService);
+        devicePresenter = new DevicePresenter(httpCloudService);
         initTypeView(view);
         listView = (ListView) view.findViewById(R.id.listview);
         deviceAdapter = new DeviceAdapter(adapterList, new DeviceAdapter.IOnDeviceClick() {
             @Override
-            public void onClickSwitch(int pos, boolean on) {
-               devicePresenter.publishSwitch(pos, on);
+            public void onClickSwitch(String dk, boolean on) {
+                devicePresenter.publishSwitch(getActivity(), dk, on);
             }
 
             @Override
-            public void onClickDetail(int pos) {
+            public void onClickDetail(String dk) {
                 startActivity();
             }
         });
         listView.setAdapter(deviceAdapter);
+
+        devicePresenter.getArea(new Iview() {
+            @Override
+            public void onSuccess(Object object) {
+
+                initData();
+            }
+
+            @Override
+            public void onFailed(String errorStr) {
+
+            }
+
+            @Override
+            public void showProgress(boolean show) {
+
+            }
+        });
         return view;
     }
 
+    public void initData() {
+        devicePresenter.getDeviceList(areaId, deviceTypeCode, 1, 100, new Iview() {
+            @Override
+            public void onSuccess(Object object) {
+
+                update();
+            }
+
+            @Override
+            public void onFailed(String errorStr) {
+
+            }
+
+            @Override
+            public void showProgress(boolean show) {
+
+            }
+        });
+    }
+
+    private void update() {
+        adapterList.clear();
+        if (DataManeger.getInstance().deviceInfoArrayList != null) {
+            for (DeviceInfo deviceInfo : DataManeger.getInstance().deviceInfoArrayList) {
+                CommontAdapterData commontAdapterData = new CommontAdapterData(deviceInfo.device_name, 0);
+                commontAdapterData.dk = deviceInfo.device_key;
+                adapterList.add(commontAdapterData);
+            }
+        }
+        deviceAdapter.notifyDataSetChanged();
+    }
+
     private void initTypeView(View view) {
-        ly_area=view.findViewById(R.id.ly_area);
-        ly_type=view.findViewById(R.id.ly_devicetype);
-        text_area= (TextView) view.findViewById(R.id.text_area);
-        text_type= (TextView) view.findViewById(R.id.text_device_type);
-        popView=getActivity().getLayoutInflater().inflate(
+        ly_area = view.findViewById(R.id.ly_area);
+        ly_type = view.findViewById(R.id.ly_devicetype);
+        text_area = (TextView) view.findViewById(R.id.text_area);
+        text_type = (TextView) view.findViewById(R.id.text_device_type);
+        popView = getActivity().getLayoutInflater().inflate(
                 R.layout.layout_popwindow, null);
 
         popupWindow = new PopupWindow(popView,
@@ -85,13 +136,18 @@ public class DeviceFragment extends BaseFragment {
         ly_area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final List<String> nam = new ArrayList<>();
+                for (AreaInfo areaInfo : DataManeger.getInstance().areaInfoArrayList) {
+                    nam.add(areaInfo.area_name);
+                }
 
-                showPopWind(areaNames, new AdapterView.OnItemClickListener() {
+                showPopWind(nam, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        checkedPos=position;
                         popupWindow.dismiss();
-                        text_area.setText(areaNames.get(position));
+                        text_area.setText(nam.get(position));
+                        areaId = DataManeger.getInstance().areaInfoArrayList.get(position).id;
+                        initData();
 
                     }
                 });
@@ -108,9 +164,10 @@ public class DeviceFragment extends BaseFragment {
                 showPopWind(nam, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        checkedPos = position;
                         popupWindow.dismiss();
-                        text_type.setText(nam.get(checkedPos));
+                        text_type.setText(DataManeger.getInstance().deviceTypeArrayList.get(position).type_name);
+                        deviceTypeCode = DataManeger.getInstance().deviceTypeArrayList.get(position).type_code;
+                        initData();
 
                     }
                 });
@@ -120,18 +177,7 @@ public class DeviceFragment extends BaseFragment {
     }
 
 
-
-    private void update(ArrayList<DeviceInfo> deviceInfoArrayList) {
-        adapterList.clear();
-        if (deviceInfoArrayList!=null){
-            for (DeviceInfo deviceInfo:deviceInfoArrayList){
-                adapterList.add(new CommontAdapterData(deviceInfo.device_name,0));
-            }
-        }
-        deviceAdapter.notifyDataSetChanged();
-    }
-
-    private void showPopWind(List<String> names,AdapterView.OnItemClickListener listener) {
+    private void showPopWind(List<String> names, AdapterView.OnItemClickListener listener) {
 
         ListView popListview = (ListView) popView
                 .findViewById(R.id.pop_listview);
@@ -159,7 +205,6 @@ public class DeviceFragment extends BaseFragment {
         popupWindow.setOutsideTouchable(true);
 
     }
-
 
 
     private void startActivity() {

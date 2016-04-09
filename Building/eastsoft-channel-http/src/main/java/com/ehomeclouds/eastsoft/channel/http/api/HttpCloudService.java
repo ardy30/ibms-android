@@ -340,9 +340,11 @@ public class HttpCloudService extends HttpCloudServiceBase {
             }
         });
     }
-    public void getDeviceList(long userId,long areaId, String deviceTypeCode,final Iview iview){
+    public void getDeviceList(long userId,long areaId, String deviceTypeCode,int pageNumber ,int pageSize,final Iview iview){
         GetDeviceListRequest getDeviceListRequest=new GetDeviceListRequest(userId,areaId,deviceTypeCode);
 
+        getDeviceListRequest.pageNumber=pageNumber;
+        getDeviceListRequest.pageSize=pageSize;
         Call<GetDeviceListResponse> call=iHttpCloudService.getDeviceList(getDeviceListRequest);
         call.enqueue(new Callback<GetDeviceListResponse>() {
             @Override
