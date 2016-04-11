@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:gravity="left|center_vertical"
     android:orientation="horizontal"
-    android:padding="@dimen/width8">
+    android:padding="@dimen/width8"
+    android:descendantFocusability="blocksDescendants" >
 
     <TextView
         android:id="@+id/item_name"
@@ -20,11 +21,13 @@
     <Button
         android:id="@+id/item_btn_1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="开"/>
     <Button
         android:id="@+id/item_btn_2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="关"/>
 
 
 </LinearLayout>

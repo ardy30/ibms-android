@@ -49,14 +49,14 @@ public class MainActivity extends BaseActivity {
     private LayoutInflater layoutInflater;
 
     //定义数组来存放Fragment界面
-    private Class fragmentArray[] = {GroupFragment.class, ScenarioFragment.class, DeviceFragment.class,AccountFragment.class};
+    private Class fragmentArray[] = { ScenarioFragment.class,GroupFragment.class, DeviceFragment.class,AccountFragment.class};
 
 //	//定义数组来存放按钮图片
 	private int mImageViewArray[] = {R.drawable.tab_home_sel,R.drawable.tab_devicem_sel,R.drawable.tab_find_sel,
 			R.drawable.tab_account_sel};
 
     //Tab选项卡的文字
-    private String mTextviewArray[] = {"分组控制", "情景模式","单控","个人中心"};
+    private String mTextviewArray[] = {"情景模式","分组控制","单控","个人中心"};
 
     private TextView textNetbad;
 

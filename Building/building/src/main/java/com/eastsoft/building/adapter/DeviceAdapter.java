@@ -43,7 +43,7 @@ public class DeviceAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
 
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_scenario, parent, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_group, parent, false);
             final ItemHolder holder = new ItemHolder();
             holder.name = (TextView) convertView.findViewById(R.id.item_name);
             holder.button= (Button) convertView.findViewById(R.id.item_btn_1);

@@ -43,12 +43,12 @@ public class GroupAdapter  extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
 
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_scenario, parent, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_group, parent, false);
             final ItemHolder holder = new ItemHolder();
             holder.name = (TextView) convertView.findViewById(R.id.item_name);
             holder.button= (Button) convertView.findViewById(R.id.item_btn_1);
-            holder.button= (Button) convertView.findViewById(R.id.item_btn_1);
             holder.button2= (Button) convertView.findViewById(R.id.item_btn_2);
+
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

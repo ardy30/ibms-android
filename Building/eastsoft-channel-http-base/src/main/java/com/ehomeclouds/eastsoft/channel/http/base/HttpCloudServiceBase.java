@@ -175,10 +175,13 @@ public abstract class HttpCloudServiceBase {
     }
 
     interface api {
-        @POST("noauth/user/credential")
+
+        @POST("mobile/login")//登录
         public Call<LoginResponse> loginIn(@Body LoginRequest loginRequest);
 
     }
+
+
 
 
 }

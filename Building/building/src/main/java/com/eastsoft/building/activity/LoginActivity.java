@@ -51,8 +51,10 @@ public class LoginActivity extends BaseActivity {
         String email=sharedPreferences.getString(StringStaticUtils.SHAREP_EMAIL, "");
         String psd=sharedPreferences.getString(StringStaticUtils.SHAREP_PSD,"");
 //        autoLogin();
-        mEmailView.setText(email);
-        mPasswordView.setText(psd);
+//        mEmailView.setText(email);
+        mEmailView.setText("admin");
+        mPasswordView.setText("admin");
+//        mPasswordView.setText(psd);
     }
 
     @Override

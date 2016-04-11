@@ -4,6 +4,7 @@ import com.ehomeclouds.eastsoft.channel.http.base.LoginRequest;
 import com.ehomeclouds.eastsoft.channel.http.base.LoginResponse;
 import com.ehomeclouds.eastsoft.channel.http.request.BaseRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.CtrlGroupRequest;
+import com.ehomeclouds.eastsoft.channel.http.request.GetAreaRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetDeviceListRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetDeviceTypeRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetGroupDeviceRequest;
@@ -61,7 +62,7 @@ public  interface IHttpCloudService {
     public Call<GetDeviceTypeResponse> getDeviceTypeList(@Body GetDeviceTypeRequest getDeviceTypeRequest);
 
     @POST("mobile/qryAreaInfo")//获取区域列表
-    public Call<GetAreaListResponse> getAreaList(@Body BaseRequest baseRequest);
+    public Call<GetAreaListResponse> getAreaList(@Body GetAreaRequest baseRequest);
 
     @POST("/mobile/qryDeviceByArea")//获取设备列表
     public Call<GetDeviceListResponse> getDeviceList(@Body GetDeviceListRequest  getDeviceListRequest);

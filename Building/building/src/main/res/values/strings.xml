@@ -8,5 +8,6 @@
     <string name="failed">初始化数据失败，请重试</string>
     <string name="login_failed">登录失败，请重试</string>
     <string name="app_name_space">青岛银行</string>
+    <string name="net_bad">mqtt断开</string>
 
 </resources>

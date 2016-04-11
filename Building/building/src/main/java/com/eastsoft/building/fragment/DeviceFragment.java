@@ -1,6 +1,7 @@
 package com.eastsoft.building.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,7 +17,8 @@ import com.eastsoft.building.R;
 import com.eastsoft.building.adapter.CommontAdapterData;
 import com.eastsoft.building.adapter.DeviceAdapter;
 import com.eastsoft.building.adapter.SpinnerListAdapter;
-import com.eastsoft.building.model.DeviceType;
+import com.eastsoft.building.model.RxBus;
+import com.eastsoft.building.plugin.PluginLoad;
 import com.eastsoft.building.sdk.BaseFragment;
 import com.eastsoft.building.sdk.DataManeger;
 import com.eastsoft.building.sdk.KeyUtil;
@@ -24,17 +26,15 @@ import com.ehomeclouds.eastsoft.channel.http.CloudService.Iview;
 import com.ehomeclouds.eastsoft.channel.http.response.AreaInfo;
 import com.ehomeclouds.eastsoft.channel.http.response.DeviceInfo;
 import com.ehomeclouds.eastsoft.channel.http.response.DeviceTypeInfo;
-import com.ehomeclouds.eastsoft.channel.mqtt.MqttManeger;
-import com.ehomeclouds.eastsoft.channel.mqtt.util.MqttTopicManeger;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.ehomeclouds.eastsoft.channel.mqtt.model.MqttConnectStatus;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import presenter.DevicePresenter;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 /**
  * Created by ll on 2016/3/31.
@@ -43,7 +43,7 @@ public class DeviceFragment extends BaseFragment {
     private ListView listView;
     private List<CommontAdapterData> adapterList = new LinkedList<>();
     private DeviceAdapter deviceAdapter;
-    private View ly_area, ly_type;
+    private View ly_area, ly_type, netbad;
     private PopupWindow popupWindow;
     private View popView;
     TextView text_area, text_type;
@@ -69,12 +69,25 @@ public class DeviceFragment extends BaseFragment {
             }
         });
         listView.setAdapter(deviceAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                PluginLoad.load(DataManeger.getInstance().deviceInfoMap.get(adapterList.get(position).dk));
+            }
+        });
+
+        devicePresenter.connectBroker(getActivity());
+        subMqtt();
+        return view;
+    }
+
+    public void getAreaList() {
         devicePresenter.getArea(new Iview() {
             @Override
             public void onSuccess(Object object) {
 
-                initData();
+                getDeviceList();
             }
 
             @Override
@@ -87,14 +100,13 @@ public class DeviceFragment extends BaseFragment {
 
             }
         });
-        return view;
+
     }
 
-    public void initData() {
-        devicePresenter.getDeviceList(areaId, deviceTypeCode, 1, 100, new Iview() {
+    public void getDeviceList() {
+        devicePresenter.getDeviceList(getActivity(),areaId, deviceTypeCode, 1, 100, new Iview() {
             @Override
             public void onSuccess(Object object) {
-
                 update();
             }
 
@@ -129,6 +141,7 @@ public class DeviceFragment extends BaseFragment {
         text_type = (TextView) view.findViewById(R.id.text_device_type);
         popView = getActivity().getLayoutInflater().inflate(
                 R.layout.layout_popwindow, null);
+        netbad = view.findViewById(R.id.net);
 
         popupWindow = new PopupWindow(popView,
                 WindowManager.LayoutParams.FILL_PARENT, WindowManager.LayoutParams.FILL_PARENT,
@@ -147,7 +160,7 @@ public class DeviceFragment extends BaseFragment {
                         popupWindow.dismiss();
                         text_area.setText(nam.get(position));
                         areaId = DataManeger.getInstance().areaInfoArrayList.get(position).id;
-                        initData();
+                        getDeviceList();
 
                     }
                 });
@@ -167,7 +180,7 @@ public class DeviceFragment extends BaseFragment {
                         popupWindow.dismiss();
                         text_type.setText(DataManeger.getInstance().deviceTypeArrayList.get(position).type_name);
                         deviceTypeCode = DataManeger.getInstance().deviceTypeArrayList.get(position).type_code;
-                        initData();
+                        getDeviceList();
 
                     }
                 });
@@ -206,6 +219,27 @@ public class DeviceFragment extends BaseFragment {
 
     }
 
+    private void subMqtt() {
+        RxBus.getDefault().toObserverable(MqttConnectStatus.class).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<MqttConnectStatus>() {
+            @Override
+            public void call(MqttConnectStatus mqttConnectStatus) {
+                if (mqttConnectStatus.getConnectStatus() == MqttConnectStatus.CONNECT_SUCCESS) {
+                    getAreaList();
+                    netbad.setVisibility(View.GONE);
+                } else {
+                    netbad.setVisibility(View.VISIBLE);
+
+                }
+
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                Log.e(KeyUtil.KEY_TAG, "mqtt throwable");
+            }
+        });
+
+    }
 
     private void startActivity() {
 //        startActivity(new Intent(getActivity(),));

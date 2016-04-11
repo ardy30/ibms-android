@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+        <include layout="@layout/action_bar_title" />
+        <LinearLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible" >
+
+            <RelativeLayout
+                android:layout_width="@dimen/width190"
+                android:layout_height="@dimen/width95"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/width18"
+                android:layout_marginTop="@dimen/width13"
+                android:background="@drawable/plugin_switch_bg" >
+
+                <ImageButton
+                    android:id="@+id/smartsocket_on"
+                    android:layout_width="@dimen/width77"
+                    android:layout_height="@dimen/width77"
+                    android:layout_marginLeft="@dimen/width9"
+                    android:layout_marginTop="@dimen/width9"
+                    android:background="@drawable/plugin_on_gray_sel" />
+
+                <ImageButton
+                    android:id="@+id/smartsocket_off"
+                    android:layout_width="@dimen/width77"
+                    android:layout_height="@dimen/width77"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/width9"
+                    android:layout_marginTop="@dimen/width9"
+                    android:background="@drawable/plugin_off_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/timer_right_bn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width50"
+                android:layout_marginLeft="@dimen/width4"
+                android:layout_marginRight="@dimen/width4"
+                android:background="#eeeeee" >
+
+                <ImageView
+                    android:layout_width="@dimen/width1"
+                    android:layout_height="@dimen/width45"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width50"
+                    android:background="@drawable/smartsocket_dividing_line" />
+
+                <RelativeLayout
+                    android:layout_width="@dimen/width50"
+                    android:layout_height="match_parent" >
+
+                    <ImageView
+                        android:layout_width="@dimen/width26"
+                        android:layout_height="@dimen/width26"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/smartsocket_timer" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width65"
+                    android:text="@string/settimer"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <RelativeLayout
+                    android:layout_width="@dimen/width57"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true" >
+
+                    <com.ehomeclouds.eastsoft.plugin.energymonitor.SlipButton
+                        android:id="@+id/timer_slipbn"
+                        android:layout_width="@dimen/width47"
+                        android:layout_height="@dimen/width29"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/dividing_line"
+                    android:layout_width="@dimen/width1"
+                    android:layout_height="@dimen/width45"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/width57"
+                    android:background="@drawable/smartsocket_dividing_line" />
+
+                <View
+                    android:layout_width="@dimen/width57"
+                    android:layout_height="@dimen/width50"
+                    android:layout_toLeftOf="@id/dividing_line"
+                    android:background="@drawable/smartsocket_right" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/limit_right_bn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width50"
+                android:layout_marginLeft="@dimen/width4"
+                android:layout_marginRight="@dimen/width4"
+                android:layout_marginTop="@dimen/width5"
+                android:background="#eeeeee" >
+
+                <ImageView
+                    android:layout_width="@dimen/width1"
+                    android:layout_height="@dimen/width45"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width50"
+                    android:background="@drawable/smartsocket_dividing_line" />
+
+                <RelativeLayout
+                    android:layout_width="@dimen/width50"
+                    android:layout_height="match_parent" >
+
+                    <ImageView
+                        android:layout_width="@dimen/width26"
+                        android:layout_height="@dimen/width26"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/smartsocket_add_default" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width65"
+                    android:text="@string/limit"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <RelativeLayout
+                    android:layout_width="@dimen/width57"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true" >
+
+                    <com.eastsoft.android.ihome.plugin.detail.util.view.SlipButton
+                        android:id="@+id/limit_slipbn"
+                        android:layout_width="@dimen/width47"
+                        android:layout_height="@dimen/width29"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/dividing_line1"
+                    android:layout_width="@dimen/width1"
+                    android:layout_height="@dimen/width45"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/width57"
+                    android:background="@drawable/smartsocket_dividing_line" />
+
+                <View
+                    android:layout_width="@dimen/width57"
+                    android:layout_height="@dimen/width50"
+                    android:layout_toLeftOf="@id/dividing_line1"
+                    android:background="@drawable/smartsocket_right" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/countdown_right_bn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width50"
+                android:layout_marginLeft="@dimen/width4"
+                android:layout_marginRight="@dimen/width4"
+                android:layout_marginTop="@dimen/width5"
+                android:background="#eeeeee" >
+
+                <ImageView
+                    android:layout_width="@dimen/width1"
+                    android:layout_height="@dimen/width45"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width50"
+                    android:background="@drawable/smartsocket_dividing_line" />
+
+                <RelativeLayout
+                    android:layout_width="@dimen/width50"
+                    android:layout_height="match_parent" >
+
+                    <ImageView
+                        android:layout_width="@dimen/width26"
+                        android:layout_height="@dimen/width26"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/smartsocket_timer_icon" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/last_ele_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width65"
+                    android:text="@string/last_use_ele"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:id="@+id/last_ele_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width7"
+                    android:layout_toRightOf="@id/last_ele_title"
+                    android:text="@string/NA"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:id="@+id/last_ele_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width7"
+                    android:layout_toRightOf="@id/last_ele_text"
+                    android:text="@string/kwh_unit"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width50"
+                android:layout_marginLeft="@dimen/width4"
+                android:layout_marginRight="@dimen/width4"
+                android:layout_marginTop="@dimen/width5"
+                android:background="#eeeeee" >
+
+                <ImageView
+                    android:layout_width="@dimen/width1"
+                    android:layout_height="@dimen/width45"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width50"
+                    android:background="@drawable/smartsocket_dividing_line" />
+
+                <RelativeLayout
+                    android:layout_width="@dimen/width50"
+                    android:layout_height="match_parent" >
+
+                    <ImageView
+                        android:layout_width="@dimen/width26"
+                        android:layout_height="@dimen/width26"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/smartsocket_current_ele" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/currentele"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width65"
+                    android:text="@string/currentele"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:id="@+id/current_ele_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width7"
+                    android:layout_toRightOf="@id/currentele"
+                    android:text="@string/NA"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:id="@+id/current_ele_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width7"
+                    android:layout_toRightOf="@id/current_ele_text"
+                    android:text="@string/kwh_unit"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <Button
+                    android:id="@+id/clear"
+                    android:layout_width="@dimen/width40"
+                    android:layout_height="@dimen/width24"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/width9"
+                    android:background="@drawable/smartsocket_clear_seletor"
+                    android:text="@string/clear"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/textsize15"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width85"
+                android:layout_marginLeft="@dimen/width4"
+                android:layout_marginRight="@dimen/width4"
+                android:layout_marginTop="@dimen/width5"
+                android:orientation="horizontal" >
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#eeeeee" >
+
+                    <ImageView
+                        android:layout_width="@dimen/width26"
+                        android:layout_height="@dimen/width26"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/width14"
+                        android:background="@drawable/smartsocket_v" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/width15" >
+
+                        <TextView
+                            android:id="@+id/smartsocket_v"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/NA"
+                            android:textColor="#535353"
+                            android:textSize="@dimen/textsize16" />
+
+                        <TextView
+                            android:id="@+id/smartsocket_v_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/width7"
+                            android:layout_toRightOf="@id/smartsocket_v"
+                            android:text="@string/v_unit"
+                            android:textColor="#535353"
+                            android:textSize="@dimen/textsize16" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/width4"
+                    android:layout_weight="1"
+                    android:background="#eeeeee" >
+
+                    <ImageView
+                        android:layout_width="@dimen/width26"
+                        android:layout_height="@dimen/width26"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/width14"
+                        android:background="@drawable/smartsocket_a" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/width15" >
+
+                        <TextView
+                            android:id="@+id/smartsocket_a"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/NA"
+                            android:textColor="#535353"
+                            android:textSize="@dimen/textsize16" />
+
+                        <TextView
+                            android:id="@+id/smartsocket_a_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/width7"
+                            android:layout_toRightOf="@id/smartsocket_a"
+                            android:text="@string/a_unit"
+                            android:textColor="#535353"
+                            android:textSize="@dimen/textsize16" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/width4"
+                    android:layout_weight="1"
+                    android:background="#eeeeee" >
+
+                    <ImageView
+                        android:layout_width="@dimen/width26"
+                        android:layout_height="@dimen/width26"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/width14"
+                        android:background="@drawable/smartsocket_power" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/width15" >
+
+                        <TextView
+                            android:id="@+id/smartsocket_power"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/NA"
+                            android:textColor="#535353"
+                            android:textSize="@dimen/textsize16" />
+
+                        <TextView
+                            android:id="@+id/smartsocket_kwh_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/width7"
+                            android:layout_toRightOf="@id/smartsocket_a"
+                            android:text="@string/kw_unit"
+                            android:textColor="#535353"
+                            android:textSize="@dimen/textsize16" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/timer_manager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width45" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width24"
+                    android:text="@string/repeat"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width1"
+                android:layout_alignParentBottom="true"
+                android:background="#eeeeee" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width40"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/width12"
+                android:layout_marginLeft="@dimen/width24"
+                android:layout_marginRight="@dimen/width24"
+                android:layout_marginTop="@dimen/width10"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/sunday"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/width40"
+                    android:layout_weight="1"
+                    android:background="#eeeeee"
+                    android:text="@string/sunday"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <Button
+                    android:id="@+id/Monday"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/width40"
+                    android:layout_marginLeft="@dimen/width1"
+                    android:layout_weight="1"
+                    android:background="#eeeeee"
+                    android:text="@string/Monday"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <Button
+                    android:id="@+id/Tuesday"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/width40"
+                    android:layout_marginLeft="@dimen/width1"
+                    android:layout_weight="1"
+                    android:background="#eeeeee"
+                    android:text="@string/Tuesday"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <Button
+                    android:id="@+id/Wednesday"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/width40"
+                    android:layout_marginLeft="@dimen/width1"
+                    android:layout_weight="1"
+                    android:background="#eeeeee"
+                    android:text="@string/Wednesday"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <Button
+                    android:id="@+id/Thursday"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/width40"
+                    android:layout_marginLeft="@dimen/width1"
+                    android:layout_weight="1"
+                    android:background="#eeeeee"
+                    android:text="@string/Thursday"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <Button
+                    android:id="@+id/Friday"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/width40"
+                    android:layout_marginLeft="@dimen/width1"
+                    android:layout_weight="1"
+                    android:background="#eeeeee"
+                    android:text="@string/Friday"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <Button
+                    android:id="@+id/Saturday"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/width40"
+                    android:layout_marginLeft="@dimen/width1"
+                    android:layout_weight="1"
+                    android:background="#eeeeee"
+                    android:text="@string/Saturday"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width1"
+                android:layout_alignParentBottom="true"
+                android:background="#eeeeee" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width46" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width24"
+                    android:text="@string/exist_timers"
+                    android:textColor="#535353"
+                    android:textSize="@dimen/textsize16" />
+
+                <Button
+                    android:id="@+id/smartsocket_add_bn"
+                    android:layout_width="@dimen/width49"
+                    android:layout_height="@dimen/width28"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/width18"
+                    android:background="@drawable/smart_socket_bn_uneditable"
+                    android:text="@string/add"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/textsize15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width1"
+                android:layout_alignParentBottom="true"
+                android:background="#eeeeee" />
+
+            <ListView
+                android:id="@+id/timers"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+            </ListView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width45"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/smartsocket_cancel_bn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/smartsocket_bn_left"
+                    android:text="@string/cancel"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/textsize18" />
+
+                <RelativeLayout
+                    android:layout_width="@dimen/width1"
+                    android:layout_height="match_parent"
+                    android:background="#fea201" >
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="@dimen/width35"
+                        android:layout_centerInParent="true"
+                        android:background="#fff" />
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/smartsocket_complete_bn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/smartsocket_bn"
+                    android:text="@string/complete"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/textsize18" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+        android:id="@+id/limit_manager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width35"
+                android:layout_marginTop="@dimen/width11">
+
+                <TextView
+                    android:id="@+id/maxVoltageTextView"
+                    style="@style/text_17_535353"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width50"
+                    android:text="过压限值" />
+
+                <EditText
+                    android:id="@+id/maxVoltage"
+                    style="@style/text_16_535353"
+                    android:layout_width="@dimen/width120"
+                    android:layout_height="@dimen/width35"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/width80"
+                    android:background="@drawable/edit_bg"
+                    android:digits="0123456789."
+                    android:inputType="number"
+                    android:gravity="center" >
+                </EditText>
+
+                <TextView
+                    style="@style/text_17_535353"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/width50"
+                    android:text="V" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/width35"
+                android:layout_marginTop="@dimen/width11" >
+
+                <TextView
+                    android:id="@+id/minVoltageTextView"
+                    style="@style/text_17_535353"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width50"
+                    android:text="欠压限值" />
+
+                <EditText
+                    android:id="@+id/minVoltage"
+                    style="@style/text_16_535353"
+                    android:layout_width="@dimen/width120"
+                    android:layout_height="@dimen/width35"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/width80"
+                    android:background="@drawable/edit_bg"
+                    android:digits="0123456789."
+                    android:inputType="number"
+                    android:gravity="center" >
+                </EditText>
+
+                <TextView
+                    style="@style/text_17_535353"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/width50"
+                    android:text="V" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/width35"
+                android:layout_marginTop="@dimen/width11" >
+
+                <TextView
+                    android:id="@+id/currentTextView"
+                    style="@style/text_17_535353"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width50"
+                    android:text="电流限值" />
+
+                <EditText
+                    android:id="@+id/current"
+                    style="@style/text_16_535353"
+                    android:layout_width="@dimen/width120"
+                    android:layout_height="@dimen/width35"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/width80"
+                    android:background="@drawable/edit_bg"
+                    android:digits="0123456789."
+                    android:hint="0.01-32"
+                    android:inputType="number"
+                    android:gravity="center" >
+                </EditText>
+
+                <TextView
+                    style="@style/text_17_535353"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/width50"
+                    android:text="A" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/width35"
+                android:layout_marginTop="@dimen/width11" >
+
+                <TextView
+                    android:id="@+id/powerTextView"
+                    style="@style/text_17_535353"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width50"
+                    android:text="功率限值" />
+
+                <EditText
+                    android:id="@+id/power"
+                    style="@style/text_16_535353"
+                    android:layout_width="@dimen/width120"
+                    android:layout_height="@dimen/width35"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/width80"
+                    android:background="@drawable/edit_bg"
+                    android:digits="0123456789."
+                    android:hint="0.1-7.04"
+                    android:inputType="number"
+                    android:gravity="center" >
+                </EditText>
+
+                <TextView
+                    style="@style/text_17_535353"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/width42"
+                    android:text="kW" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true">
+
+                    <Button
+                        android:id="@+id/limit_cancel"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/textsize17"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/width45"
+                        android:layout_weight="1"
+                        android:background="@drawable/smartsocket_bn"
+                        android:text="@string/cancel" />
+
+                    <ImageView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/smartsocket_dividing_line"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                    <Button
+                        android:id="@+id/limit_ok"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/textsize17"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/width45"
+                        android:layout_weight="1"
+                        android:background="@drawable/smartsocket_bn"
+                        android:text="@string/ok" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

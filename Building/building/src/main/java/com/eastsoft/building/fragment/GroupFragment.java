@@ -1,17 +1,22 @@
 package com.eastsoft.building.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.eastsoft.building.R;
+import com.eastsoft.building.activity.DeviceListActivity;
 import com.eastsoft.building.adapter.GroupAdapter;
 import com.eastsoft.building.adapter.ScenarioAdapter;
 import com.eastsoft.building.adapter.CommontAdapterData;
 import com.eastsoft.building.sdk.BaseFragment;
 import com.eastsoft.building.sdk.DataManeger;
+import com.eastsoft.building.sdk.IntentUtil;
+import com.eastsoft.building.sdk.UtilityInfo;
 import com.ehomeclouds.eastsoft.channel.http.CloudService.Iview;
 import com.ehomeclouds.eastsoft.channel.http.base.Util.GenerateUtils;
 import com.ehomeclouds.eastsoft.channel.http.response.GroupInfo;
@@ -55,6 +60,15 @@ public class GroupFragment extends BaseFragment {
             }
         });
         listView.setAdapter(groupAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(), DeviceListActivity.class);
+                intent.putExtra(IntentUtil.INTENT_ID,adapterList.get(position).id);
+                intent.putExtra(IntentUtil.INTENT_TYPE, UtilityInfo.TYPE_GROUP);
+                startActivity(intent);
+            }
+        });
         return view;
     }
     private void handleData( ArrayList<GroupInfo> groupInfoArrayList) {
@@ -65,6 +79,7 @@ public class GroupFragment extends BaseFragment {
                 CommontAdapterData scenarioAdapterData=new CommontAdapterData(groupInfo.group_name,groupInfo.id);
                 adapterList.add(scenarioAdapterData);
             }
+            groupAdapter.notifyDataSetChanged();
         }
     }
 

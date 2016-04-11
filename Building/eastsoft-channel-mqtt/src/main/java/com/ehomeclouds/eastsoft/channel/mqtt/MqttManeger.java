@@ -2,6 +2,7 @@ package com.ehomeclouds.eastsoft.channel.mqtt;
 
 import android.content.Context;
 
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -9,7 +10,9 @@ import android.util.Log;
 import com.eastsoft.building.model.RxBus;
 import com.ehomeclouds.eastsoft.channel.mqtt.model.MqttConnectStatus;
 import com.ehomeclouds.eastsoft.channel.mqtt.model.MqttData;
+import com.ehomeclouds.eastsoft.channel.mqtt.util.KeyUtil;
 import com.ehomeclouds.eastsoft.channel.mqtt.util.MyTag;
+import com.ehomeclouds.eastsoft.channel.mqtt.util.Numbers;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -89,7 +92,7 @@ public class MqttManeger {
         try {
 //            String clientId=getDeviceId();
 
-            client = new MqttClient(host,"", new MemoryPersistence());
+            client = new MqttClient(host, Numbers.getUuid(), new MemoryPersistence());
 //            client = new MqttClient(host,Build.SERIAL, new MemoryPersistence());
             options = new MqttConnectOptions();
             options.setCleanSession(true);
@@ -239,6 +242,11 @@ public class MqttManeger {
             e.printStackTrace();
         }
 
+    }
+    private static String  getLocalUrl(Context context) {
+        SharedPreferences sharedPreferences=context.getSharedPreferences(KeyUtil.SHARE_URL, Context.MODE_PRIVATE);
+        String url=sharedPreferences.getString(KeyUtil.SHARE_URL_KEY, "");
+        return url;
     }
 
     public void destroy() {

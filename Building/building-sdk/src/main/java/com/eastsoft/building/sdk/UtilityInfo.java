@@ -18,6 +18,8 @@ public class UtilityInfo {
 	public static final String SHARE_PRERERENCE_ACCOUNT = "acount_gateway";
 	public static final String SHARE_PRERERENCE_IS_RECEIEVE_IN_BACKGROUND = "is_recv_in_background";
 	public static final String SHARE_PRERERENCE_IS_RECEIEVE_MSG = "is_recv_msg";
+	public static final long TYPE_GROUP=0;
+	public static final long TYPE_SCENARIO=1;
 
 
     //将后台消息服务储存到本地

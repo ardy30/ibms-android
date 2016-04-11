@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="left|center_vertical"
     android:orientation="horizontal"
-    android:padding="@dimen/width8"
-    android:descendantFocusability="blocksDescendants" >
+    android:padding="@dimen/width8">
 
     <TextView
         android:id="@+id/item_name"
@@ -17,12 +16,14 @@
         android:layout_marginLeft="@dimen/width25"
         android:gravity="left|center_vertical"
         android:text="设备名称" />
-
-    <Button
-        android:id="@+id/item_btn_1"
+    <TextView
+        android:id="@+id/item_area"
+        style="@style/text_15_464646"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="开"/>
-
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/width25"
+        android:gravity="left|center_vertical"
+        android:text="设备名称" />
 
 </LinearLayout>

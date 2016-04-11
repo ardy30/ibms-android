@@ -15,6 +15,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
 
 import com.ehomeclouds.eastsoft.channel.http.R;
@@ -23,6 +24,7 @@ import com.ehomeclouds.eastsoft.channel.http.base.Util.StringStaticUtils;
 import com.ehomeclouds.eastsoft.channel.http.base.protocol.DecodeCloudHeader;
 import com.ehomeclouds.eastsoft.channel.http.request.BaseRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.CtrlGroupRequest;
+import com.ehomeclouds.eastsoft.channel.http.request.GetAreaRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetDeviceListRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetDeviceTypeRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetGroupDeviceRequest;
@@ -88,7 +90,7 @@ public class HttpCloudService extends HttpCloudServiceBase {
                     String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
 
                     if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
-                        getScenarioList(loginResponse.userId, 1,GenerateUtils.PAGE_SIZE,iview);
+                       iview.onSuccess(loginResponse);
                     } else {
                         iview.onFailed(getResuleCodeString(loginResponse.resultCode));
                     }
@@ -312,9 +314,8 @@ public class HttpCloudService extends HttpCloudServiceBase {
     }
 
     public void getAreaList(long userId,final Iview iview){
-        BaseRequest baseRequest=new BaseRequest();
-        baseRequest.userId=userId;
-        Call<GetAreaListResponse> call=iHttpCloudService.getAreaList(baseRequest);
+        GetAreaRequest getAreaRequest=new GetAreaRequest(userId);
+        Call<GetAreaListResponse> call=iHttpCloudService.getAreaList(getAreaRequest);
         call.enqueue(new Callback<GetAreaListResponse>() {
             @Override
             public void onResponse(Response<GetAreaListResponse> response) {
