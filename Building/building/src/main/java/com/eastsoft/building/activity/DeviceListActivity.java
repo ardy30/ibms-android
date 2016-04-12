@@ -36,6 +36,18 @@ public class DeviceListActivity extends BaseActivity implements Iview{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_list);
+        restoreActionBar("设备列表", R.drawable.array_left_default, 0, "", "");
+        setOnclick(new IOnTitleClick() {
+            @Override
+            public void OnLeftClick(View view) {
+                finish();
+            }
+
+            @Override
+            public void OnRightClick(View view) {
+
+            }
+        });
         initData();
         initView();
     }

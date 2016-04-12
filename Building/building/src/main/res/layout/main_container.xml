@@ -1,77 +1,25 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/loginLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.slidingtest.MainActivity" >
+    android:background="@drawable/login_bg"
+    android:orientation="vertical">
 
-     <!-- <ImageView
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:layout_centerHorizontal="true"
-         android:layout_marginTop="0dp"
-         android:src="@drawable/login_backgroud" 
-         android:scaleType="fitXY">
-     </ImageView> -->
-     <FrameLayout
-        android:id="@+id/contents"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+    <ImageView
+        android:id="@+id/img_login_logo"
+        android:layout_width="@dimen/width58"
+        android:layout_height="@dimen/width53"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/width103"
+        android:background="@drawable/icon_logol" />
 
-        <RelativeLayout
-            android:id="@+id/logo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#f0f0ed" >
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="0dp"
-                 >
-            </ImageView>
-            
-            <ImageView 
-                android:id="@+id/main_logo"
-                android:layout_width="@dimen/width90"
-                android:layout_height="@dimen/width90"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/width152"
-                android:background="@drawable/icon_logol"
-                />
-            
-            <TextView 
-                android:id="@+id/slogan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/width300"
-                android:layout_centerHorizontal="true"
-                android:textSize="@dimen/textsize18"
-                android:textColor="#3a3a3a"
-                android:text="@string/app_name_space"
-                />
-            
-            <!--<ImageView -->
-                <!--android:id="@+id/main_progressbar"-->
-                <!--android:layout_width="@dimen/width35"-->
-                <!--android:layout_height="@dimen/width35"-->
-                <!--android:layout_centerHorizontal="true"-->
-                <!--android:layout_marginTop="@dimen/width260"-->
-                <!--android:background="@drawable/loading_bg"-->
-                <!--android:visibility="invisible"-->
-                <!--/>-->
-        </RelativeLayout>
-
-         <!--<RelativeLayout-->
-             <!--android:layout_width="match_parent"-->
-             <!--android:layout_height="wrap_content">-->
-             <!--<ImageView-->
-                 <!--android:layout_width="@dimen/width277"-->
-                 <!--android:layout_height="@dimen/width76"-->
-                 <!--android:layout_alignParentBottom="true"-->
-                 <!--android:layout_centerHorizontal="true"-->
-                 <!--android:background="@drawable/login_buttom_icon"/>-->
-         <!--</RelativeLayout>-->
-    </FrameLayout>
-    
-</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/width20"
+        android:text="@string/login_text"
+        android:textColor="#fff"
+        android:textSize="@dimen/width30" />
+</LinearLayout>

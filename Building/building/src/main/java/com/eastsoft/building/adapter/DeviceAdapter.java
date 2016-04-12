@@ -47,9 +47,10 @@ public class DeviceAdapter extends BaseAdapter {
             final ItemHolder holder = new ItemHolder();
             holder.name = (TextView) convertView.findViewById(R.id.item_name);
             holder.button= (Button) convertView.findViewById(R.id.item_btn_1);
-            holder.button= (Button) convertView.findViewById(R.id.item_btn_1);
             holder.button2= (Button) convertView.findViewById(R.id.item_btn_2);
+            holder.buttonDetail= (Button) convertView.findViewById(R.id.button_detail);
 
+            holder.lySwitch=convertView.findViewById(R.id.ly_switch);
             convertView.setTag(holder);
 
         }
@@ -70,6 +71,19 @@ public class DeviceAdapter extends BaseAdapter {
                 iOnDeviceClick.onClickSwitch(adapterData.dk, false);
             }
         });
+        itemHolder.buttonDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iOnDeviceClick.onClickDetail(adapterData.dk);
+            }
+        });
+        if (adapterData.showDetail){
+            itemHolder.buttonDetail.setVisibility(View.VISIBLE);
+            itemHolder.lySwitch.setVisibility(View.GONE);
+        }else{
+            itemHolder.lySwitch.setVisibility(View.VISIBLE);
+            itemHolder.buttonDetail.setVisibility(View.GONE);
+        }
 
         return convertView;
     }
@@ -78,7 +92,9 @@ public class DeviceAdapter extends BaseAdapter {
         public TextView name;
         public Button button;
         public Button button2;
+        public Button buttonDetail;
         public long id;
+        public View lySwitch;
 
     }
     public interface  IOnDeviceClick{

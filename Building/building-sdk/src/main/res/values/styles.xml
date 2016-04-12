@@ -81,7 +81,7 @@
     <!--标题栏字体样式-->
     <style name="title_text_style">
         <item name="android:textSize">@dimen/textsize19</item>
-        <item name="android:textColor">#464646</item>
+        <item name="android:textColor">#fff</item>
     </style>
     <!--所有横向列表样式的高度-->
     <style name="line_height">

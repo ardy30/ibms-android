@@ -5,7 +5,7 @@ package com.ehomeclouds.eastsoft.channel.http.response;
  */
 public class AreaInfo  {
     public long id;
-    public String area_name;
+    public String areaName;
     public String level;
     public  String  parent_id;
 }

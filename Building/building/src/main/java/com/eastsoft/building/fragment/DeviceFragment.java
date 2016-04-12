@@ -50,10 +50,13 @@ public class DeviceFragment extends BaseFragment {
     private DevicePresenter devicePresenter;
     private long areaId;
     private String deviceTypeCode = "";
+    int posArea, posType;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.f_device, container, false);
+        TextView textTitle = (TextView) view.findViewById(R.id.title);
+        textTitle.setText(getString(R.string.title_device));
         devicePresenter = new DevicePresenter(httpCloudService);
         initTypeView(view);
         listView = (ListView) view.findViewById(R.id.listview);
@@ -65,7 +68,7 @@ public class DeviceFragment extends BaseFragment {
 
             @Override
             public void onClickDetail(String dk) {
-                startActivity();
+                devicePresenter.startPluginActivity(dk);
             }
         });
         listView.setAdapter(deviceAdapter);
@@ -73,7 +76,7 @@ public class DeviceFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                PluginLoad.load(DataManeger.getInstance().deviceInfoMap.get(adapterList.get(position).dk));
+//                PluginLoad.load(DataManeger.getInstance().deviceInfoMap.get(adapterList.get(position).dk));
             }
         });
 
@@ -92,19 +95,18 @@ public class DeviceFragment extends BaseFragment {
 
             @Override
             public void onFailed(String errorStr) {
-
+                showToast(errorStr);
             }
 
             @Override
             public void showProgress(boolean show) {
-
             }
         });
 
     }
 
     public void getDeviceList() {
-        devicePresenter.getDeviceList(getActivity(),areaId, deviceTypeCode, 1, 100, new Iview() {
+        devicePresenter.getDeviceList(getActivity(), areaId, deviceTypeCode, 1, 100, new Iview() {
             @Override
             public void onSuccess(Object object) {
                 update();
@@ -112,6 +114,7 @@ public class DeviceFragment extends BaseFragment {
 
             @Override
             public void onFailed(String errorStr) {
+                showToast(errorStr);
 
             }
 
@@ -124,12 +127,11 @@ public class DeviceFragment extends BaseFragment {
 
     private void update() {
         adapterList.clear();
-        if (DataManeger.getInstance().deviceInfoArrayList != null) {
-            for (DeviceInfo deviceInfo : DataManeger.getInstance().deviceInfoArrayList) {
-                CommontAdapterData commontAdapterData = new CommontAdapterData(deviceInfo.device_name, 0);
-                commontAdapterData.dk = deviceInfo.device_key;
-                adapterList.add(commontAdapterData);
-            }
+        for (DeviceInfo deviceInfo : devicePresenter.getMyDevice()) {
+            CommontAdapterData commontAdapterData = new CommontAdapterData(deviceInfo.device_name, 0);
+            commontAdapterData.dk = deviceInfo.device_key;
+            commontAdapterData.showDetail=devicePresenter.showDetail(deviceInfo);
+            adapterList.add(commontAdapterData);
         }
         deviceAdapter.notifyDataSetChanged();
     }
@@ -150,52 +152,73 @@ public class DeviceFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 final List<String> nam = new ArrayList<>();
-                for (AreaInfo areaInfo : DataManeger.getInstance().areaInfoArrayList) {
-                    nam.add(areaInfo.area_name);
+                nam.add("无");
+                if (DataManeger.getInstance().areaInfoArrayList != null) {
+                    for (AreaInfo areaInfo : DataManeger.getInstance().areaInfoArrayList) {
+                        nam.add(areaInfo.areaName);
+                    }
                 }
 
                 showPopWind(nam, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                         popupWindow.dismiss();
+                        posArea = position;
                         text_area.setText(nam.get(position));
-                        areaId = DataManeger.getInstance().areaInfoArrayList.get(position).id;
+                        if (position == 0) {
+                            areaId = 0;
+                        } else {
+                            areaId = DataManeger.getInstance().areaInfoArrayList[position - 1].id;
+                        }
                         getDeviceList();
 
                     }
-                });
+                }, posArea);
                 popupWindow.showAsDropDown(ly_area);
             }
         });
         ly_type.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final List<String> nam = new ArrayList<>();
-                for (DeviceTypeInfo deviceTypeInfo : DataManeger.getInstance().deviceTypeArrayList) {
-                    nam.add(deviceTypeInfo.type_name);
+                nam.add("无");
+                if (DataManeger.getInstance().deviceTypeArrayList != null) {
+                    for (DeviceTypeInfo deviceTypeInfo : DataManeger.getInstance().deviceTypeArrayList) {
+                        nam.add(deviceTypeInfo.type_name);
+                    }
                 }
+
                 showPopWind(nam, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         popupWindow.dismiss();
-                        text_type.setText(DataManeger.getInstance().deviceTypeArrayList.get(position).type_name);
-                        deviceTypeCode = DataManeger.getInstance().deviceTypeArrayList.get(position).type_code;
+                        posType = position;
+                        text_type.setText(nam.get(position));
+                        if (position == 0) {
+                            deviceTypeCode = "";
+                        } else {
+
+                            deviceTypeCode = DataManeger.getInstance().deviceTypeArrayList[position - 1].type_code;
+                        }
                         getDeviceList();
 
                     }
-                });
+                }, posType);
                 popupWindow.showAsDropDown(ly_type);
             }
         });
     }
 
 
-    private void showPopWind(List<String> names, AdapterView.OnItemClickListener listener) {
+    private void showPopWind(List<String> names, AdapterView.OnItemClickListener listener, int checkPos) {
 
         ListView popListview = (ListView) popView
                 .findViewById(R.id.pop_listview);
         SpinnerListAdapter adapter = new SpinnerListAdapter(
                 getActivity(), names);
+        adapter.setCheckedPos(checkPos);
         popListview.setAdapter(adapter);
         popListview.setOnItemClickListener(listener);
         popListview.setOnKeyListener(new View.OnKeyListener() {
@@ -238,11 +261,6 @@ public class DeviceFragment extends BaseFragment {
                 Log.e(KeyUtil.KEY_TAG, "mqtt throwable");
             }
         });
-
-    }
-
-    private void startActivity() {
-//        startActivity(new Intent(getActivity(),));
 
     }
 }

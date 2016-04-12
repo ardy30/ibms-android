@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.eastsoft.building.R;
 import com.eastsoft.building.activity.DeviceListActivity;
@@ -36,6 +37,8 @@ public class GroupFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.f_scenario, container, false);
+        TextView textTitle= (TextView) view.findViewById(R.id.title);
+        textTitle.setText(getString(R.string.title_group));
         listView = (ListView) view.findViewById(R.id.listview);
 
         groupAdapter =new GroupAdapter(adapterList, new GroupAdapter.IOnGroupClick() {

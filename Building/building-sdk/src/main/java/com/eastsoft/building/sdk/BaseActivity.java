@@ -39,7 +39,7 @@ public abstract class BaseActivity extends FragmentActivity {
 
     public void restoreActionBar(String centerTitle, int leftImageRes,
                                  int rightImageRes, String leftText, String rightText) {
-        tvTitle = (TextView) findViewById(R.id.action_bar_title);
+        tvTitle = (TextView) findViewById(R.id.title);
         tvTitle.setText(centerTitle);
         textViewRight = (TextView) findViewById(R.id.title_right_textView);
         textViewRight.setText(rightText);

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     android:orientation="vertical">
 
     <include layout="@layout/action_bar_title" />
@@ -22,13 +23,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="123" />
+                android:text="选择区域" />
         </RelativeLayout>
 
         <View
             android:layout_width="1px"
             android:layout_height="@dimen/width60"
-            android:background="#000">
+            android:background="#eee">
 
         </View>
 
@@ -44,22 +45,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="123" />
+                android:text="选择设备类型" />
         </RelativeLayout>
 
     </LinearLayout>
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#eee">
+
+    </View>
 
     <TextView
         android:id="@+id/net"
+        style="@style/text_15_464646"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:gravity="center"
         android:layout_margin="16px"
         android:background="#FFC0CB"
+        android:gravity="center"
         android:text="@string/net_bad"
-        android:visibility="gone"
-        style="@style/text_15_464646"/>
+        android:visibility="gone" />
 
 
     <LinearLayout

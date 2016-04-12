@@ -6,10 +6,6 @@
 
 package com.eastsoft.building.activity;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
@@ -31,8 +27,6 @@ import com.eastsoft.building.sdk.DataManeger;
 import com.ehomeclouds.eastsoft.channel.mqtt.MqttManeger;
 import com.ehomeclouds.eastsoft.channel.mqtt.model.MqttConnectStatus;
 
-import java.util.Set;
-
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
@@ -52,7 +46,7 @@ public class MainActivity extends BaseActivity {
     private Class fragmentArray[] = { ScenarioFragment.class,GroupFragment.class, DeviceFragment.class,AccountFragment.class};
 
 //	//定义数组来存放按钮图片
-	private int mImageViewArray[] = {R.drawable.tab_home_sel,R.drawable.tab_devicem_sel,R.drawable.tab_find_sel,
+	private int mImageViewArray[] = {R.drawable.tab_scenario_sel,R.drawable.tab_group_sel,R.drawable.tab_device_sel,
 			R.drawable.tab_account_sel};
 
     //Tab选项卡的文字
@@ -64,33 +58,33 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        registerNetBad();
+//        registerNetBad();
 
     }
 
 
 
-    private void registerNetBad() {
-        RxBus.getDefault().toObserverable(MqttConnectStatus.class).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<MqttConnectStatus>() {
-            @Override
-            public void call(MqttConnectStatus s) {
-                if (s.getConnectStatus() == MqttConnectStatus.CONNECT_SUCCESS) {
-                    textNetbad.setVisibility(View.GONE);
-                } else {
-                    textNetbad.setVisibility(View.VISIBLE);
-                }
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-
-                Log.d("subscription", throwable.toString());
-
-            }
-        });
-
-
-    }
+//    private void registerNetBad() {
+//        RxBus.getDefault().toObserverable(MqttConnectStatus.class).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<MqttConnectStatus>() {
+//            @Override
+//            public void call(MqttConnectStatus s) {
+//                if (s.getConnectStatus() == MqttConnectStatus.CONNECT_SUCCESS) {
+//                    textNetbad.setVisibility(View.GONE);
+//                } else {
+//                    textNetbad.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        }, new Action1<Throwable>() {
+//            @Override
+//            public void call(Throwable throwable) {
+//
+//                Log.d("subscription", throwable.toString());
+//
+//            }
+//        });
+//
+//
+//    }
 
     /**
      * 初始化组件
@@ -143,6 +137,7 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         MqttManeger.getInstance(this).destroy();
+        DataManeger.getInstance().destroy();
         RxBus.getDefault().destroy();
     }
 

@@ -15,11 +15,15 @@ import java.util.List;
 public class SpinnerListAdapter extends BaseAdapter {
 	private List<String> list;
 	LayoutInflater inflater;
+	private int pos=0;
 
 	public SpinnerListAdapter(Context cxt, List<String> list) {
 		this.list = list;
 		inflater = (LayoutInflater) cxt
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	}
+	public void setCheckedPos(int pos){
+		this.pos=pos;
 	}
 
 	@Override
@@ -53,6 +57,11 @@ public class SpinnerListAdapter extends BaseAdapter {
 		RoomSpinAdapterHolder holder = (RoomSpinAdapterHolder) view.getTag();
 		if (list.size() > 0) {
 			holder.name.setText(list.get(position));
+		}
+		if (position==pos){
+			holder.checked.setVisibility(View.VISIBLE);
+		}else{
+			holder.checked.setVisibility(View.GONE);
 		}
 		return view;
 	}

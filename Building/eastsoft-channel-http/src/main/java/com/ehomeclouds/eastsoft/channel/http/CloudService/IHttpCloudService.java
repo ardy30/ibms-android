@@ -12,7 +12,9 @@ import com.ehomeclouds.eastsoft.channel.http.request.GetGroupListRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetScenarioDeviceRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetScenarioListRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.StartScenarioRequest;
+import com.ehomeclouds.eastsoft.channel.http.response.AreaInfo;
 import com.ehomeclouds.eastsoft.channel.http.response.BaseResponse;
+import com.ehomeclouds.eastsoft.channel.http.response.DeviceTypeInfo;
 import com.ehomeclouds.eastsoft.channel.http.response.GetAreaListResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetDeviceListResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetDeviceTypeResponse;
@@ -20,6 +22,7 @@ import com.ehomeclouds.eastsoft.channel.http.response.GetGroupDeviceResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetGroupListResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetScenarioDeviceResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetScenarioListResponse;
+import com.ehomeclouds.eastsoft.channel.http.response.VoidResponse;
 
 import java.security.PublicKey;
 
@@ -42,7 +45,7 @@ public  interface IHttpCloudService {
     public Call<GetGroupListResponse> getGroupList(@Body GetGroupListRequest getGroupListRequest);
 
     @POST("mobile/doAllCtrl")//控制组开 组关
-    public Call<BaseResponse> ctrlGroup(@Body CtrlGroupRequest ctrlGroupRequest);
+    public Call<VoidResponse> ctrlGroup(@Body CtrlGroupRequest ctrlGroupRequest);
 
 
     @POST("mobile/qryGroupDevice")//获取某个组下的设备列表
@@ -56,13 +59,13 @@ public  interface IHttpCloudService {
     public Call<GetScenarioDeviceResponse> getScenarioDeviceList(@Body GetScenarioDeviceRequest getScenarioDeviceRequest);
 
     @POST("mobile/doProfile")//启动情景模式
-    public Call<BaseResponse> startScenario(@Body StartScenarioRequest startScenarioRequest);
+    public Call<VoidResponse> startScenario(@Body StartScenarioRequest startScenarioRequest);
 
-    @GET("mobile/qryDeviceType")//获取设备类型列表
-    public Call<GetDeviceTypeResponse> getDeviceTypeList(@Body GetDeviceTypeRequest getDeviceTypeRequest);
+    @POST("mobile/qryDeviceType")//获取设备类型列表
+    public Call<DeviceTypeInfo[] > getDeviceTypeList(@Body GetDeviceTypeRequest getDeviceTypeRequest);
 
     @POST("mobile/qryAreaInfo")//获取区域列表
-    public Call<GetAreaListResponse> getAreaList(@Body GetAreaRequest baseRequest);
+    public Call<AreaInfo[]> getAreaList(@Body GetAreaRequest baseRequest);
 
     @POST("/mobile/qryDeviceByArea")//获取设备列表
     public Call<GetDeviceListResponse> getDeviceList(@Body GetDeviceListRequest  getDeviceListRequest);

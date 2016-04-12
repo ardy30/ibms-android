@@ -7,6 +7,6 @@ import java.util.ArrayList;
  */
 public class GetDeviceTypeResponse extends BaseResponse {
 
-    public ArrayList<DeviceTypeInfo> list;
+    public DeviceTypeInfo[] list;
 
 }

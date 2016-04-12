@@ -20,6 +20,8 @@
         <activity android:name=".activity.LoginBackGroundActivity"></activity>
         <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.DeviceListActivity"></activity>
+        <activity android:name=".activity.AboutUSActivity"></activity>
+        <activity android:name=".activity.FeedBackActivity"></activity>
     </application>
 
 </manifest>

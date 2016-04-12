@@ -20,8 +20,8 @@ public class DataManeger {
     public long userId;
     private static DataManeger dataManeger=null;
     public   ArrayList<ScenarioInfo> scenarioInfoArrayList=new ArrayList<>();
-    public   ArrayList<AreaInfo> areaInfoArrayList=new ArrayList<>();
-    public   ArrayList<DeviceTypeInfo> deviceTypeArrayList=new ArrayList<>();
+    public   AreaInfo[] areaInfoArrayList;
+    public   DeviceTypeInfo[] deviceTypeArrayList;
     public   ArrayList<DeviceInfo> deviceInfoArrayList=new ArrayList<>();
     public HashMap<String,DeviceInfo> deviceInfoMap=new HashMap();
 
@@ -31,5 +31,8 @@ public class DataManeger {
             dataManeger= new DataManeger();
         }
         return dataManeger;
+    }
+    public static void destroy(){
+        dataManeger=null;
     }
 }

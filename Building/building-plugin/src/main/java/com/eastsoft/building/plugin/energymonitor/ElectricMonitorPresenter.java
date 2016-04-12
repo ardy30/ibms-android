@@ -2,12 +2,12 @@ package com.eastsoft.building.plugin.energymonitor;
 
 import android.content.Context;
 
+import com.eastsoft.building.plugin.PluginBasePresenter;
+import com.eastsoft.building.sdk.DataManeger;
+import com.eastsoft.building.sdk.KeyUtil;
 import com.ehomeclouds.eastsoft.channel.http.CloudService.Iview;
 import com.ehomeclouds.eastsoft.channel.mqtt.MqttManeger;
-import com.ehomeclouds.eastsoft.plugin.presenter.BasePresenter;
-import com.ehomeclouds.eastsoft.presenter.util.ConstantUtil;
-import com.ehomeclouds.eastsoft.presenter.util.DataManeger;
-import com.ehomeclouds.eastsoft.presenter.util.MqttTopicManeger;
+import com.ehomeclouds.eastsoft.channel.mqtt.util.MqttTopicManeger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,7 +18,7 @@ import org.json.JSONObject;
  * This is a built-in template.
  * It contains a code fragment .
  */
-public class ElectricMonitorPresenter extends BasePresenter {
+public class ElectricMonitorPresenter extends PluginBasePresenter {
 
     private Context context;
     private String gatewayDk;
@@ -35,16 +35,16 @@ public class ElectricMonitorPresenter extends BasePresenter {
 
     public boolean isOpen(){
         boolean open = false;
-        Object switchCh1 = pull(deviceDk).get(ConstantUtil.SWITCH_CH1);
+        Object switchCh1 = pull(deviceDk).get(KeyUtil.KEY_SWITCH_CH1);
         if (switchCh1 != null){
             open = Boolean.parseBoolean(switchCh1.toString());
         }
         return open;
     }
 
-    public boolean ifOverProtected(){
+    public boolean isOverProtected(){
         boolean ifProtected = false;
-        Object overProtected = pull(deviceDk).get(ConstantUtil.OVER_PROTECTED);
+        Object overProtected = pull(deviceDk).get(KeyUtil.OVER_PROTECTED);
         if (overProtected != null){
             ifProtected = Boolean.parseBoolean(overProtected.toString());
         }
@@ -53,7 +53,7 @@ public class ElectricMonitorPresenter extends BasePresenter {
 
     public double getElectricity(){
         double electricityValue = 0;
-        Object electricity = pull(deviceDk).get(ConstantUtil.ELECTRICITY);
+        Object electricity = pull(deviceDk).get(KeyUtil.ELECTRICITY);
         if (electricity != null){
             electricityValue = Double.parseDouble(electricity.toString());
         }
@@ -62,7 +62,7 @@ public class ElectricMonitorPresenter extends BasePresenter {
 
     public double getVoltage(){
         double voltageValue = 0;
-        Object voltage = pull(deviceDk).get(ConstantUtil.VOLTAGE);
+        Object voltage = pull(deviceDk).get(KeyUtil.VOLTAGE);
         if (voltage != null){
             voltageValue = Double.parseDouble(voltage.toString());
         }
@@ -71,7 +71,7 @@ public class ElectricMonitorPresenter extends BasePresenter {
 
     public double getCurrent(){
         double currentValue = 0;
-        Object current = pull(deviceDk).get(ConstantUtil.CURRENT);
+        Object current = pull(deviceDk).get(KeyUtil.CURRENT);
         if (current != null){
             currentValue = Double.parseDouble(current.toString());
         }
@@ -80,7 +80,7 @@ public class ElectricMonitorPresenter extends BasePresenter {
 
     public double getPower(){
         double powerValue = 0;
-        Object power = pull(deviceDk).get(ConstantUtil.POWER);
+        Object power = pull(deviceDk).get(KeyUtil.POWER);
         if (power != null){
             powerValue = Double.parseDouble(power.toString());
         }
@@ -89,7 +89,7 @@ public class ElectricMonitorPresenter extends BasePresenter {
 
     public int getOverVoltage(){
         int overVoltageValue = 0;
-        Object overVoltage = pull(deviceDk).get(ConstantUtil.OVER_VOLTAGE);
+        Object overVoltage = pull(deviceDk).get(KeyUtil.OVER_VOLTAGE);
         if (overVoltage != null){
             overVoltageValue = Integer.parseInt(overVoltage.toString());
         }
@@ -98,7 +98,7 @@ public class ElectricMonitorPresenter extends BasePresenter {
 
     public int getUnderVoltage(){
         int underVoltageValue = 0;
-        Object underVoltage = pull(deviceDk).get(ConstantUtil.UNDER_VOLTAGE);
+        Object underVoltage = pull(deviceDk).get(KeyUtil.UNDER_VOLTAGE);
         if (underVoltage != null){
             underVoltageValue = Integer.parseInt(underVoltage.toString());
         }
@@ -107,7 +107,7 @@ public class ElectricMonitorPresenter extends BasePresenter {
 
     public int getOverCurrent(){
         int underVoltageValue = 0;
-        Object underVoltage = pull(deviceDk).get(ConstantUtil.UNDER_VOLTAGE);
+        Object underVoltage = pull(deviceDk).get(KeyUtil.UNDER_VOLTAGE);
         if (underVoltage != null){
             underVoltageValue = Integer.parseInt(underVoltage.toString());
         }
@@ -116,7 +116,7 @@ public class ElectricMonitorPresenter extends BasePresenter {
 
     public int getOverPower(){
         int overPowerValue = 0;
-        Object overPower = pull(deviceDk).get(ConstantUtil.OVER_POWER);
+        Object overPower = pull(deviceDk).get(KeyUtil.OVER_POWER);
         if (overPower != null){
             overPowerValue = Integer.parseInt(overPower.toString());
         }
@@ -125,16 +125,16 @@ public class ElectricMonitorPresenter extends BasePresenter {
 
 
 
-    public void openMonitor(boolean order){
+    public void on(boolean order){
         JSONObject openMonitorRequest = new JSONObject();
         JSONObject function = new JSONObject();
         try{
-            function.put(ConstantUtil.SWITCH_CH1,order);
-            openMonitorRequest.put(ConstantUtil.FUNCTION,function);
+            function.put(KeyUtil.KEY_SWITCH_CH1,order);
+            openMonitorRequest.put(KeyUtil.FUNCTION,function);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        MqttManeger.getInstance(context).publish(openMonitorRequest.toString(), MqttTopicManeger.getPubTopic(DataManeger.getInstance().getDomain(),gatewayDk,deviceDk));
+        MqttManeger.getInstance(context).publish(openMonitorRequest.toString(), MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain, gatewayDk, deviceDk));
     }
 
 
@@ -142,40 +142,40 @@ public class ElectricMonitorPresenter extends BasePresenter {
         JSONObject protectRequest = new JSONObject();
         JSONObject function = new JSONObject();
         try{
-            function.put(ConstantUtil.OVER_PROTECTED,order);
-            protectRequest.put(ConstantUtil.FUNCTION, function);
+            function.put(KeyUtil.OVER_PROTECTED,order);
+            protectRequest.put(KeyUtil.FUNCTION, function);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        MqttManeger.getInstance(context).publish(protectRequest.toString(), MqttTopicManeger.getPubTopic(DataManeger.getInstance().getDomain(),gatewayDk,deviceDk));
+        MqttManeger.getInstance(context).publish(protectRequest.toString(), MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain,gatewayDk,deviceDk));
     }
 
     public void setLimitThreshold(float maxVoltage,float minVoltage,float current,float power){
         JSONObject limitRequest = new JSONObject();
         JSONObject function = new JSONObject();
         try{
-            function.put(ConstantUtil.OVER_VOLTAGE,maxVoltage);
-            function.put(ConstantUtil.UNDER_VOLTAGE,minVoltage);
-            function.put(ConstantUtil.OVER_CURRENT,current);
-            function.put(ConstantUtil.OVER_POWER,power);
+            function.put(KeyUtil.OVER_VOLTAGE,maxVoltage);
+            function.put(KeyUtil.UNDER_VOLTAGE,minVoltage);
+            function.put(KeyUtil.OVER_CURRENT,current);
+            function.put(KeyUtil.OVER_POWER,power);
 
-            limitRequest.put(ConstantUtil.FUNCTION,function);
+            limitRequest.put(KeyUtil.FUNCTION,function);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        MqttManeger.getInstance(context).publish(limitRequest.toString(),MqttTopicManeger.getPubTopic(DataManeger.getInstance().getDomain(),gatewayDk,deviceDk));
+        MqttManeger.getInstance(context).publish(limitRequest.toString(),MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain,gatewayDk,deviceDk));
     }
 
-    public void clearCurrentElec(){
-        JSONObject clearRequest = new JSONObject();
-        JSONObject function = new JSONObject();
-        try{
-            function.put(ConstantUtil.ELECTRICITY,ConstantUtil.ELEC_ZERO);
-            clearRequest.put(ConstantUtil.FUNCTION,function);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        MqttManeger.getInstance(context).publish(clearRequest.toString(),MqttTopicManeger.getPubTopic(DataManeger.getInstance().getDomain(),gatewayDk,deviceDk));
-    }
+//    public void clearCurrentElec(){
+//        JSONObject clearRequest = new JSONObject();
+//        JSONObject function = new JSONObject();
+//        try{
+//            function.put(KeyUtil.ELECTRICITY,KeyUtil.ELEC_ZERO);
+//            clearRequest.put(KeyUtil.FUNCTION,function);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        MqttManeger.getInstance(context).publish(clearRequest.toString(),MqttTopicManeger.getPubTopic(DataManeger.getInstance().getDomain(),gatewayDk,deviceDk));
+//    }
 
 }

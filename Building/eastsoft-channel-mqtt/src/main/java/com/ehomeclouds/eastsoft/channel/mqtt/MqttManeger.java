@@ -44,9 +44,6 @@ public class MqttManeger {
 
     private MqttManeger(Context context) {
         this.context=context;
-//        this.userName = userName;
-//        this.passWord = passWord;
-//        connect(userName, passWord);
     }
 
     public static MqttManeger getInstance(Context context) {
@@ -72,14 +69,18 @@ public class MqttManeger {
 
             public void run() {
                 try {
-                    if (client != null) {
+                    if (client != null&&!client.isConnected()) {
                         client.connect(options);
                         RxBus.getDefault().post(new MqttConnectStatus(MqttConnectStatus.CONNECT_SUCCESS));
+                        System.out.println("connectionSuccess----------");
+
                     }
 
                 } catch (Exception e) {
                     e.printStackTrace();
                     RxBus.getDefault().post(new MqttConnectStatus(MqttConnectStatus.CONNECT_FAILED));
+                    System.out.println("connectionFailed----------");
+
 
                 }
             }
@@ -99,7 +100,7 @@ public class MqttManeger {
             options.setUserName(userName);
             options.setPassword(passWord.toCharArray());
             options.setConnectionTimeout(10);
-            options.setKeepAliveInterval(3);
+            options.setKeepAliveInterval(30);
             client.setCallback(new MqttCallback() {
 
                 public void connectionLost(Throwable cause) {
@@ -243,15 +244,15 @@ public class MqttManeger {
         }
 
     }
+    public void destroy() {
+        disConnect();
+        mqttManeger = null;
+    }
+
     private static String  getLocalUrl(Context context) {
         SharedPreferences sharedPreferences=context.getSharedPreferences(KeyUtil.SHARE_URL, Context.MODE_PRIVATE);
         String url=sharedPreferences.getString(KeyUtil.SHARE_URL_KEY, "");
         return url;
-    }
-
-    public void destroy() {
-        disConnect();
-        mqttManeger = null;
     }
 
 }

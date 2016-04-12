@@ -1,33 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="left|center_vertical"
-    android:orientation="horizontal"
-    android:padding="@dimen/width8"
-    android:descendantFocusability="blocksDescendants" >
+    android:layout_height="@dimen/width48"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/item_name"
         style="@style/text_15_464646"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/width25"
-        android:gravity="left|center_vertical"
         android:text="设备名称" />
 
-    <Button
-        android:id="@+id/item_btn_1"
+    <RelativeLayout
+        android:id="@+id/ly_switch"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="开"/>
-    <Button
-        android:id="@+id/item_btn_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="关"/>
+        android:layout_height="fill_parent">
+
+        <Button
+            android:id="@+id/item_btn_2"
+            android:layout_width="@dimen/width40"
+            android:layout_height="@dimen/width30"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/width50"
+            android:background="@drawable/group_right_bg"
+            android:text="关"
+            android:textColor="#fff" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/width30"
+            android:layout_toRightOf="@id/item_btn_2"
+            android:background="#fff"></View>
+
+        <Button
+            android:id="@+id/item_btn_1"
+            android:layout_width="@dimen/width40"
+            android:layout_height="@dimen/width30"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/item_btn_2"
+
+            android:background="@drawable/group_left_bg"
+            android:text="开"
+            android:textColor="#fff" />
 
 
-</LinearLayout>
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/button_detail"
+        android:layout_width="@dimen/width80"
+        android:layout_height="@dimen/width30"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/width50"
+        android:background="@drawable/scenario_bg"
+        android:text="详细"
+        android:textColor="#fff"
+        android:visibility="gone" />
+
+    <ImageView
+        android:layout_width="@dimen/width25"
+        android:layout_height="@dimen/width25"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/width11"
+        android:background="@drawable/array_right_defalult" />
+
+</RelativeLayout>

@@ -9,5 +9,14 @@
     <string name="login_failed">登录失败，请重试</string>
     <string name="app_name_space">青岛银行</string>
     <string name="net_bad">mqtt断开</string>
+    <string name="login_text">楼宇管理系统</string>
+    <string name="start_scenario">执行</string>
+    <string name="title_group">分组控制</string>
+    <string name="title_device">设备</string>
+    <string name="title_scenario">情景模式</string>
+    <string name="title_account">我</string>
+    <string name="account_main">账号管理</string>
+    <string name="feedback">意见反馈</string>
+    <string name="about_us">关于我们</string>
 
 </resources>

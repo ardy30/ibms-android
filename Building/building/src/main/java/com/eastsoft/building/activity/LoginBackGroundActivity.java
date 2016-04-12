@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
-public class LoginBackGroundActivity extends Activity implements Iview {
+public class LoginBackGroundActivity extends Activity {
     private String edtusername;
     private String edtpw;
 
@@ -44,28 +44,6 @@ public class LoginBackGroundActivity extends Activity implements Iview {
         edtusername = getIntent().getStringExtra("username");
         edtpw = getIntent().getStringExtra("password");
         login();
-    }
-
-    @Override
-    public void onSuccess(Object object) {
-
-        if (object!=null){
-            DataManeger.getInstance().scenarioInfoArrayList = (ArrayList<ScenarioInfo>) object;
-        }
-        startActivity(new Intent(LoginBackGroundActivity.this, MainActivity.class));
-        finish();
-    }
-
-    @Override
-    public void onFailed(String errorStr) {
-        Toast.makeText(LoginBackGroundActivity.this, errorStr, Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
-    }
-
-    @Override
-    public void showProgress(boolean show) {
-
     }
 
     private void login(){
@@ -80,17 +58,33 @@ public class LoginBackGroundActivity extends Activity implements Iview {
                 DataManeger.getInstance().brokerUsername = loginResponse.brokerUsername;
                 DataManeger.getInstance().brokerUrl = loginResponse.brokerUrl;
 //                saveUrl(LoginBackGroundActivity.this, loginResponse.brokerUrl);
+                httpCloudService.getScenarioList(DataManeger.getInstance().userId, 1, 100, new Iview() {
+                    @Override
+                    public void onSuccess(Object object) {
+                        if (object!=null){
+                            DataManeger.getInstance().scenarioInfoArrayList = (ArrayList<ScenarioInfo>) object;
+                        }
+                        startActivity(new Intent(LoginBackGroundActivity.this, MainActivity.class));
+                        finish();
+                    }
 
+                    @Override
+                    public void onFailed(String errorStr) {
 
-                httpCloudService.getScenarioList(DataManeger.getInstance().userId,1,100,LoginBackGroundActivity.this);
+                    }
 
+                    @Override
+                    public void showProgress(boolean show) {
 
-
+                    }
+                });
             }
 
             @Override
             public void onFailed(String errorStr) {
-
+                Toast.makeText(LoginBackGroundActivity.this, errorStr, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginBackGroundActivity.this, LoginActivity.class));
+                finish();
             }
 
             @Override
@@ -107,4 +101,9 @@ public class LoginBackGroundActivity extends Activity implements Iview {
         editor.commit();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
 }

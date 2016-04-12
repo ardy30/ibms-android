@@ -3,16 +3,25 @@
     android:id="@+id/loginLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f0f0ed"
+    android:background="@drawable/login_bg"
     android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/img_login_logo"
-            android:layout_width="@dimen/width80"
-            android:layout_height="@dimen/width80"
-            android:background="@drawable/icon_logol"
-            android:layout_marginTop="@dimen/width90"
-            android:layout_gravity="center"/>
+    <ImageView
+        android:id="@+id/img_login_logo"
+        android:layout_width="@dimen/width58"
+        android:layout_height="@dimen/width53"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/width103"
+        android:background="@drawable/icon_logol" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/width20"
+        android:text="@string/login_text"
+        android:textColor="#fff"
+        android:textSize="@dimen/width30" />
 
 
     <android.support.design.widget.TextInputLayout
@@ -20,8 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/width40"
-        >
+        android:layout_marginTop="@dimen/width40">
+
         <EditText
             android:id="@+id/email"
             android:layout_width="@dimen/width228"
@@ -44,8 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/width10"
-        >
+        android:layout_marginTop="@dimen/width10">
+
         <EditText
             android:id="@+id/password"
             android:layout_width="@dimen/width228"
@@ -53,24 +62,25 @@
             android:layout_gravity="center"
             android:ems="10"
             android:gravity="center|left"
-            android:textColorHint="@color/colorPrimary"
-            android:inputType="textPassword"
             android:hint="密码"
-            android:textColor="@color/colorPrimary"
+            android:inputType="textPassword"
             android:paddingRight="@dimen/width18"
             android:singleLine="true"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
             android:textSize="@dimen/textsize15" />
 
     </android.support.design.widget.TextInputLayout>
 
     <com.andexert.library.RippleView
         android:id="@+id/more"
+        rv_centered="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/more2"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/width30"
-        rv_centered="true">
+        android:layout_marginTop="@dimen/width60"
+        android:layout_toLeftOf="@+id/more2">
+
         <Button
             android:id="@+id/email_sign_in_button"
             android:layout_width="@dimen/width229"

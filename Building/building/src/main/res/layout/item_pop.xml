@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="@dimen/width48"
+    android:padding="@dimen/width8">
     <TextView
         android:id="@+id/item_text_pop"
         android:layout_width="fill_parent"
@@ -19,6 +20,8 @@
         android:background="@drawable/image_ok"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:visibility="gone"
         android:layout_marginRight="@dimen/width40"/>
+
 
 </RelativeLayout>

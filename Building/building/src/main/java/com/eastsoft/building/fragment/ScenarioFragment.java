@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.eastsoft.building.R;
 import com.eastsoft.building.activity.DeviceListActivity;
@@ -32,6 +33,8 @@ public class ScenarioFragment extends BaseFragment implements Iview {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.f_scenario, container, false);
+        TextView textTitle= (TextView) view.findViewById(R.id.title);
+        textTitle.setText(getString(R.string.title_scenario));
         listView = (ListView) view.findViewById(R.id.listview);
         getAdapterData();
         scenarioAdapter=new ScenarioAdapter(adapterList, new ScenarioAdapter.IOnStartScenario() {

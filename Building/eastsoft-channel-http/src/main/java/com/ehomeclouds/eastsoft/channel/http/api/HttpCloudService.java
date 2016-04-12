@@ -32,7 +32,9 @@ import com.ehomeclouds.eastsoft.channel.http.request.GetGroupListRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetScenarioDeviceRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.GetScenarioListRequest;
 import com.ehomeclouds.eastsoft.channel.http.request.StartScenarioRequest;
+import com.ehomeclouds.eastsoft.channel.http.response.AreaInfo;
 import com.ehomeclouds.eastsoft.channel.http.response.BaseResponse;
+import com.ehomeclouds.eastsoft.channel.http.response.DeviceTypeInfo;
 import com.ehomeclouds.eastsoft.channel.http.response.GetAreaListResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetDeviceListResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetDeviceTypeResponse;
@@ -40,6 +42,7 @@ import com.ehomeclouds.eastsoft.channel.http.response.GetGroupDeviceResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetGroupListResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetScenarioDeviceResponse;
 import com.ehomeclouds.eastsoft.channel.http.response.GetScenarioListResponse;
+import com.ehomeclouds.eastsoft.channel.http.response.VoidResponse;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -92,7 +95,7 @@ public class HttpCloudService extends HttpCloudServiceBase {
                     if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                        iview.onSuccess(loginResponse);
                     } else {
-                        iview.onFailed(getResuleCodeString(loginResponse.resultCode));
+                        iview.onFailed(getResuleCodeString(resultCode));
                     }
                 }
             }
@@ -122,7 +125,7 @@ public class HttpCloudService extends HttpCloudServiceBase {
                     if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess(resp.list);
                     } else {
-                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                        iview.onFailed(getResuleCodeString(resultCode));
                     }
                 }
             }
@@ -137,20 +140,19 @@ public class HttpCloudService extends HttpCloudServiceBase {
     }
     public void ctrlGroup(long userId,long groupId,boolean on,final  Iview iview){
         CtrlGroupRequest ctrlGroupRequest=new CtrlGroupRequest(userId,groupId,on);
-        Call<BaseResponse> call= iHttpCloudService.ctrlGroup(ctrlGroupRequest);
-        call.enqueue(new Callback<BaseResponse>() {
+        Call<VoidResponse> call= iHttpCloudService.ctrlGroup(ctrlGroupRequest);
+        call.enqueue(new Callback<VoidResponse>() {
             @Override
-            public void onResponse(Response<BaseResponse> response) {
+            public void onResponse(Response<VoidResponse> response) {
                 if (response.errorBody() != null) {
                     iview.onFailed(getErrorString());
                 } else {
-                    BaseResponse resp = response.body();
                     String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
 
                     if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess("");
                     } else {
-                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                        iview.onFailed(getResuleCodeString(resultCode));
                     }
                 }
             }
@@ -181,7 +183,7 @@ public class HttpCloudService extends HttpCloudServiceBase {
                     if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess(resp.list);
                     } else {
-                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                        iview.onFailed(getResuleCodeString(resultCode));
                     }
                 }
             }
@@ -212,7 +214,7 @@ public class HttpCloudService extends HttpCloudServiceBase {
                     if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess(resp.list);
                     } else {
-                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                        iview.onFailed(getResuleCodeString(resultCode));
                     }
                 }
             }
@@ -243,7 +245,7 @@ public class HttpCloudService extends HttpCloudServiceBase {
                     if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess(resp.list);
                     } else {
-                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                        iview.onFailed(getResuleCodeString(resultCode));
                     }
                 }
             }
@@ -259,20 +261,19 @@ public class HttpCloudService extends HttpCloudServiceBase {
     public void startScenario(long userId,long scenarioId ,final Iview iview){
         StartScenarioRequest startScenarioRequest=new StartScenarioRequest(userId,scenarioId);
         iHttpCloudService.startScenario(startScenarioRequest);
-        Call<BaseResponse> call= iHttpCloudService.startScenario(startScenarioRequest);
-        call.enqueue(new Callback<BaseResponse>() {
+        Call<VoidResponse> call= iHttpCloudService.startScenario(startScenarioRequest);
+        call.enqueue(new Callback<VoidResponse>() {
             @Override
-            public void onResponse(Response<BaseResponse> response) {
+            public void onResponse(Response<VoidResponse> response) {
                 if (response.errorBody() != null) {
                     iview.onFailed(getErrorString());
                 } else {
-                    BaseResponse resp = response.body();
                     String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
 
                     if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess("");
                     } else {
-                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                        iview.onFailed(getResuleCodeString(resultCode));
                     }
                 }
             }
@@ -286,21 +287,21 @@ public class HttpCloudService extends HttpCloudServiceBase {
     }
     public void getDeviceTypeList(long userId,final Iview iview){
         GetDeviceTypeRequest getDeviceTypeRequest=new GetDeviceTypeRequest(userId);
-        Call<GetDeviceTypeResponse> call=iHttpCloudService.getDeviceTypeList(getDeviceTypeRequest);
-        call.enqueue(new Callback<GetDeviceTypeResponse>() {
+        Call<DeviceTypeInfo[] > call=iHttpCloudService.getDeviceTypeList(getDeviceTypeRequest);
+        call.enqueue(new Callback<DeviceTypeInfo[] >() {
             @Override
-            public void onResponse(Response<GetDeviceTypeResponse> response) {
+            public void onResponse(Response<DeviceTypeInfo[] > response) {
                 if (response.errorBody() != null) {
                     iview.onFailed(getErrorString());
                 } else {
 
-                    GetDeviceTypeResponse resp = response.body();
+                    DeviceTypeInfo[]  resp = response.body();
                     String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
 
                     if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
-                        iview.onSuccess(resp.list);
+                        iview.onSuccess(resp);
                     } else {
-                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                        iview.onFailed(getResuleCodeString(resultCode));
                     }
                 }
             }
@@ -315,21 +316,21 @@ public class HttpCloudService extends HttpCloudServiceBase {
 
     public void getAreaList(long userId,final Iview iview){
         GetAreaRequest getAreaRequest=new GetAreaRequest(userId);
-        Call<GetAreaListResponse> call=iHttpCloudService.getAreaList(getAreaRequest);
-        call.enqueue(new Callback<GetAreaListResponse>() {
+        Call<AreaInfo[]> call=iHttpCloudService.getAreaList(getAreaRequest);
+        call.enqueue(new Callback<AreaInfo[] >() {
             @Override
-            public void onResponse(Response<GetAreaListResponse> response) {
+            public void onResponse(Response<AreaInfo[]> response) {
                 if (response.errorBody() != null) {
                     iview.onFailed(getErrorString());
                 } else {
 
-                    GetAreaListResponse resp = response.body();
+                    AreaInfo[]  list = response.body();
                     String resultCode = DecodeCloudHeader.decodeHeader(response.headers(), StringStaticUtils.RESULT_CODE, context);
 
                     if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
-                        iview.onSuccess(resp.list);
+                        iview.onSuccess(list);
                     } else {
-                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                        iview.onFailed(getResuleCodeString(resultCode));
                     }
                 }
             }
@@ -360,7 +361,7 @@ public class HttpCloudService extends HttpCloudServiceBase {
                     if (resultCode.equals(StringStaticUtils.RESULT_CODE_SUCCESS)) {
                         iview.onSuccess(resp.list);
                     } else {
-                        iview.onFailed(getResuleCodeString(resp.resultCode));
+                        iview.onFailed(getResuleCodeString(resultCode));
                     }
                 }
             }

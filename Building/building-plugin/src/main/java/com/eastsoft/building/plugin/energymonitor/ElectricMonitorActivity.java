@@ -1,11 +1,7 @@
 package com.eastsoft.building.plugin.energymonitor;
 
-import android.annotation.TargetApi;
-import android.app.Dialog;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,19 +12,11 @@ import android.widget.Toast;
 
 import com.eastsoft.building.sdk.BaseActivity;
 import com.ehomeclouds.eastsoft.channel.http.CloudService.Iview;
-import com.ehomeclouds.eastsoft.plugin.R;
-import com.ehomeclouds.eastsoft.plugin.activity.ActivitySubClass;
-import com.ehomeclouds.eastsoft.plugin.customview.CustomTimePicker;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
- * Created by wangyp on 2016/3/28.
- * Created by wangyp on 20:27.
- * This is a built-in template.
- * It contains a code fragment .
+ * Created by ll on 2016/4/12.
  */
 public class ElectricMonitorActivity extends BaseActivity implements Iview {
     private ElectricMonitorPresenter electricMonitorPresenter;
@@ -38,16 +26,8 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
     private TextView currentEle, v, a, power, lastEle;
     private ListView timers;
     private EditText et_maxvoltage, et_minvoltage, et_current, et_power;
-    private SlipButton timerSlipBn, limitSlipBn;
-    private List<Integer> days = new ArrayList<Integer>(),
-            daysCache = new ArrayList<Integer>();
-    private Dialog confirmDialog;
-    private View confirmDialogView;
     private float maxVoltage, minVoltage, current, setPower;
-    private Button clear, /* repeatConfirm, */
-            sunday, monday, tuesday, wednesday,
-            thursday, friday, saturday, addBn, complete, cancel, confirmAdd,
-            cancelAdd, limit_confirm, limit_cancel;
+    private Button limit_confirm, limit_cancel;
 
     @Override
     protected void onResume() {
@@ -124,8 +104,6 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         limitManager = findViewById(R.id.limit_manager);
         main = findViewById(R.id.main);
         timerManager = findViewById(R.id.timer_manager);
-        timerSlipBn = (SlipButton) findViewById(R.id.timer_slipbn);
-        limitSlipBn = (SlipButton) findViewById(R.id.limit_slipbn);
 
         // repeatConfirm = (Button)
         // findViewById(R.id.smartsocket_confirm_bn);
@@ -142,9 +120,6 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         cancel = (Button) findViewById(R.id.smartsocket_cancel_bn);
 
 
-        confirmAdd = (Button) findViewById(R.id.add);
-        cancelAdd = (Button) findViewById(R.id.cancel);
-        lastEle = (TextView) findViewById(R.id.last_ele_text);
 
         limit_confirm = (Button) findViewById(R.id.limit_ok);
         limit_cancel = (Button) findViewById(R.id.limit_cancel);
@@ -172,14 +147,7 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
             }
         });
 
-        // 定时通断右侧的滑动开关
-        timerSlipBn.setOnChangedListener(new SlipButton.OnChangedListener() {
 
-            @Override
-            public void OnChanged(final SlipButton wiperSwitch, final boolean checkState) {
-                // TODO: 2016/3/29
-            }
-        });
 
         // 越限保护右侧的滑动开关
         limitSlipBn.setOnChangedListener(new SlipButton.OnChangedListener() {
@@ -199,49 +167,9 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
             }
         });
         // 越限保护跳转按钮
-        toLimit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 设置确认跳转对话框的样式
-                confirmDialog = new Dialog(ElectricMonitorActivity.this, R.style.dialog);
-                confirmDialogView = LayoutInflater.from(ElectricMonitorActivity.this).inflate(
-                        R.layout.confirm_dialog, null);
-                confirmDialog.setContentView(confirmDialogView);
-                Button confirm = (Button) confirmDialogView
-                        .findViewById(R.id.confirm_dialog_confirm);
-                Button cancel = (Button) confirmDialogView
-                        .findViewById(R.id.confirm_dialog_cancle);
-                // 为对话框中的确认和取消按钮设置事件监听
-                confirm.setOnClickListener(new View.OnClickListener() {
+        toLimit.setOnClickListener();
 
-                    @Override
-                    public void onClick(View v) {
 
-                        confirmDialog.dismiss();
-                        showLimitView();
-
-                    }
-                });
-
-                cancel.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        confirmDialog.dismiss();
-                    }
-                });
-                // 弹出对话框
-                confirmDialog.show();
-            }
-        });
-
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                electricMonitorPresenter.clearCurrentElec();
-            }
-        });
 
     }
 
@@ -304,128 +232,7 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         });
     }
 
-    private void initDaysBn(final List<Integer> days) {
 
-        monday.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (days.contains(1)) {
-                    v.setBackgroundColor(Color.rgb(224, 224, 224));
-                    ((Button) v).setTextColor(Color.rgb(83, 83, 83));
-                    days.remove((Object) 1);
-                } else {
-                    v.setBackgroundColor(Color.rgb(254, 166, 30));
-                    ((Button) v).setTextColor(Color.rgb(255, 255, 255));
-                    days.add(1);
-                }
-            }
-        });
-
-        tuesday.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (days.contains(2)) {
-                    v.setBackgroundColor(Color.rgb(224, 224, 224));
-                    ((Button) v).setTextColor(Color.rgb(83, 83, 83));
-                    days.remove((Object) 2);
-                } else {
-                    v.setBackgroundColor(Color.rgb(254, 166, 30));
-                    ((Button) v).setTextColor(Color.rgb(255, 255, 255));
-                    days.add(2);
-                }
-            }
-        });
-
-        wednesday.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (days.contains(3)) {
-                    v.setBackgroundColor(Color.rgb(224, 224, 224));
-                    ((Button) v).setTextColor(Color.rgb(83, 83, 83));
-                    days.remove((Object) 3);
-                } else {
-                    v.setBackgroundColor(Color.rgb(254, 166, 30));
-                    ((Button) v).setTextColor(Color.rgb(255, 255, 255));
-                    days.add(3);
-                }
-            }
-        });
-
-        thursday.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (days.contains(4)) {
-                    v.setBackgroundColor(Color.rgb(224, 224, 224));
-                    ((Button) v).setTextColor(Color.rgb(83, 83, 83));
-                    days.remove((Object) 4);
-                } else {
-                    v.setBackgroundColor(Color.rgb(254, 166, 30));
-                    ((Button) v).setTextColor(Color.rgb(255, 255, 255));
-                    days.add(4);
-                }
-            }
-        });
-
-        friday.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (days.contains(5)) {
-                    v.setBackgroundColor(Color.rgb(224, 224, 224));
-                    ((Button) v).setTextColor(Color.rgb(83, 83, 83));
-                    days.remove((Object) 5);
-                } else {
-                    v.setBackgroundColor(Color.rgb(254, 166, 30));
-                    ((Button) v).setTextColor(Color.rgb(255, 255, 255));
-                    days.add(5);
-                }
-            }
-        });
-
-        saturday.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (days.contains(6)) {
-                    v.setBackgroundColor(Color.rgb(224, 224, 224));
-                    ((Button) v).setTextColor(Color.rgb(83, 83, 83));
-                    days.remove((Object) 6);
-                } else {
-                    v.setBackgroundColor(Color.rgb(254, 166, 30));
-                    ((Button) v).setTextColor(Color.rgb(255, 255, 255));
-                    days.add(6);
-                }
-            }
-        });
-
-        sunday.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (days.contains(7)) {
-                    v.setBackgroundColor(Color.rgb(224, 224, 224));
-                    ((Button) v).setTextColor(Color.rgb(83, 83, 83));
-                    days.remove((Object) 7);
-                } else {
-                    v.setBackgroundColor(Color.rgb(254, 166, 30));
-                    ((Button) v).setTextColor(Color.rgb(255, 255, 255));
-                    days.add(7);
-                }
-            }
-        });
-
-    }
 
     private boolean isLegal(String maxVoltage, String minVoltage, String current, String power) {
         if(haveMorePoint(maxVoltage)||haveMorePoint(minVoltage)||haveMorePoint(current)||haveMorePoint(power)){

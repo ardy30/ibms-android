@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+        <include layout="@layout/action_bar_title"/>
+
+
+        <ImageView
+            android:id="@+id/aboutus_logo"
+            android:layout_width="@dimen/width107"
+            android:layout_height="@dimen/width75"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/width54"
+            android:src="@drawable/icon_logol" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/width10"
+            android:background="#d2d2d2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/width37"
+            android:gravity="left"
+            android:paddingLeft="@dimen/width39"
+            android:text="电话："
+            android:textColor="#959595"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/width27"
+            android:gravity="left"
+            android:paddingLeft="@dimen/width39"
+            android:text="地址："
+            android:textColor="#959595"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/width27"
+            android:gravity="left"
+            android:paddingLeft="@dimen/width39"
+            android:text="Email：service@eastsoft.com.cn "
+            android:textColor="#959595"
+            android:textSize="@dimen/textsize13" />
+    </LinearLayout>
+
+
+</RelativeLayout>
