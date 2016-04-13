@@ -76,7 +76,7 @@ public class DeviceFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-//                PluginLoad.load(DataManeger.getInstance().deviceInfoMap.get(adapterList.get(position).dk));
+                PluginLoad.load(getActivity(),DataManeger.getInstance().deviceInfoMap.get(adapterList.get(position).dk));
             }
         });
 

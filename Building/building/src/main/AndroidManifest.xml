@@ -22,6 +22,7 @@
         <activity android:name=".activity.DeviceListActivity"></activity>
         <activity android:name=".activity.AboutUSActivity"></activity>
         <activity android:name=".activity.FeedBackActivity"></activity>
+        <activity android:name=".plugin.energymonitor.ElectricMonitorActivity"></activity>
     </application>
 
 </manifest>

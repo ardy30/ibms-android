@@ -13,167 +13,325 @@
         android:layout_height="@dimen/width75"
         android:background="#fff">
 
-        <ImageView
-            android:id="@+id/image_icon_account"
-            android:layout_width="@dimen/width35"
-            android:layout_height="@dimen/width35"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width20"
-            android:background="@drawable/account_icon" />
-
         <TextView
-            android:id="@+id/account_name"
+            android:id="@+id/text_switch"
+            style="@style/text_15_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/width30"
-            android:layout_toRightOf="@id/image_icon_account"
-            android:text="@string/account_main"
-            android:textColor="@color/home_font_color"
-            android:textSize="@dimen/textsize16" />
+            android:text="@string/text_switch" />
 
-        <TextView
-            android:id="@+id/account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/btn_on"
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width40"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/width5"
-            android:layout_toRightOf="@+id/account_name"
-            android:text="7777@qq.com"
-            android:textColor="@color/home_font_color" />
+            android:layout_toRightOf="@id/text_switch"
+            android:background="@drawable/btn_blue_bg"
+            android:text="@string/on"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/btn_off"
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width5"
+            android:layout_toRightOf="@id/btn_on"
+            android:background="@drawable/btn_blue_bg"
+            android:text="@string/off"
+            android:textColor="#fff" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
             android:background="#e5e5e5" />
-
-        <ImageView
-            android:layout_width="@dimen/width25"
-            android:layout_height="@dimen/width25"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/width11"
-            android:background="@drawable/array_right_defalult" />
     </RelativeLayout>
-    <!--<RelativeLayout-->
-    <!--android:id="@+id/adviance_setting"-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_marginTop="@dimen/width20"-->
-    <!--android:layout_height="@dimen/width50"-->
-    <!--android:background="#fff">-->
 
-    <!--<ImageView-->
-    <!--android:id="@+id/image_device"-->
-    <!--android:layout_width="@dimen/width45"-->
-    <!--android:layout_height="@dimen/width45"-->
-    <!--android:layout_marginLeft="@dimen/width16"-->
-    <!--android:background="@drawable/hight_setting"-->
-    <!--android:layout_centerVertical="true"/>-->
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:layout_marginLeft="@dimen/width25"-->
-    <!--style="@style/text_15_464646"-->
-    <!--android:layout_toRightOf="@id/image_device"-->
-    <!--android:text="高级设置" />-->
-
-    <!--<View-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_height="1px"-->
-    <!--android:background="#e5e5e5" />-->
-
-    <!--</RelativeLayout>-->
     <RelativeLayout
-        android:id="@+id/about_app"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/width50"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width75"
         android:background="#fff">
 
-        <ImageView
-            android:id="@+id/image_link"
-            android:layout_width="@dimen/width45"
-            android:layout_height="@dimen/width45"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width16"
-            android:background="@drawable/set_about" />
-
         <TextView
+            android:id="@+id/text_over_p"
             style="@style/text_15_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width25"
-            android:layout_toRightOf="@id/image_link"
-            android:text="关于APP"
-            android:textColor="@color/home_font_color" />
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/over_protect" />
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="#e5e5e5" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:layout_alignParentBottom="true"
-            android:background="#e5e5e5" />
-
-        <ImageView
-            android:layout_width="@dimen/width25"
-            android:layout_height="@dimen/width25"
-            android:layout_alignParentRight="true"
+        <Button
+            android:id="@+id/btn_p_on"
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width40"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/width11"
-            android:background="@drawable/array_right_defalult" />
+            android:layout_marginLeft="@dimen/width5"
+            android:layout_toRightOf="@id/text_over_p"
+            android:background="@drawable/btn_blue_bg"
+            android:text="@string/on"
+            android:textColor="#fff" />
 
+        <Button
+            android:id="@+id/btn_p_off"
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width5"
+            android:layout_toRightOf="@id/btn_p_on"
+            android:background="@drawable/btn_blue_bg"
+            android:text="@string/off"
+            android:textColor="#fff" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#e5e5e5" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/feedback"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/width50"
-        android:layout_marginTop="@dimen/width20"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width70"
         android:background="#fff">
 
-        <ImageView
-            android:id="@+id/image_add"
-            android:layout_width="@dimen/width45"
-            android:layout_height="@dimen/width45"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width16"
-            android:background="@drawable/set_feedback" />
-
         <TextView
+            android:id="@+id/text_over_v"
             style="@style/text_15_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width25"
-            android:layout_toRightOf="@id/image_add"
-            android:text="意见反馈"
-            android:textColor="@color/home_font_color" />
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/over_v" />
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
+        <TextView
+            android:id="@+id/text_over_v_tip"
+            style="@style/text_15_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_over_v"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/over_protect_tips" />
 
-            android:background="#e5e5e5" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:layout_alignParentBottom="true"
-            android:background="#e5e5e5" />
-
-        <ImageView
-            android:layout_width="@dimen/width25"
-            android:layout_height="@dimen/width25"
-            android:layout_alignParentRight="true"
+        <EditText
+            android:id="@+id/edit_v"
+            android:layout_width="@dimen/width120"
+            android:layout_height="@dimen/width40"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/width11" />
+            android:layout_marginLeft="@dimen/width200"
+            android:hint="设定过压值" />
+
+        <Button
+            android:id="@+id/btn_v_ok"
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width10"
+            android:layout_toRightOf="@id/edit_v"
+            android:background="@drawable/btn_ok_bg"
+
+            android:text="@string/ok"
+            android:textColor="#fff" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width70"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/text_under_v"
+            style="@style/text_15_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/under_v" />
+
+        <TextView
+            android:id="@+id/text_under_v_tip"
+            style="@style/text_15_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_under_v"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/under_protect_tips" />
+
+        <EditText
+            android:id="@+id/edit_under_v"
+            android:layout_width="@dimen/width120"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width200"
+            android:hint="设定欠压值" />
+
+        <Button
+            android:id="@+id/btn_under_v_ok"
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width10"
+            android:layout_toRightOf="@id/edit_under_v"
+            android:background="@drawable/btn_ok_bg"
+
+            android:text="@string/ok"
+            android:textColor="#fff" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width70"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/text_over_a"
+            style="@style/text_15_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/over_a" />
+
+        <TextView
+            android:id="@+id/text_over_a_tip"
+            style="@style/text_15_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_over_a"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/over_a_tips" />
+
+        <EditText
+            android:id="@+id/edit_a"
+            android:layout_width="@dimen/width120"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width200"
+            android:hint="设定过流值" />
+
+        <Button
+            android:id="@+id/btn_a_ok"
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width10"
+            android:layout_toRightOf="@id/edit_a"
+            android:background="@drawable/btn_ok_bg"
+
+            android:text="@string/ok"
+            android:textColor="#fff" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width70"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/text_over_power"
+            style="@style/text_15_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/over_power" />
+
+        <TextView
+            android:id="@+id/text_over_power_tip"
+            style="@style/text_15_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_over_power"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/over_power_tips" />
+
+        <EditText
+            android:id="@+id/edit_power"
+            android:layout_width="@dimen/width120"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width200"
+            android:hint="设定过载值" />
+
+        <Button
+            android:id="@+id/btn_power_ok"
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width10"
+            android:layout_toRightOf="@id/edit_power"
+            android:background="@drawable/btn_ok_bg"
+
+            android:text="@string/ok"
+            android:textColor="#fff" />
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#e5e5e5" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width70"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/text_elc"
+            style="@style/text_15_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/ele" />
+
+        <Button
+            android:id="@+id/btn_refresh"
+            android:layout_width="@dimen/width50"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width100"
+            android:background="@drawable/btn_ok_bg"
+            android:text="@string/refresh"
+            android:textColor="#fff" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width70"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/text_v"
+            style="@style/text_15_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/over_power" />
+
+        <TextView
+            android:id="@+id/text_a"
+            style="@style/text_15_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/over_power" />
+
+        <TextView
+            android:id="@+id/text_p"
+            style="@style/text_15_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/width30"
+            android:text="@string/over_power" />
+
 
     </RelativeLayout>
+
+
 
 </LinearLayout>

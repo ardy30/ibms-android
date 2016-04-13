@@ -18,10 +18,10 @@ public class KeyUtil {
     public static final String CURRENT = "current";
     public static final String POWER = "power";
     public static final String OVER_PROTECTED = "over_protected";
-    public static final String OVER_VOLTAGE = "over_voltage";
-    public static final String UNDER_VOLTAGE = "under_voltage";
-    public static final String OVER_CURRENT = "over_current";
-    public static final String OVER_POWER = "over_power";
+    public static final String OVER_VOLTAGE = "over_voltage_ch1";
+    public static final String UNDER_VOLTAGE = "under_voltage_chq";
+    public static final String OVER_CURRENT = "over_current_ch1";
+    public static final String OVER_POWER = "over_power_ch1";
 
 
 }

@@ -1,4 +1,37 @@
 <resources>
     <string name="app_name">Building-plugin</string>
+    <string name="over_protect">越限保护</string>
+    <string name="on">开</string>
+    <string name="off">关</string>
+    <string name="over_v">过压值</string>
+    <string name="over_protect_tips">限定值：254-264V</string>
+    <string name="ok">确定</string>
+    <string name="under_v">欠压值</string>
+    <string name="over_a">过流值</string>
+    <string name="under_protect_tips">限定值：154-176V</string>
+    <string name="over_a_tips"><![CDATA[限定值：<32A]]></string>
+    <string name="over_power">过载值</string>
+    <string name="over_power_tips"><![CDATA[限定值：<7.04KW]]></string>
+    <string name="refresh">更新</string>
+    <string name="text_switch">通断</string>
+    <string name="cuation_under_pressure_low">请注意，欠压数值已低于设备额定电压的20%</string>
+    <string name="cuation_overpressure_value_pass">请注意，过压数值已超过设备额定电压的20%</string>
+    <string name="style_error">数值格式错误</string>
+    <string name="overpressure_value_no_pass">过压值不能超过</string>
+    <string name="under_pressure_no_low">欠压值不能低于</string>
+    <string name="current_value_no_pass">电流值不能超过</string>
+    <string name="current_value_no_low">电流值不能低于</string>
+    <string name="power_no_pass">功率值不能高于</string>
+    <string name="power_no_low">功率值不能低于</string>
+    <string name="numberical_no_negetive">数值不能为负</string>
+    <string name="numberical_no_null">数值不能为空</string>
+    <string name="confirm_set">设置前请理解这些参数的含义并关闭越限保护的开关，以免出现不必要的问题！</string>
+    <string name="temperature">当前温度：25℃</string>
+    <string name="protection">低温保护：15℃</string>
+    <string name="ele">电量</string>
+    <string name="text_ele">电量：</string>
+    <string name="text_v">电压：</string>
+    <string name="text_a">电流：</string>
+    <string name="text_p">功率：</string>
 
 </resources>

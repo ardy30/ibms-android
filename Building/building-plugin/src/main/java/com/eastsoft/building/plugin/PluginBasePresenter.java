@@ -42,7 +42,7 @@ public class PluginBasePresenter {
     }
 
     //获取配置设备的配置Json数据
-    public Map<String,Object> pullConfigJson(String dk){
-        return DataManeger.getInstance().getDeviceInfoMap().get(dk).getConfig();
-    }
+//    public Map<String,Object> pullConfigJson(String dk){
+//        return DataManeger.getInstance().getDeviceInfoMap().get(dk).getConfig();
+//    }
 }

@@ -87,38 +87,38 @@ public class ElectricMonitorPresenter extends PluginBasePresenter {
         return powerValue;
     }
 
-    public int getOverVoltage(){
-        int overVoltageValue = 0;
+    public float getOverVoltage(){
+        float overVoltageValue = 0;
         Object overVoltage = pull(deviceDk).get(KeyUtil.OVER_VOLTAGE);
         if (overVoltage != null){
-            overVoltageValue = Integer.parseInt(overVoltage.toString());
+            overVoltageValue = Float.parseFloat(overVoltage.toString());
         }
         return overVoltageValue;
     }
 
-    public int getUnderVoltage(){
-        int underVoltageValue = 0;
+    public float getUnderVoltage(){
+        float underVoltageValue = 0;
         Object underVoltage = pull(deviceDk).get(KeyUtil.UNDER_VOLTAGE);
         if (underVoltage != null){
-            underVoltageValue = Integer.parseInt(underVoltage.toString());
+            underVoltageValue = Float.parseFloat(underVoltage.toString());
         }
         return underVoltageValue;
     }
 
-    public int getOverCurrent(){
-        int underVoltageValue = 0;
+    public float getOverCurrent(){
+        float underVoltageValue = 0;
         Object underVoltage = pull(deviceDk).get(KeyUtil.UNDER_VOLTAGE);
         if (underVoltage != null){
-            underVoltageValue = Integer.parseInt(underVoltage.toString());
+            underVoltageValue = Float.parseFloat(underVoltage.toString());
         }
         return underVoltageValue;
     }
 
-    public int getOverPower(){
-        int overPowerValue = 0;
+    public float getOverPower(){
+        float overPowerValue = 0;
         Object overPower = pull(deviceDk).get(KeyUtil.OVER_POWER);
         if (overPower != null){
-            overPowerValue = Integer.parseInt(overPower.toString());
+            overPowerValue = Float.parseFloat(overPower.toString());
         }
         return overPowerValue;
     }
@@ -150,13 +150,47 @@ public class ElectricMonitorPresenter extends PluginBasePresenter {
         MqttManeger.getInstance(context).publish(protectRequest.toString(), MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain,gatewayDk,deviceDk));
     }
 
-    public void setLimitThreshold(float maxVoltage,float minVoltage,float current,float power){
+    public void setOverV(float maxVoltage){
         JSONObject limitRequest = new JSONObject();
         JSONObject function = new JSONObject();
         try{
             function.put(KeyUtil.OVER_VOLTAGE,maxVoltage);
+
+
+            limitRequest.put(KeyUtil.FUNCTION,function);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        MqttManeger.getInstance(context).publish(limitRequest.toString(),MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain,gatewayDk,deviceDk));
+    }
+    public void setUnderV(float minVoltage){
+        JSONObject limitRequest = new JSONObject();
+        JSONObject function = new JSONObject();
+        try{
             function.put(KeyUtil.UNDER_VOLTAGE,minVoltage);
+
+            limitRequest.put(KeyUtil.FUNCTION,function);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        MqttManeger.getInstance(context).publish(limitRequest.toString(),MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain,gatewayDk,deviceDk));
+    }
+    public void setOverA(float current ){
+        JSONObject limitRequest = new JSONObject();
+        JSONObject function = new JSONObject();
+        try{
             function.put(KeyUtil.OVER_CURRENT,current);
+
+            limitRequest.put(KeyUtil.FUNCTION,function);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        MqttManeger.getInstance(context).publish(limitRequest.toString(),MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain,gatewayDk,deviceDk));
+    }
+    public void setOverp(float power){
+        JSONObject limitRequest = new JSONObject();
+        JSONObject function = new JSONObject();
+        try{
             function.put(KeyUtil.OVER_POWER,power);
 
             limitRequest.put(KeyUtil.FUNCTION,function);
@@ -166,16 +200,7 @@ public class ElectricMonitorPresenter extends PluginBasePresenter {
         MqttManeger.getInstance(context).publish(limitRequest.toString(),MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain,gatewayDk,deviceDk));
     }
 
-//    public void clearCurrentElec(){
-//        JSONObject clearRequest = new JSONObject();
-//        JSONObject function = new JSONObject();
-//        try{
-//            function.put(KeyUtil.ELECTRICITY,KeyUtil.ELEC_ZERO);
-//            clearRequest.put(KeyUtil.FUNCTION,function);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        MqttManeger.getInstance(context).publish(clearRequest.toString(),MqttTopicManeger.getPubTopic(DataManeger.getInstance().getDomain(),gatewayDk,deviceDk));
-//    }
+
+
 
 }
