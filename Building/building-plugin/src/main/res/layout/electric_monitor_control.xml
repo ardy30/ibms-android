@@ -15,19 +15,19 @@
 
         <TextView
             android:id="@+id/text_switch"
-            style="@style/text_15_464646"
-            android:layout_width="wrap_content"
+            style="@style/text_18_464646"
+            android:layout_width="@dimen/width90"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width30"
+            android:layout_marginLeft="@dimen/width40"
             android:text="@string/text_switch" />
 
         <Button
             android:id="@+id/btn_on"
-            android:layout_width="@dimen/width50"
-            android:layout_height="@dimen/width40"
+            android:layout_width="@dimen/width60"
+            android:layout_height="@dimen/width30"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width5"
+            android:layout_marginLeft="@dimen/width10"
             android:layout_toRightOf="@id/text_switch"
             android:background="@drawable/btn_blue_bg"
             android:text="@string/on"
@@ -35,10 +35,10 @@
 
         <Button
             android:id="@+id/btn_off"
-            android:layout_width="@dimen/width50"
-            android:layout_height="@dimen/width40"
+            android:layout_width="@dimen/width60"
+            android:layout_height="@dimen/width30"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width5"
+            android:layout_marginLeft="@dimen/width10"
             android:layout_toRightOf="@id/btn_on"
             android:background="@drawable/btn_blue_bg"
             android:text="@string/off"
@@ -57,19 +57,19 @@
 
         <TextView
             android:id="@+id/text_over_p"
-            style="@style/text_15_464646"
-            android:layout_width="wrap_content"
+            style="@style/text_18_464646"
+            android:layout_width="@dimen/width90"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width30"
+            android:layout_marginLeft="@dimen/width40"
             android:text="@string/over_protect" />
 
         <Button
             android:id="@+id/btn_p_on"
-            android:layout_width="@dimen/width50"
-            android:layout_height="@dimen/width40"
+            android:layout_width="@dimen/width60"
+            android:layout_height="@dimen/width30"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width5"
+            android:layout_marginLeft="@dimen/width10"
             android:layout_toRightOf="@id/text_over_p"
             android:background="@drawable/btn_blue_bg"
             android:text="@string/on"
@@ -77,10 +77,10 @@
 
         <Button
             android:id="@+id/btn_p_off"
-            android:layout_width="@dimen/width50"
-            android:layout_height="@dimen/width40"
+            android:layout_width="@dimen/width60"
+            android:layout_height="@dimen/width30"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width5"
+            android:layout_marginLeft="@dimen/width10"
             android:layout_toRightOf="@id/btn_p_on"
             android:background="@drawable/btn_blue_bg"
             android:text="@string/off"
@@ -97,36 +97,41 @@
         android:layout_height="@dimen/width70"
         android:background="#fff">
 
-        <TextView
-            android:id="@+id/text_over_v"
-            style="@style/text_15_464646"
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width30"
-            android:text="@string/over_v" />
+            android:layout_marginLeft="@dimen/width40">
+            <TextView
+                android:id="@+id/text_over_v"
+                style="@style/text_18_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/over_v" />
 
-        <TextView
-            android:id="@+id/text_over_v_tip"
-            style="@style/text_15_464646"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_over_v"
-            android:layout_marginLeft="@dimen/width30"
-            android:text="@string/over_protect_tips" />
+            <TextView
+                android:id="@+id/text_over_v_tip"
+                style="@style/text_15_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_over_v"
+                android:text="@string/over_protect_tips" />
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/edit_v"
             android:layout_width="@dimen/width120"
             android:layout_height="@dimen/width40"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width200"
+            android:textSize="@dimen/textsize16"
+            android:layout_marginLeft="@dimen/width175"
             android:hint="设定过压值" />
 
         <Button
             android:id="@+id/btn_v_ok"
             android:layout_width="@dimen/width50"
-            android:layout_height="@dimen/width40"
+            android:layout_height="@dimen/width30"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/width10"
             android:layout_toRightOf="@id/edit_v"
@@ -141,36 +146,44 @@
         android:layout_height="@dimen/width70"
         android:background="#fff">
 
-        <TextView
-            android:id="@+id/text_under_v"
-            style="@style/text_15_464646"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width30"
-            android:text="@string/under_v" />
+            android:layout_marginLeft="@dimen/width40"
+            >
+            <TextView
+                android:id="@+id/text_under_v"
+                style="@style/text_18_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/under_v" />
 
-        <TextView
-            android:id="@+id/text_under_v_tip"
-            style="@style/text_15_464646"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_under_v"
-            android:layout_marginLeft="@dimen/width30"
-            android:text="@string/under_protect_tips" />
+            <TextView
+                android:id="@+id/text_under_v_tip"
+                style="@style/text_15_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_under_v"
+                android:text="@string/under_protect_tips" />
+
+        </RelativeLayout>
+
+
 
         <EditText
             android:id="@+id/edit_under_v"
             android:layout_width="@dimen/width120"
             android:layout_height="@dimen/width40"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width200"
+            android:textSize="@dimen/textsize16"
+            android:layout_marginLeft="@dimen/width175"
             android:hint="设定欠压值" />
 
         <Button
             android:id="@+id/btn_under_v_ok"
             android:layout_width="@dimen/width50"
-            android:layout_height="@dimen/width40"
+            android:layout_height="@dimen/width30"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/width10"
             android:layout_toRightOf="@id/edit_under_v"
@@ -185,36 +198,44 @@
         android:layout_height="@dimen/width70"
         android:background="#fff">
 
-        <TextView
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content">
+
+            <TextView
             android:id="@+id/text_over_a"
-            style="@style/text_15_464646"
+            style="@style/text_18_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width30"
             android:text="@string/over_a" />
 
-        <TextView
-            android:id="@+id/text_over_a_tip"
-            style="@style/text_15_464646"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_over_a"
-            android:layout_marginLeft="@dimen/width30"
-            android:text="@string/over_a_tips" />
+            <TextView
+                android:id="@+id/text_over_a_tip"
+                style="@style/text_15_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_over_a"
+                android:text="@string/over_a_tips" />
+
+
+        </RelativeLayout>
+
 
         <EditText
             android:id="@+id/edit_a"
             android:layout_width="@dimen/width120"
             android:layout_height="@dimen/width40"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width200"
+            android:textSize="@dimen/textsize16"
+            android:layout_marginLeft="@dimen/width175"
             android:hint="设定过流值" />
 
         <Button
             android:id="@+id/btn_a_ok"
             android:layout_width="@dimen/width50"
-            android:layout_height="@dimen/width40"
+            android:layout_height="@dimen/width30"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/width10"
             android:layout_toRightOf="@id/edit_a"
@@ -229,36 +250,44 @@
         android:layout_height="@dimen/width70"
         android:background="#fff">
 
-        <TextView
-            android:id="@+id/text_over_power"
-            style="@style/text_15_464646"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width30"
-            android:text="@string/over_power" />
+            android:layout_marginLeft="@dimen/width40">
 
-        <TextView
-            android:id="@+id/text_over_power_tip"
-            style="@style/text_15_464646"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_over_power"
-            android:layout_marginLeft="@dimen/width30"
-            android:text="@string/over_power_tips" />
+            <TextView
+                android:id="@+id/text_over_power"
+                style="@style/text_18_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/over_power" />
+
+            <TextView
+                android:id="@+id/text_over_power_tip"
+                style="@style/text_15_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_over_power"
+                android:text="@string/over_power_tips" />
+
+
+        </RelativeLayout>
+
 
         <EditText
             android:id="@+id/edit_power"
             android:layout_width="@dimen/width120"
             android:layout_height="@dimen/width40"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width200"
+            android:textSize="@dimen/textsize16"
+            android:layout_marginLeft="@dimen/width175"
             android:hint="设定过载值" />
 
         <Button
             android:id="@+id/btn_power_ok"
             android:layout_width="@dimen/width50"
-            android:layout_height="@dimen/width40"
+            android:layout_height="@dimen/width30"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/width10"
             android:layout_toRightOf="@id/edit_power"
@@ -278,19 +307,19 @@
 
         <TextView
             android:id="@+id/text_elc"
-            style="@style/text_15_464646"
+            style="@style/text_18_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width30"
+            android:layout_marginLeft="@dimen/width40"
             android:text="@string/ele" />
 
         <Button
             android:id="@+id/btn_refresh"
-            android:layout_width="@dimen/width50"
-            android:layout_height="@dimen/width40"
+            android:layout_width="@dimen/width60"
+            android:layout_height="@dimen/width30"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width100"
+            android:layout_marginLeft="@dimen/width150"
             android:background="@drawable/btn_ok_bg"
             android:text="@string/refresh"
             android:textColor="#fff" />
@@ -303,16 +332,16 @@
 
         <TextView
             android:id="@+id/text_v"
-            style="@style/text_15_464646"
+            style="@style/text_18_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width30"
-            android:text="@string/over_power" />
+            android:layout_marginLeft="@dimen/width40"
+            android:text="@string/over_power"/>
 
         <TextView
             android:id="@+id/text_a"
-            style="@style/text_15_464646"
+            style="@style/text_18_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -321,12 +350,12 @@
 
         <TextView
             android:id="@+id/text_p"
-            style="@style/text_15_464646"
+            style="@style/text_18_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/width30"
+            android:layout_marginRight="@dimen/width25"
             android:text="@string/over_power" />
 
 

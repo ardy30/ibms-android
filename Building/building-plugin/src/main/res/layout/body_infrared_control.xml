@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/action_bar_title" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width75"
+        android:background="#fff">
+
+        <TextView
+            style="@style/text_18_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/light_value" />
+
+        <TextView
+            style="@style/text_18_464646"
+            android:id="@+id/light_value"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width5"
+            android:layout_height="wrap_content"
+            android:text="@string/test_number"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#e5e5e5" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width75"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/text_over_p"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            style="@style/text_18_464646"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/people_exit" />
+        <TextView
+            android:id="@+id/people"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/text_over_p"
+            android:layout_marginLeft="@dimen/width5"
+            style="@style/text_18_464646"
+            android:layout_height="wrap_content"
+            android:text="@string/test_number"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#e5e5e5" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width70"
+        android:background="#fff">
+
+        <RelativeLayout
+            android:id="@+id/light_close_rel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width30">
+            <TextView
+            android:id="@+id/text_over_v"
+                style="@style/text_18_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/close_light_delay" />
+            <TextView
+                android:id="@+id/close_light_delay_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_18_464646"
+                android:layout_toRightOf="@+id/text_over_v"
+                android:text="@string/test_number"/>
+
+            <TextView
+                android:id="@+id/text_over_v_tip"
+                style="@style/text_15_464646"
+                android:layout_width="@dimen/width150"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_over_v"
+                android:text="@string/light_delay_limit_value" />
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/edit_close_delay"
+            android:layout_width="@dimen/width120"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/light_close_rel"
+            android:layout_marginLeft="@dimen/width10"
+            android:textSize="@dimen/textsize15"
+            android:hint="@string/setting_close_light_delay" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#e5e5e5" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width70"
+        android:background="#fff">
+
+        <RelativeLayout
+            android:id="@+id/open_light_threshold_rel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width30">
+            <TextView
+                android:id="@+id/open_light_threshold"
+                style="@style/text_18_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/open_light_threshold" />
+            <TextView
+                android:id="@+id/open_light_threshold_value"
+                android:layout_width="wrap_content"
+                style="@style/text_18_464646"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/open_light_threshold"
+                android:text="@string/test_number"/>
+
+            <TextView
+                style="@style/text_15_464646"
+                android:layout_width="@dimen/width150"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/open_light_threshold"
+                android:text="@string/light_threshold_limit_value" />
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/edit_open_light_threshold"
+            android:layout_width="@dimen/width120"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/textsize15"
+            android:layout_toRightOf="@id/open_light_threshold_rel"
+            android:layout_marginLeft="@dimen/width10"
+            android:hint="@string/setting_open_light_threshold" />
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#e5e5e5" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width70"
+        android:background="#fff">
+
+        <RelativeLayout
+            android:id="@+id/close_light_threshold_rel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width30">
+            <TextView
+                android:id="@+id/close_light_threshold"
+                style="@style/text_18_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/close_light_threshold" />
+            <TextView
+                android:id="@+id/close_light_threshold_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_18_464646"
+                android:layout_toRightOf="@+id/close_light_threshold"
+                android:text="@string/test_number"/>
+
+            <TextView
+                style="@style/text_15_464646"
+                android:layout_width="@dimen/width150"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/close_light_threshold"
+                android:text="@string/light_threshold_limit_value" />
+
+
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/edit_close_light_threshold"
+            android:layout_width="@dimen/width120"
+            android:layout_height="@dimen/width40"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/textsize15"
+            android:layout_toRightOf="@id/close_light_threshold_rel"
+            android:layout_marginLeft="@dimen/width10"
+            android:hint="@string/setting_close_light_threshold" />
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#e5e5e5" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/width300"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/width15"
+        android:layout_gravity="center"
+        android:background="#fff">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize17"
+            android:textColor="#464646"
+            android:text="@string/notes"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#e5e5e5" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width70"
+        android:orientation="horizontal"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/text_elc"
+            style="@style/text_15_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width30"
+            android:text="@string/sensitivity_setting" />
+
+        <Button
+            android:id="@+id/sensitivity_high"
+            android:layout_width="@dimen/width55"
+            android:layout_height="@dimen/width30"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width10"
+            android:background="@drawable/btn_ok_bg"
+            android:text="@string/high"
+            android:textColor="#fff" />
+        <Button
+            android:id="@+id/sensitivity_middle"
+            android:layout_width="@dimen/width55"
+            android:layout_height="@dimen/width30"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width20"
+            android:background="@drawable/btn_ok_bg"
+            android:text="@string/middle"
+            android:textColor="#fff" />
+        <Button
+            android:id="@+id/sensitivity_low"
+            android:layout_width="@dimen/width55"
+            android:layout_height="@dimen/width30"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/width20"
+            android:background="@drawable/btn_ok_bg"
+            android:text="@string/low"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+</LinearLayout>
