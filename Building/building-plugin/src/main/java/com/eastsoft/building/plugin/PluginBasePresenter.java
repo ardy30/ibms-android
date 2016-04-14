@@ -41,6 +41,8 @@ public class PluginBasePresenter {
         return DataManeger.getInstance().deviceInfoMap.get(dk).paramMap;
     }
 
+
+
     //获取配置设备的配置Json数据
 //    public Map<String,Object> pullConfigJson(String dk){
 //        return DataManeger.getInstance().getDeviceInfoMap().get(dk).getConfig();

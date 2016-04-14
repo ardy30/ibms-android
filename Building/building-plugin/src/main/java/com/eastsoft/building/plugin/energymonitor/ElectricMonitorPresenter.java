@@ -131,6 +131,7 @@ public class ElectricMonitorPresenter extends PluginBasePresenter {
             function.put(KeyUtil.KEY_SWITCH_CH1, order);
             openMonitorRequest.put(KeyUtil.FUNCTION, function);
             openMonitorRequest.put(KeyUtil.DEVICE_KEY, deviceDk);
+            openMonitorRequest.put(KeyUtil.CMD,KeyUtil.CMD_WRITE);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -146,6 +147,7 @@ public class ElectricMonitorPresenter extends PluginBasePresenter {
             function.put(KeyUtil.OVER_PROTECTED, order);
             protectRequest.put(KeyUtil.FUNCTION, function);
             protectRequest.put(KeyUtil.DEVICE_KEY, deviceDk);
+            protectRequest.put(KeyUtil.CMD,KeyUtil.CMD_WRITE);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -162,6 +164,7 @@ public class ElectricMonitorPresenter extends PluginBasePresenter {
 
             limitRequest.put(KeyUtil.FUNCTION, function);
             limitRequest.put(KeyUtil.DEVICE_KEY, deviceDk);
+            limitRequest.put(KeyUtil.CMD,KeyUtil.CMD_WRITE);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -177,6 +180,7 @@ public class ElectricMonitorPresenter extends PluginBasePresenter {
 
             limitRequest.put(KeyUtil.FUNCTION, function);
             limitRequest.put(KeyUtil.DEVICE_KEY, deviceDk);
+            limitRequest.put(KeyUtil.CMD,KeyUtil.CMD_WRITE);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -192,6 +196,7 @@ public class ElectricMonitorPresenter extends PluginBasePresenter {
 
             limitRequest.put(KeyUtil.FUNCTION, function);
             limitRequest.put(KeyUtil.DEVICE_KEY, deviceDk);
+            limitRequest.put(KeyUtil.CMD,KeyUtil.CMD_WRITE);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -207,11 +212,31 @@ public class ElectricMonitorPresenter extends PluginBasePresenter {
 
             limitRequest.put(KeyUtil.FUNCTION, function);
             limitRequest.put(KeyUtil.DEVICE_KEY, deviceDk);
+            limitRequest.put(KeyUtil.CMD,KeyUtil.CMD_WRITE);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         MqttManeger.getInstance(context).publish(limitRequest.toString(), MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain, gatewayDk, deviceDk));
+    }
+    public void refresh() {
+        JSONObject limitRequest = new JSONObject();
+        JSONObject function = new JSONObject();
+        try {
+            function.put(KeyUtil.ELECTRICITY, 0.1);
+            function.put(KeyUtil.VOLTAGE, 0.1);
+            function.put(KeyUtil.CURRENT, 0.1);
+            function.put(KeyUtil.POWER, 0.1);
+
+            limitRequest.put(KeyUtil.FUNCTION, function);
+            limitRequest.put(KeyUtil.DEVICE_KEY, deviceDk);
+            limitRequest.put(KeyUtil.CMD,KeyUtil.CMD_READ);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        MqttManeger.getInstance(context).publish(limitRequest.toString(), MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain, gatewayDk, deviceDk));
+
     }
 
 
