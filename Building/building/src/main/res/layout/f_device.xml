@@ -32,6 +32,7 @@
                 android:layout_height="@dimen/width30"
                 android:layout_marginRight="@dimen/width15"
                 android:background="@drawable/array_down"/>
+
         </RelativeLayout>
 
         <View

@@ -5,11 +5,16 @@
     android:layout_marginTop="@dimen/width5"
     android:background="#fff"
   	 >
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#eee"></View>
     <ImageView
         android:id="@+id/iv_mark"
         android:layout_width="@dimen/width30"
         android:layout_height="@dimen/width30"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/width5"
         />
     <TextView
         android:id="@+id/tv_title"

@@ -149,7 +149,7 @@ public class DevicePresenter {
         }
         String topic = MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain, deviceInfo.gateway_device_key, deviceInfo.device_key);
 
-        MqttManeger.getInstance(context).publish(jsonObject.toString(), topic);
+        MqttManeger.getInstance(context).publish(deviceJson.toString(), topic);
     }
 
 

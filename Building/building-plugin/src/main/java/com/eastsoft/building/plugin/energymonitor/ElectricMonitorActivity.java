@@ -54,6 +54,11 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         initBtn();
 
         update();
+        et_maxvoltage.setText(electricMonitorPresenter.getOverVoltage() + "V");
+        et_minvoltage.setText(electricMonitorPresenter.getUnderVoltage() + "V");
+        et_over_current.setText(electricMonitorPresenter.getOverCurrent() + "A");
+        et_overpower.setText(electricMonitorPresenter.getOverPower() + "KW");
+
     }
 
     private void update() {
@@ -70,10 +75,7 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         a.setText(electricMonitorPresenter.getCurrent() + "A");
         power.setText(electricMonitorPresenter.getPower() + "KW");
 
-        et_maxvoltage.setText(electricMonitorPresenter.getOverVoltage() + "V");
-        et_minvoltage.setText(electricMonitorPresenter.getUnderVoltage()+"V");
-        et_over_current.setText(electricMonitorPresenter.getOverCurrent()+"A");
-        et_overpower.setText(electricMonitorPresenter.getOverPower() + "KW");
+
         // 获取阈值
 //        maxVoltage = electricMonitorPresenter.getOverVoltage();
 //        minVoltage = electricMonitorPresenter.getUnderVoltage();
@@ -180,6 +182,12 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
                 if (isLegalOverP(value)){
                     electricMonitorPresenter.setOverp(Float.parseFloat(value));
                 }
+            }
+        });
+        findViewById(R.id.btn_refresh).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                electricMonitorPresenter.refresh();
             }
         });
         setOnclick(new IOnTitleClick() {
