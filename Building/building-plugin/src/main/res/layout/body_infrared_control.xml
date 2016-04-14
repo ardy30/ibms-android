@@ -240,7 +240,7 @@
         android:layout_height="1px"
         android:background="#e5e5e5" />
     <LinearLayout
-        android:id="@+id/ly_bottom"
+        android:id="@+id/sensitivity_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/width70"
         android:orientation="horizontal"
@@ -262,7 +262,7 @@
             android:layout_height="@dimen/width30"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/width10"
-            android:background="@drawable/btn_blue_bg"
+            android:background="@drawable/btn_ok_bg"
             android:text="@string/high"
             android:textColor="#fff" />
         <Button
@@ -272,7 +272,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/width20"
-            android:background="@drawable/btn_blue_bg"
+            android:background="@drawable/btn_ok_bg"
             android:text="@string/middle"
             android:textColor="#fff" />
         <Button
@@ -281,7 +281,7 @@
             android:layout_height="@dimen/width30"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/width20"
-            android:background="@drawable/btn_blue_bg"
+            android:background="@drawable/btn_ok_bg"
             android:text="@string/low"
             android:textColor="#fff" />
     </LinearLayout>
