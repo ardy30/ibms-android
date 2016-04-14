@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#fff</color>
     <color name="colorPrimaryDark">#f2202f</color>
-    <color name="colorAccent">#fff</color>
+    <!--<color name="colorAccent">#fff</color>-->
+    <color name="colorAccent">#f2202f</color>
     <color name="home_font_color">#4c4c4c</color>
 </resources>

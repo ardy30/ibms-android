@@ -18,5 +18,6 @@
     <string name="account_main">账号管理</string>
     <string name="feedback">意见反馈</string>
     <string name="about_us">关于我们</string>
+    <string name="in_control">控制中...</string>
 
 </resources>
