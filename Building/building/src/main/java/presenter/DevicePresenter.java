@@ -55,9 +55,9 @@ public class DevicePresenter {
 
         }
     };
-    HashMap<String, Object> switchTypeMap = new HashMap<String, Object>() {
+    public static HashMap<String, Object> switchTypeMap = new HashMap<String, Object>() {
         {
-            put(DeviceType.EASTSOFT_DEVICE_FOUR_WAY_SWITCH_SUBJON, "");
+            put(DeviceType.EASTSOFT_DEVICE_FOUR_WAY_SWITCH_CATEGORY, "");
             put(DeviceType.EASTSOFT_DEVICE_ELECTRICAL_ENERGY_MONITOR_CATEGORY, "");
 
 
@@ -65,10 +65,10 @@ public class DevicePresenter {
     };
     HashMap<String, Object> vdeviceMap = new HashMap<String, Object>() {
         {
-            put(DeviceType.EASTSOFT_DEVICE_FOUR_WAY_SWITCH_SUBJON, "");
+            put(DeviceType.EASTSOFT_DEVICE_FOUR_WAY_SWITCH_CATEGORY, "");
         }
     };
-    HashMap<Long, String> channelMap = new HashMap<Long, String>() {
+    public static  HashMap<Long, String> channelMap = new HashMap<Long, String>() {
         {
             put(1L,KeyUtil.KEY_SWITCH_CH1);
             put(2L,KeyUtil.KEY_SWITCH_CH2);
@@ -78,12 +78,12 @@ public class DevicePresenter {
     };
     protected HttpCloudService httpCloudService;
 
-    public DevicePresenter(HttpCloudService httpCloudService) {
+    public DevicePresenter(HttpCloudService httpCloudService, final Iview iview) {
         this.httpCloudService = httpCloudService;
         RxBus.getDefault().toObserverable(MqttData.class).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<MqttData>() {
             @Override
             public void call(MqttData mqttData) {
-                handleControl(mqttData.getDeviceDk(), mqttData.getPayload());
+                handleControl(mqttData.getDeviceDk(), mqttData.getPayload(),iview);
                 UpdateView updateView=new UpdateView(mqttData.getDeviceDk());
                 RxBus.getDefault().post(updateView);
 
@@ -107,11 +107,14 @@ public class DevicePresenter {
     }
 
 
-    public void handleControl(String dk, String paload) {
+    public void handleControl(String dk, String paload,Iview iview) {
         try {
             JSONObject jsonObject = new JSONObject(paload);
-            for (DeviceInfo device : DataManeger.getInstance().deviceInfoMap.values()) {
+            for (DeviceInfo device :DataManeger.getInstance().deviceInfoArrayList) {
                 if (device.device_key.equals(dk)) {
+//                    if (device.device_type_code.substring(0,7).equals(DeviceType.EASTSOFT_DEVICE_FOUR_WAY_SWITCH_CATEGORY)){
+//
+//                    }
                     if (!jsonObject.isNull(KeyUtil.FUNCTION)) {
                         JSONObject functions = jsonObject.getJSONObject(KeyUtil.FUNCTION);
                         Iterator<String> keys = functions.keys();
@@ -121,20 +124,21 @@ public class DevicePresenter {
                         }
                     }
                     DataManeger.getInstance().deviceInfoMap.put(device.device_key, device);
-                    break;
+
                 }
             }
 
+            iview.onSuccess("");
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public void publishSwitch(Context context, String dk, boolean on) {
+    public void publishSwitch(Context context, String dk,long cha, boolean on) {
         long channel = 1;
         DeviceInfo deviceInfo = DataManeger.getInstance().deviceInfoMap.get(dk);
         if (vdeviceMap.containsKey(deviceInfo.device_type_code.substring(0, 7))) {
-            channel = deviceInfo.channel;
+            channel = cha;
         }
         JSONObject deviceJson = new JSONObject();
 
@@ -143,6 +147,7 @@ public class DevicePresenter {
             jsonObject.put(channelMap.get(channel), on);
             deviceJson.put(KeyUtil.FUNCTION,jsonObject);
             deviceJson.put(KeyUtil.DEVICE_KEY,dk);
+            deviceJson.put(KeyUtil.CMD,KeyUtil.CMD_WRITE);
 
         } catch (JSONException e) {
             e.printStackTrace();

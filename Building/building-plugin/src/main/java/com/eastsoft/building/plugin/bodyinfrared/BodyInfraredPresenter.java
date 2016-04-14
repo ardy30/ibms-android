@@ -33,37 +33,37 @@ public class BodyInfraredPresenter extends PluginBasePresenter {
         this.deviceDk=dk;
     }
 
-    public double getLight(){
+    public int getLight(){
         double light = 0;
         Object lightObj = pull(deviceDk).get(KeyUtil.LIGHT);
         if (lightObj != null){
             light = Double.parseDouble(lightObj.toString());
         }
-        return light;
+        return (int) light;
     }
-    public double getCloseDelay(){
+    public int getCloseDelay(){
         double light = 0;
         Object lightObj = pull(deviceDk).get(KeyUtil.DELAY_TIME);
         if (lightObj != null){
             light = Double.parseDouble(lightObj.toString());
         }
-        return light;
+        return (int) light;
     }
-    public double getOpen(){
+    public int getOpen(){
         double light = 0;
         Object lightObj = pull(deviceDk).get(KeyUtil.LIGHT_OPEN_THRESHOLD);
         if (lightObj != null){
             light =  Double.parseDouble(lightObj.toString());
         }
-        return light;
+        return (int) light;
     }
-    public double getClose(){
+    public int getClose(){
         double light = 0;
         Object lightObj = pull(deviceDk).get(KeyUtil.LIGHT_CLOSE_THRESHOLD);
         if (lightObj != null){
             light =  Double.parseDouble(lightObj.toString());
         }
-        return light;
+        return (int) light;
     }
 
     public boolean hasPeople(){
@@ -104,6 +104,7 @@ public class BodyInfraredPresenter extends PluginBasePresenter {
 
             limitRequest.put(KeyUtil.FUNCTION,function);
             limitRequest.put(KeyUtil.DEVICE_KEY,deviceDk);
+            limitRequest.put(KeyUtil.CMD,KeyUtil.CMD_WRITE);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -121,6 +122,8 @@ public class BodyInfraredPresenter extends PluginBasePresenter {
 
             limitRequest.put(KeyUtil.FUNCTION, function);
             limitRequest.put(KeyUtil.DEVICE_KEY,deviceDk);
+            limitRequest.put(KeyUtil.CMD,KeyUtil.CMD_WRITE);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

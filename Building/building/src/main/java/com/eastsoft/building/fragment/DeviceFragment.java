@@ -60,13 +60,13 @@ public class DeviceFragment extends FragmentSubClass implements Iview {
         TextView textTitle = (TextView) view.findViewById(R.id.title);
         textTitle.setText(getString(R.string.title_device));
         dialog=getStaticDialog(getActivity(),getString(R.string.in_control),null);
-        devicePresenter = new DevicePresenter(httpCloudService);
+        devicePresenter = new DevicePresenter(httpCloudService,this);
         initTypeView(view);
         listView = (ListView) view.findViewById(R.id.listview);
         deviceAdapter = new DeviceAdapter(adapterList, new DeviceAdapter.IOnDeviceClick() {
             @Override
-            public void onClickSwitch(String dk, boolean on) {
-                devicePresenter.publishSwitch(getActivity(), dk, on);
+            public void onClickSwitch(int pos, boolean on) {
+                devicePresenter.publishSwitch(getActivity(), deviceInfoArrayList.get(pos).device_key,deviceInfoArrayList.get(pos).channel, on);
             }
 
             @Override
@@ -127,13 +127,19 @@ public class DeviceFragment extends FragmentSubClass implements Iview {
             }
         });
     }
-
+ArrayList<DeviceInfo> deviceInfoArrayList=new ArrayList<>();
     private void update() {
         adapterList.clear();
-        for (DeviceInfo deviceInfo : devicePresenter.getMyDevice()) {
+        deviceInfoArrayList= devicePresenter.getMyDevice();
+        for (DeviceInfo deviceInfo :deviceInfoArrayList) {
             CommontAdapterData commontAdapterData = new CommontAdapterData(deviceInfo.device_name, 0);
             commontAdapterData.dk = deviceInfo.device_key;
             commontAdapterData.showDetail=devicePresenter.showDetail(deviceInfo);
+            if (DevicePresenter.switchTypeMap.containsKey(deviceInfo.device_type_code.substring(0,7))){
+
+                boolean sel=Boolean.parseBoolean(deviceInfo.paramMap.get(DevicePresenter.channelMap.get(deviceInfo.channel)).toString());
+                commontAdapterData.selected=sel;
+            }
             adapterList.add(commontAdapterData);
         }
         deviceAdapter.notifyDataSetChanged();
@@ -270,6 +276,7 @@ public class DeviceFragment extends FragmentSubClass implements Iview {
     @Override
     public void onSuccess(Object object) {
 
+        update();
     }
 
     @Override

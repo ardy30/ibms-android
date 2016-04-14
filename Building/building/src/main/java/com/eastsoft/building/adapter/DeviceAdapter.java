@@ -62,15 +62,23 @@ public class DeviceAdapter extends BaseAdapter {
         itemHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOnDeviceClick.onClickSwitch(adapterData.dk, true);
+                iOnDeviceClick.onClickSwitch(position, true);
             }
         });
         itemHolder.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOnDeviceClick.onClickSwitch(adapterData.dk, false);
+                iOnDeviceClick.onClickSwitch(position, false);
             }
         });
+
+        if(adapterData.selected){
+            itemHolder.button.setSelected(true);
+            itemHolder.button2.setSelected(false);
+        }else {
+            itemHolder.button.setSelected(false);
+            itemHolder.button2.setSelected(true);
+        }
         itemHolder.buttonDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +106,7 @@ public class DeviceAdapter extends BaseAdapter {
 
     }
     public interface  IOnDeviceClick{
-        public void onClickSwitch(String dk,boolean on);
+        public void onClickSwitch(int pos,boolean on);
         public void onClickDetail(String dk);
     }
 
