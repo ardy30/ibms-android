@@ -55,6 +55,9 @@ public class GroupAdapter  extends BaseAdapter {
                     iOnGroupClick.onClickGroup(holder.id,true);
                 }
             });
+            holder.button.setSelected(true);
+            holder.button2.setSelected(true);
+
             holder.button2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

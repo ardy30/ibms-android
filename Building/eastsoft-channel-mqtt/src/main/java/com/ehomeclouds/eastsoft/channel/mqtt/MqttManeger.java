@@ -118,8 +118,6 @@ public class MqttManeger {
 
                 public void messageArrived(String topicName, MqttMessage message)
                     throws Exception {
-                    System.out.println("receive---------"
-                            + topicName + message.toString());
                     Log.d(MyTag.TAG, "receive---------" + topicName + message.toString());
                     String[] topicBytes = topicName.split("\\/");
                     if (topicBytes.length > 2) {

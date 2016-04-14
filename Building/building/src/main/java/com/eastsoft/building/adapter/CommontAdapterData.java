@@ -9,6 +9,7 @@ public class CommontAdapterData {
     public long id;
     public String dk;
     public boolean showDetail=false;
+    public boolean selected=true;
     public CommontAdapterData(String name, long id) {
         this.name = name;
         this.id =id;
