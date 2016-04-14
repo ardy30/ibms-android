@@ -1,5 +1,6 @@
 package com.eastsoft.building.fragment;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -39,7 +40,7 @@ import rx.functions.Action1;
 /**
  * Created by ll on 2016/3/31.
  */
-public class DeviceFragment extends BaseFragment {
+public class DeviceFragment extends FragmentSubClass implements Iview {
     private ListView listView;
     private List<CommontAdapterData> adapterList = new LinkedList<>();
     private DeviceAdapter deviceAdapter;
@@ -51,12 +52,14 @@ public class DeviceFragment extends BaseFragment {
     private long areaId;
     private String deviceTypeCode = "";
     int posArea, posType;
+    private Dialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.f_device, container, false);
         TextView textTitle = (TextView) view.findViewById(R.id.title);
         textTitle.setText(getString(R.string.title_device));
+        dialog=getStaticDialog(getActivity(),getString(R.string.in_control),null);
         devicePresenter = new DevicePresenter(httpCloudService);
         initTypeView(view);
         listView = (ListView) view.findViewById(R.id.listview);
@@ -261,6 +264,21 @@ public class DeviceFragment extends BaseFragment {
                 Log.e(KeyUtil.KEY_TAG, "mqtt throwable");
             }
         });
+
+    }
+
+    @Override
+    public void onSuccess(Object object) {
+
+    }
+
+    @Override
+    public void onFailed(String errorStr) {
+
+    }
+
+    @Override
+    public void showProgress(boolean show) {
 
     }
 }

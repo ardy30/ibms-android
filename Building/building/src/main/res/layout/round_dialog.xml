@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_view_rl"
+    android:layout_width="@dimen/width200"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_corner_all" >
+    <View
+        android:layout_width="@dimen/width200"
+        android:layout_height="@dimen/width1"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/img_iv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/width9"
+            android:background="@drawable/dialog_imageview" />
+
+        <TextView
+            android:id="@+id/tipTextView"
+            style="@style/text_16_535353"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/width8"
+            android:layout_marginTop="14dp"
+            android:text="@string/in_control" />
+    </LinearLayout>
+
+</RelativeLayout>

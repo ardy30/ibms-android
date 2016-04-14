@@ -1,5 +1,6 @@
 package com.eastsoft.building.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,28 +31,33 @@ import java.util.List;
 /**
  * Created by ll on 2016/3/31.
  */
-public class GroupFragment extends BaseFragment {
+public class GroupFragment extends FragmentSubClass {
     private ListView listView;
     private List<CommontAdapterData> adapterList=new LinkedList<>();
     private GroupAdapter groupAdapter;
+    private Dialog dialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.f_scenario, container, false);
         TextView textTitle= (TextView) view.findViewById(R.id.title);
         textTitle.setText(getString(R.string.title_group));
+        dialog=getStaticDialog(getActivity(),getString(R.string.in_control),null);
         listView = (ListView) view.findViewById(R.id.listview);
 
         groupAdapter =new GroupAdapter(adapterList, new GroupAdapter.IOnGroupClick() {
             @Override
             public void onClickGroup(long id, boolean on) {
+                dialog.show();
                 httpCloudService.ctrlGroup(DataManeger.getInstance().userId, id, on, new Iview() {
                     @Override
                     public void onSuccess(Object object) {
+                        dialog.dismiss();
                         showToast(getString(R.string.success));
                     }
 
                     @Override
                     public void onFailed(String errorStr) {
+                        dialog.dismiss();
                         showToast(errorStr);
                     }
 

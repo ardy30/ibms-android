@@ -85,7 +85,7 @@
             android:id="@+id/email_sign_in_button"
             android:layout_width="@dimen/width229"
             android:layout_height="@dimen/width34"
-            android:background="@drawable/login_button_bg"
+            android:background="@drawable/login_button_bg_sel"
             android:gravity="center"
             android:text="@string/login"
             android:textColor="#ffffff"
