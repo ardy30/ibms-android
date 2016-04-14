@@ -126,6 +126,8 @@
             android:layout_centerVertical="true"
             android:textSize="@dimen/textsize16"
             android:layout_marginLeft="@dimen/width175"
+            android:inputType="number"
+
             android:hint="设定过压值" />
 
         <Button
@@ -178,6 +180,8 @@
             android:layout_centerVertical="true"
             android:textSize="@dimen/textsize16"
             android:layout_marginLeft="@dimen/width175"
+            android:inputType="number"
+
             android:hint="设定欠压值" />
 
         <Button
@@ -230,6 +234,8 @@
             android:layout_centerVertical="true"
             android:textSize="@dimen/textsize16"
             android:layout_marginLeft="@dimen/width175"
+            android:inputType="number"
+
             android:hint="设定过流值" />
 
         <Button
@@ -282,6 +288,8 @@
             android:layout_centerVertical="true"
             android:textSize="@dimen/textsize16"
             android:layout_marginLeft="@dimen/width175"
+            android:inputType="number"
+
             android:hint="设定过载值" />
 
         <Button

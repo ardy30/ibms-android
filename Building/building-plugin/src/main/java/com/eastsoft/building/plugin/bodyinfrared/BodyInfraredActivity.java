@@ -63,7 +63,7 @@ public class BodyInfraredActivity extends PluginActivity implements Iview {
         edOpen.setText(bodyInfraredPresenter.getOpen() + "");
         edClose.setText(bodyInfraredPresenter.getClose() + "");
         if (curDevice.device_type_code.substring(7, 11).equals(DeviceType.EASTSOFT_DEVICE_BODY_INDUCTOR_SUBJOIN_01)) {
-            findViewById(R.id.ly_bottom).setVisibility(View.GONE);
+            findViewById(R.id.sensitivity_layout).setVisibility(View.GONE);
         } else if (curDevice.device_type_code.substring(7, 11).equals(DeviceType.EASTSOFT_DEVICE_BODY_INDUCTOR_SUBJOIN_02)) {
             if (bodyInfraredPresenter.getSensity() == BodyInfraredPresenter.LOW) {
 

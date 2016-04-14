@@ -108,6 +108,7 @@
             android:layout_toRightOf="@+id/light_close_rel"
             android:layout_marginLeft="@dimen/width10"
             android:textSize="@dimen/textsize15"
+            android:inputType="number"
             android:hint="@string/setting_close_light_delay" />
 
         <View
@@ -159,6 +160,8 @@
             android:textSize="@dimen/textsize15"
             android:layout_toRightOf="@id/open_light_threshold_rel"
             android:layout_marginLeft="@dimen/width10"
+            android:inputType="number"
+
             android:hint="@string/setting_open_light_threshold" />
 
 
@@ -211,6 +214,8 @@
             android:layout_height="@dimen/width40"
             android:layout_centerVertical="true"
             android:textSize="@dimen/textsize15"
+            android:inputType="number"
+
             android:layout_toRightOf="@id/close_light_threshold_rel"
             android:layout_marginLeft="@dimen/width10"
             android:hint="@string/setting_close_light_threshold" />
@@ -262,7 +267,7 @@
             android:layout_height="@dimen/width30"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/width10"
-            android:background="@drawable/btn_ok_bg"
+            android:background="@drawable/btn_blue_bg"
             android:text="@string/high"
             android:textColor="#fff" />
         <Button
@@ -272,7 +277,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/width20"
-            android:background="@drawable/btn_ok_bg"
+            android:background="@drawable/btn_blue_bg"
             android:text="@string/middle"
             android:textColor="#fff" />
         <Button
@@ -281,7 +286,7 @@
             android:layout_height="@dimen/width30"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/width20"
-            android:background="@drawable/btn_ok_bg"
+            android:background="@drawable/btn_blue_bg"
             android:text="@string/low"
             android:textColor="#fff" />
     </LinearLayout>

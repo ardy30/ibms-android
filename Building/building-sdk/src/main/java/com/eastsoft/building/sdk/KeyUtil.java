@@ -9,7 +9,7 @@ public class KeyUtil {
     public static final String KEY_SWITCH_CH3="switch_ch3";
     public static final String KEY_SWITCH_CH4="switch_ch4";
     public static final String KEY_TAG="tag";
-    public static final String DEVICE_KEY="key";
+    public static final String DEVICE_KEY="deviceKey";
     public static final String FUNCTION="function";
 
 

@@ -136,9 +136,14 @@ public class DevicePresenter {
         if (vdeviceMap.containsKey(deviceInfo.device_type_code.substring(0, 7))) {
             channel = deviceInfo.channel;
         }
+        JSONObject deviceJson = new JSONObject();
+
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(channelMap.get(channel), on);
+            deviceJson.put(KeyUtil.FUNCTION,jsonObject);
+            deviceJson.put(KeyUtil.DEVICE_KEY,dk);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
