@@ -5,7 +5,8 @@
     android:layout_height="@dimen/width48"
     android:gravity="left|center_vertical"
     android:orientation="horizontal"
-    android:descendantFocusability="blocksDescendants" >
+    android:descendantFocusability="blocksDescendants"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/item_name"

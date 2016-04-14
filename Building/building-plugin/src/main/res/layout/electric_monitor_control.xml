@@ -10,7 +10,6 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/width10"
         android:layout_height="@dimen/width55"
         android:background="#fff">
 
@@ -45,10 +44,6 @@
             android:text="@string/off"
             android:textColor="#fff" />
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="#e5e5e5" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -104,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width40">
+            android:layout_marginLeft="@dimen/width30">
             <TextView
                 android:id="@+id/over_v"
                 style="@style/text_18_464646"
@@ -166,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width40"
+            android:layout_marginLeft="@dimen/width30"
             >
             <TextView
                 android:id="@+id/under_v"
@@ -230,7 +225,7 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_marginLeft="@dimen/width40"
+            android:layout_marginLeft="@dimen/width30"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content">
             <TextView
@@ -299,7 +294,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width40">
+            android:layout_marginLeft="@dimen/width30">
             <TextView
                 android:id="@+id/over_power"
                 style="@style/text_18_464646"
@@ -365,7 +360,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width40"
+            android:layout_marginLeft="@dimen/width30"
             android:text="@string/ele" />
 
         <TextView
@@ -388,11 +383,7 @@
             android:background="@drawable/btn_ok_bg"
             android:text="@string/refresh"
             android:textColor="#fff" />
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:layout_alignParentBottom="true"
-            android:background="#e5e5e5" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -404,7 +395,7 @@
             style="@style/text_18_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/width40"
+            android:layout_marginLeft="@dimen/width30"
             android:text="@string/text_v"/>
 
         <TextView

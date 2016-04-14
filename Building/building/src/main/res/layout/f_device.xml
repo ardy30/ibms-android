@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/white">
 
         <RelativeLayout
             android:id="@+id/ly_area"
@@ -24,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
+                style="@style/text_15_959595"
                 android:text="选择区域" />
             <ImageView
                 android:layout_width="@dimen/width30"
@@ -31,7 +33,7 @@
                 android:layout_centerVertical="true"
                 android:layout_height="@dimen/width30"
                 android:layout_marginRight="@dimen/width15"
-                android:background="@drawable/array_down"/>
+                android:background="@drawable/array_right_defalult"/>
 
         </RelativeLayout>
 
@@ -55,6 +57,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
+                style="@style/text_15_959595"
+
                 android:text="选择设备类型" />
             <ImageView
                 android:layout_width="@dimen/width30"
@@ -62,7 +66,7 @@
                 android:layout_centerVertical="true"
                 android:layout_height="@dimen/width30"
                 android:layout_marginRight="@dimen/width15"
-                android:background="@drawable/array_down"/>
+                android:background="@drawable/array_right_defalult"/>
         </RelativeLayout>
 
     </LinearLayout>

@@ -54,10 +54,10 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         initBtn();
 
         update();
-        et_maxvoltage.setText(electricMonitorPresenter.getOverVoltage() + "V");
-        et_minvoltage.setText(electricMonitorPresenter.getUnderVoltage() + "V");
-        et_over_current.setText(electricMonitorPresenter.getOverCurrent() + "A");
-        et_overpower.setText(electricMonitorPresenter.getOverPower() + "KW");
+        et_maxvoltage.setText(electricMonitorPresenter.getOverVoltage() + "");
+        et_minvoltage.setText(electricMonitorPresenter.getUnderVoltage() + "");
+        et_over_current.setText(electricMonitorPresenter.getOverCurrent() + "");
+        et_overpower.setText(electricMonitorPresenter.getOverPower() + "");
 
     }
 
@@ -70,10 +70,10 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         pOn.setSelected(electricMonitorPresenter.isOverProtected());
         pOff.setSelected(!electricMonitorPresenter.isOverProtected());
         // 获取当前电量、当前电压、当前电流和当前功率，并显示
-        currentEle.setText(electricMonitorPresenter.getElectricity() + "");
-        v.setText(electricMonitorPresenter.getVoltage() + "");
-        a.setText(electricMonitorPresenter.getCurrent() + "");
-        power.setText(electricMonitorPresenter.getPower() + "");
+        currentEle.setText(electricMonitorPresenter.getElectricity()+ "KWH");
+        v.setText(electricMonitorPresenter.getVoltage()+ "V");
+        a.setText(electricMonitorPresenter.getCurrent() + "A");
+        power.setText(electricMonitorPresenter.getPower() + "KW");
 
 
         // 获取阈值
