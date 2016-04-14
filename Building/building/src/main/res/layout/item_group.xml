@@ -43,7 +43,6 @@
             android:layout_height="@dimen/width30"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/item_btn_2"
-
             android:background="@drawable/group_left_bg"
             android:text="开"
             android:textColor="#fff" />

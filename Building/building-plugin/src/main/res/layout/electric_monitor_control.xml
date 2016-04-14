@@ -10,7 +10,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width75"
+        android:layout_marginTop="@dimen/width10"
+        android:layout_height="@dimen/width55"
         android:background="#fff">
 
         <TextView
@@ -52,7 +53,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width75"
+        android:layout_height="@dimen/width60"
         android:background="#fff">
 
         <TextView
@@ -89,6 +90,7 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
+            android:layout_alignParentBottom="true"
             android:background="#e5e5e5" />
     </RelativeLayout>
 
@@ -104,8 +106,16 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/width40">
             <TextView
+                android:id="@+id/over_v"
+                style="@style/text_18_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/over_v"
+                android:visibility="gone"/>
+            <TextView
                 android:id="@+id/text_over_v"
                 style="@style/text_18_464646"
+                android:layout_toRightOf="@+id/over_v"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/over_v" />
@@ -138,9 +148,13 @@
             android:layout_marginLeft="@dimen/width10"
             android:layout_toRightOf="@id/edit_v"
             android:background="@drawable/btn_ok_bg"
-
             android:text="@string/ok"
             android:textColor="#fff" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#e5e5e5" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -155,8 +169,16 @@
             android:layout_marginLeft="@dimen/width40"
             >
             <TextView
+                android:id="@+id/under_v"
+                style="@style/text_18_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/under_v"
+                android:visibility="gone"/>
+            <TextView
                 android:id="@+id/text_under_v"
                 style="@style/text_18_464646"
+                android:layout_toRightOf="@+id/under_v"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/under_v" />
@@ -192,9 +214,13 @@
             android:layout_marginLeft="@dimen/width10"
             android:layout_toRightOf="@id/edit_under_v"
             android:background="@drawable/btn_ok_bg"
-
             android:text="@string/ok"
             android:textColor="#fff" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#e5e5e5" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -207,10 +233,18 @@
             android:layout_marginLeft="@dimen/width40"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/over_a"
+                style="@style/text_18_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/over_a"
+                android:visibility="gone"/>
 
             <TextView
             android:id="@+id/text_over_a"
             style="@style/text_18_464646"
+            android:layout_toRightOf="@+id/over_a"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/over_a" />
@@ -246,9 +280,14 @@
             android:layout_marginLeft="@dimen/width10"
             android:layout_toRightOf="@id/edit_a"
             android:background="@drawable/btn_ok_bg"
-
             android:text="@string/ok"
             android:textColor="#fff" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#e5e5e5" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -261,10 +300,18 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/width40">
+            <TextView
+                android:id="@+id/over_power"
+                style="@style/text_18_464646"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/over_power"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/text_over_power"
                 style="@style/text_18_464646"
+                android:layout_toRightOf="@+id/over_power"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/over_power" />
@@ -312,9 +359,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/width70"
         android:background="#fff">
-
         <TextView
-            android:id="@+id/text_elc"
+            android:id="@+id/elc_text"
             style="@style/text_18_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -322,49 +368,92 @@
             android:layout_marginLeft="@dimen/width40"
             android:text="@string/ele" />
 
+        <TextView
+            android:id="@+id/text_elc"
+            style="@style/text_18_464646"
+            android:layout_toRightOf="@+id/elc_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/width5"
+            android:text="@string/test_number" />
+
         <Button
             android:id="@+id/btn_refresh"
             android:layout_width="@dimen/width60"
             android:layout_height="@dimen/width30"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width150"
+            android:layout_toRightOf="@+id/text_elc"
+            android:layout_marginLeft="@dimen/width40"
             android:background="@drawable/btn_ok_bg"
             android:text="@string/refresh"
             android:textColor="#fff" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#e5e5e5" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/width70"
+        android:layout_height="match_parent"
         android:background="#fff">
+        <TextView
+            android:id="@+id/text_v_1"
+            style="@style/text_18_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/width40"
+            android:text="@string/text_v"/>
 
         <TextView
             android:id="@+id/text_v"
             style="@style/text_18_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_below="@+id/text_v_1"
+            android:layout_marginTop="@dimen/width10"
             android:layout_marginLeft="@dimen/width40"
-            android:text="@string/over_power"/>
+            android:text="@string/test_number"/>
+
+        <TextView
+            android:id="@+id/text_a_1"
+            style="@style/text_18_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/text_v_1"
+            android:layout_marginLeft="@dimen/width65"
+            android:text="@string/text_a" />
 
         <TextView
             android:id="@+id/text_a"
             style="@style/text_18_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="@dimen/width30"
-            android:text="@string/over_power" />
-
+            android:layout_below="@+id/text_a_1"
+            android:layout_marginTop="@dimen/width10"
+            android:layout_alignLeft="@+id/text_a_1"
+            android:gravity="center"
+            android:text="@string/test_number" />
+        <TextView
+            android:id="@+id/text_p_1"
+            style="@style/text_18_464646"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/width30"
+            android:text="@string/text_p" />
         <TextView
             android:id="@+id/text_p"
             style="@style/text_18_464646"
             android:layout_width="wrap_content"
+            android:layout_alignLeft="@+id/text_p_1"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/width25"
-            android:text="@string/over_power" />
+            android:layout_below="@+id/text_p_1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/width10"
+            android:text="@string/test_number" />
 
 
     </RelativeLayout>

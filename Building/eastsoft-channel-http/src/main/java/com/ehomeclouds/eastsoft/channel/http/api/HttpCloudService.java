@@ -139,6 +139,8 @@ public class HttpCloudService extends HttpCloudServiceBase {
 
     }
     public void ctrlGroup(long userId,long groupId,boolean on,final  Iview iview){
+
+
         CtrlGroupRequest ctrlGroupRequest=new CtrlGroupRequest(userId,groupId,on);
         Call<VoidResponse> call= iHttpCloudService.ctrlGroup(ctrlGroupRequest);
         call.enqueue(new Callback<VoidResponse>() {

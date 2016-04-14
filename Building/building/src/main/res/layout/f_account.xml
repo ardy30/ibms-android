@@ -15,10 +15,10 @@
 
         <ImageView
             android:id="@+id/image_icon_account"
-            android:layout_width="@dimen/width35"
-            android:layout_height="@dimen/width35"
+            android:layout_width="@dimen/width25"
+            android:layout_height="@dimen/width25"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width20"
+            android:layout_marginLeft="@dimen/width25"
             android:background="@drawable/account_icon" />
 
         <TextView
