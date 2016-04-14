@@ -94,6 +94,7 @@ public class BodyInfraredActivity extends PluginActivity implements Iview {
             @Override
             public void OnRightClick(View view) {
 
+                isLegal();
                 bodyInfraredPresenter.send(Integer.parseInt(edCloseDelay.getText().toString()),Integer.parseInt(edOpen.getText().toString()),Integer.parseInt(edClose.getText().toString()));
             }
         });
@@ -116,6 +117,27 @@ public class BodyInfraredActivity extends PluginActivity implements Iview {
                 bodyInfraredPresenter.setSensor(KeyUtil.LIGHT_INDUCTION_SENSITY_MIDDLE);
             }
         });
+    }
+
+    private boolean isLegal() {
+        int delayTime=Integer.parseInt(edCloseDelay.getText().toString());
+        if (delayTime<10||delayTime>65525){
+            showToast("关灯延迟时间不正确");
+            return false;
+        }
+        int open=Integer.parseInt(edOpen.getText().toString());
+        if (open>100){
+            showToast("开灯阈值格式不正确");
+            return false;
+        }
+        int close=Integer.parseInt(edClose.getText().toString());
+
+        if (close>100){
+            showToast("关灯阈值格式不正确");
+            return false;
+
+        }
+        return true;
     }
 
     @Override

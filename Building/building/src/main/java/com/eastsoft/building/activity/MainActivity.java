@@ -9,6 +9,7 @@ package com.eastsoft.building.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ import com.eastsoft.building.fragment.GroupFragment;
 import com.eastsoft.building.fragment.ScenarioFragment;
 import com.eastsoft.building.model.RxBus;
 import com.eastsoft.building.sdk.BaseActivity;
+import com.eastsoft.building.sdk.Cancel;
 import com.eastsoft.building.sdk.DataManeger;
 import com.ehomeclouds.eastsoft.channel.mqtt.MqttManeger;
 import com.ehomeclouds.eastsoft.channel.mqtt.model.MqttConnectStatus;
@@ -131,6 +133,14 @@ public class MainActivity extends BaseActivity {
         textView.setText(mTextviewArray[index]);
 
         return view;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==KeyEvent.KEYCODE_BACK){
+            RxBus.getDefault().post(Cancel.class);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

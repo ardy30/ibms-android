@@ -70,10 +70,10 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         pOn.setSelected(electricMonitorPresenter.isOverProtected());
         pOff.setSelected(!electricMonitorPresenter.isOverProtected());
         // 获取当前电量、当前电压、当前电流和当前功率，并显示
-        currentEle.setText(electricMonitorPresenter.getElectricity() + "KWH");
-        v.setText(electricMonitorPresenter.getVoltage() + "V");
-        a.setText(electricMonitorPresenter.getCurrent() + "A");
-        power.setText(electricMonitorPresenter.getPower() + "KW");
+        currentEle.setText(electricMonitorPresenter.getElectricity() + "");
+        v.setText(electricMonitorPresenter.getVoltage() + "");
+        a.setText(electricMonitorPresenter.getCurrent() + "");
+        power.setText(electricMonitorPresenter.getPower() + "");
 
 
         // 获取阈值

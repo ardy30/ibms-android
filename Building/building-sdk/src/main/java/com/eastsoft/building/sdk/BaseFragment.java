@@ -23,6 +23,7 @@ public class BaseFragment extends Fragment {
     }
 
     protected void  showToast(String str){
+        if (getActivity()!=null)
         Toast.makeText(getActivity(),str,Toast.LENGTH_SHORT).show();
     }
 
