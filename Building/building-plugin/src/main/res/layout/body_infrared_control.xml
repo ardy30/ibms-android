@@ -82,13 +82,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/close_light_delay" />
-            <TextView
-                android:id="@+id/close_light_delay_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/text_18_464646"
-                android:layout_toRightOf="@+id/text_over_v"
-                android:text="@string/test_number"/>
+            <!--<TextView-->
+                <!--android:id="@+id/close_light_delay_value"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--style="@style/text_18_464646"-->
+                <!--android:layout_toRightOf="@+id/text_over_v"-->
+                <!--android:text="@string/test_number"/>-->
 
             <TextView
                 android:id="@+id/text_over_v_tip"
@@ -105,6 +105,7 @@
             android:layout_width="@dimen/width120"
             android:layout_height="@dimen/width40"
             android:layout_centerVertical="true"
+            android:gravity="center"
             android:layout_toRightOf="@+id/light_close_rel"
             android:layout_marginLeft="@dimen/width10"
             android:textSize="@dimen/textsize15"
@@ -135,13 +136,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/open_light_threshold" />
-            <TextView
-                android:id="@+id/open_light_threshold_value"
-                android:layout_width="wrap_content"
-                style="@style/text_18_464646"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/open_light_threshold"
-                android:text="@string/test_number"/>
+            <!--<TextView-->
+                <!--android:id="@+id/open_light_threshold_value"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--style="@style/text_18_464646"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_toRightOf="@+id/open_light_threshold"-->
+                <!--android:text="@string/test_number"/>-->
 
             <TextView
                 style="@style/text_15_464646"
@@ -156,6 +157,7 @@
             android:id="@+id/edit_open_light_threshold"
             android:layout_width="@dimen/width120"
             android:layout_height="@dimen/width40"
+            android:gravity="center"
             android:layout_centerVertical="true"
             android:textSize="@dimen/textsize15"
             android:layout_toRightOf="@id/open_light_threshold_rel"
@@ -189,13 +191,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/close_light_threshold" />
-            <TextView
-                android:id="@+id/close_light_threshold_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/text_18_464646"
-                android:layout_toRightOf="@+id/close_light_threshold"
-                android:text="@string/test_number"/>
+            <!--<TextView-->
+                <!--android:id="@+id/close_light_threshold_value"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--style="@style/text_18_464646"-->
+                <!--android:layout_toRightOf="@+id/close_light_threshold"-->
+                <!--android:text="@string/test_number"/>-->
 
             <TextView
                 style="@style/text_15_464646"
@@ -214,8 +216,8 @@
             android:layout_height="@dimen/width40"
             android:layout_centerVertical="true"
             android:textSize="@dimen/textsize15"
+            android:gravity="center"
             android:inputType="number"
-
             android:layout_toRightOf="@id/close_light_threshold_rel"
             android:layout_marginLeft="@dimen/width10"
             android:hint="@string/setting_close_light_threshold" />

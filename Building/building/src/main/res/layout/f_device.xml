@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@color/home_bg"
     android:orientation="vertical">
 
     <include layout="@layout/action_bar_title" />
@@ -15,7 +15,7 @@
         <RelativeLayout
             android:id="@+id/ly_area"
             android:layout_width="0dp"
-            android:layout_height="@dimen/width50"
+            android:layout_height="@dimen/width60"
             android:layout_weight="1">
 
             <TextView
@@ -25,12 +25,19 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:text="选择区域" />
+            <ImageView
+                android:layout_width="@dimen/width30"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="@dimen/width30"
+                android:layout_marginRight="@dimen/width15"
+                android:background="@drawable/array_down"/>
 
         </RelativeLayout>
 
         <View
             android:layout_width="1px"
-            android:layout_height="@dimen/width50"
+            android:layout_height="@dimen/width60"
             android:background="#eee">
 
         </View>
@@ -39,7 +46,7 @@
             android:id="@+id/ly_devicetype"
 
             android:layout_width="0dp"
-            android:layout_height="@dimen/width50"
+            android:layout_height="@dimen/width60"
             android:layout_weight="1">
 
             <TextView
@@ -49,6 +56,13 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:text="选择设备类型" />
+            <ImageView
+                android:layout_width="@dimen/width30"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="@dimen/width30"
+                android:layout_marginRight="@dimen/width15"
+                android:background="@drawable/array_down"/>
         </RelativeLayout>
 
     </LinearLayout>
