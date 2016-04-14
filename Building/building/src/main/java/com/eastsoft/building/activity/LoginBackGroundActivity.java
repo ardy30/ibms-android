@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.eastsoft.building.R;
 import com.eastsoft.building.model.RxBus;
+import com.eastsoft.building.sdk.BaseActivity;
 import com.eastsoft.building.sdk.DataManeger;
 import com.eastsoft.building.sdk.KeyUtil;
 import com.ehomeclouds.eastsoft.channel.http.CloudService.Iview;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
-public class LoginBackGroundActivity extends Activity {
+public class LoginBackGroundActivity extends BaseActivity {
     private String edtusername;
     private String edtpw;
 

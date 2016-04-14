@@ -3,11 +3,15 @@ package com.eastsoft.building.sdk;
 import android.app.ActionBar;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.FragmentActivity;
+
+import com.eastsoft.building.model.RxBus;
+import com.ehomeclouds.eastsoft.channel.http.api.Cancel;
 
 
 /**
@@ -138,4 +142,13 @@ public abstract class BaseActivity extends FragmentActivity {
         }
 
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==KeyEvent.KEYCODE_BACK){
+            RxBus.getDefault().post(new Cancel());
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }

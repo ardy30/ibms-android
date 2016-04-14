@@ -47,7 +47,7 @@ public class FragmentSubClass extends BaseFragment {
                 LinearLayout.LayoutParams.FILL_PARENT,
                 LinearLayout.LayoutParams.FILL_PARENT));// 设置布局
         if (asyncTask == null)
-            dialog.setCancelable(false);// 不可以用“返回键”取消
+            dialog.setCancelable(true);// 不可以用“返回键”取消
         else {
             dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
 
