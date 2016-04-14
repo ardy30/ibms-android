@@ -47,7 +47,7 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         curDevice = DataManeger.getInstance().deviceInfoMap.get(dk);
         electricMonitorPresenter=new ElectricMonitorPresenter(this,this,curDevice.device_key,curDevice.gateway_device_key);
         // 构建基础视图
-        restoreActionBar(curDevice.device_name, 0, 0, "", "");
+        restoreActionBar(curDevice.device_name, R.drawable.array_left_default, 0, "", "");
         // 获取界面上主要组件
         initView();
         // 为主要按钮设置监听
@@ -70,10 +70,10 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         a.setText(R.string.text_a+electricMonitorPresenter.getCurrent() + "A");
         power.setText(R.string.text_p+electricMonitorPresenter.getPower() + "KW");
 
-        text_over_v.setText(R.string.over_v + electricMonitorPresenter.getOverVoltage() + "V");
-        text_under_v.setText(R.string.under_v+electricMonitorPresenter.getUnderVoltage()+"V");
-        text_over_a.setText(R.string.over_a+electricMonitorPresenter.getOverCurrent()+"A");
-        text_over_p.setText(R.string.over_power + electricMonitorPresenter.getOverPower() + "KW");
+        et_maxvoltage.setText(electricMonitorPresenter.getOverVoltage() + "V");
+        et_minvoltage.setText(electricMonitorPresenter.getUnderVoltage()+"V");
+        et_over_current.setText(electricMonitorPresenter.getOverCurrent()+"A");
+        et_overpower.setText(electricMonitorPresenter.getOverPower() + "KW");
         // 获取阈值
 //        maxVoltage = electricMonitorPresenter.getOverVoltage();
 //        minVoltage = electricMonitorPresenter.getUnderVoltage();
@@ -134,6 +134,18 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
                 electricMonitorPresenter.on(false);
             }
         });
+        pOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                electricMonitorPresenter.enableOverProtect(true);
+            }
+        });
+        pOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                electricMonitorPresenter.enableOverProtect(false);
+            }
+        });
         btn_over_v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,6 +180,17 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
                 if (isLegalOverP(value)){
                     electricMonitorPresenter.setOverp(Float.parseFloat(value));
                 }
+            }
+        });
+        setOnclick(new IOnTitleClick() {
+            @Override
+            public void OnLeftClick(View view) {
+                finish();
+            }
+
+            @Override
+            public void OnRightClick(View view) {
+
             }
         });
 

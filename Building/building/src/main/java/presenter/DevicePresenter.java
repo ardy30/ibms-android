@@ -41,15 +41,18 @@ public class DevicePresenter {
 
     HashMap<String, Object> typeMap = new HashMap<String, Object>() {
         {
-            put(DeviceType.EASTSOFT_DEVICE_FOUR_WAY_SWITCH_SUBJON, "");
+            put(DeviceType.EASTSOFT_DEVICE_FOUR_WAY_SWITCH_CATEGORY, "");
             put(DeviceType.EASTSOFT_DEVICE_BODY_INDUCTOR_CATEGORY, "");
             put(DeviceType.EASTSOFT_DEVICE_ELECTRICAL_ENERGY_MONITOR_CATEGORY, "");
             put(DeviceType.EASTSOFT_DEVICE_BRIGHT_LIGHT_CATEGROY, "");
+            put(DeviceType.EASTSOFT_DEVICE_LCD_CATEGORY,"");
         }
     };
     HashMap<String, Object> detailTypeMap = new HashMap<String, Object>() {
         {
             put(DeviceType.EASTSOFT_DEVICE_BODY_INDUCTOR_CATEGORY, "");
+            put(DeviceType.EASTSOFT_DEVICE_LCD_CATEGORY,"");
+
         }
     };
     HashMap<String, Object> switchTypeMap = new HashMap<String, Object>() {
@@ -212,12 +215,12 @@ public class DevicePresenter {
                     }
 
                     DataManeger.getInstance().deviceInfoMap.put(deviceInfo.device_key, deviceInfo);
-                    if(switchTypeMap.containsKey(deviceInfo.device_type_code.substring(0,7))){
+//                    if(switchTypeMap.containsKey(deviceInfo.device_type_code.substring(0,7))){
 
                         MqttManeger.getInstance(context).subscribe(MqttTopicManeger.getSubTopic(DataManeger.getInstance().brokerDomain,
                                 deviceInfo.gateway_device_key,
                                 deviceInfo.device_key));
-                    }
+//                    }
                 }
 
 

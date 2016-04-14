@@ -22,6 +22,16 @@ public class KeyUtil {
     public static final String UNDER_VOLTAGE = "under_voltage_chq";
     public static final String OVER_CURRENT = "over_current_ch1";
     public static final String OVER_POWER = "over_power_ch1";
+    public static final String LIGHT = "light";
+    public static final String PEOPLE = "people";
+    public static final String DELAY_TIME = "delay_time";
+    public static final String LIGHT_OPEN_THRESHOLD = "light_open_threshold";
+    public static final String LIGHT_CLOSE_THRESHOLD = "light_close_threshold";
+    public static final String LIGHT_INDUCTION_SENSITY = "body_induction_sensitivity";
+    public static final String LIGHT_INDUCTION_SENSITY_LOW = "low";
+    public static final String LIGHT_INDUCTION_SENSITY_MIDDLE = "middle";
+    public static final String LIGHT_INDUCTION_SENSITY_HIGH = "high";
+
 
 
 }

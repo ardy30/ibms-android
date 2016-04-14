@@ -78,7 +78,7 @@ public class DeviceAdapter extends BaseAdapter {
             }
         });
         if (adapterData.showDetail){
-            itemHolder.buttonDetail.setVisibility(View.VISIBLE);
+            itemHolder.buttonDetail.setVisibility(View.GONE);
             itemHolder.lySwitch.setVisibility(View.GONE);
         }else{
             itemHolder.lySwitch.setVisibility(View.VISIBLE);

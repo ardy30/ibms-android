@@ -23,6 +23,7 @@
         <activity android:name=".activity.AboutUSActivity"></activity>
         <activity android:name=".activity.FeedBackActivity"></activity>
         <activity android:name=".plugin.energymonitor.ElectricMonitorActivity"></activity>
+        <activity android:name=".plugin.bodyinfrared.BodyInfraredActivity"></activity>
     </application>
 
 </manifest>
