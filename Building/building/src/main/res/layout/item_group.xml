@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/width48"
     android:descendantFocusability="blocksDescendants"
+    android:background="@color/white"
     android:orientation="horizontal">
 
     <TextView

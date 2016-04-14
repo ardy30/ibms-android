@@ -15,7 +15,7 @@
         <RelativeLayout
             android:id="@+id/ly_area"
             android:layout_width="0dp"
-            android:layout_height="@dimen/width60"
+            android:layout_height="@dimen/width50"
             android:layout_weight="1">
 
             <TextView
@@ -25,11 +25,12 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:text="选择区域" />
+
         </RelativeLayout>
 
         <View
             android:layout_width="1px"
-            android:layout_height="@dimen/width60"
+            android:layout_height="@dimen/width50"
             android:background="#eee">
 
         </View>
@@ -38,7 +39,7 @@
             android:id="@+id/ly_devicetype"
 
             android:layout_width="0dp"
-            android:layout_height="@dimen/width60"
+            android:layout_height="@dimen/width50"
             android:layout_weight="1">
 
             <TextView
