@@ -3,14 +3,14 @@
     <string name="over_protect">越限保护：</string>
     <string name="on">开</string>
     <string name="off">关</string>
-    <string name="over_v">过压值</string>
+    <string name="over_v">过压值：</string>
     <string name="over_protect_tips">限定值：254-264V</string>
     <string name="ok">确定</string>
-    <string name="under_v">欠压值</string>
-    <string name="over_a">过流值</string>
+    <string name="under_v">欠压值：</string>
+    <string name="over_a">过流值：</string>
     <string name="under_protect_tips">限定值：154-176V</string>
     <string name="over_a_tips"><![CDATA[限定值：<32A]]></string>
-    <string name="over_power">过载值</string>
+    <string name="over_power">过载值：</string>
     <string name="over_power_tips"><![CDATA[限定值：<7.04KW]]></string>
     <string name="refresh">更新</string>
     <string name="text_switch">通断：</string>
@@ -34,7 +34,7 @@
     <string name="text_a">电流：</string>
     <string name="text_p">功率：</string>
     <string name="light_value">光照强度：</string>
-    <string name="test_number">23</string>
+    <string name="test_number">232</string>
     <string name="people_exit">有人/无人：</string>
     <string name="no_people">无人</string>
     <string name="close_light_delay">关灯延迟：</string>
