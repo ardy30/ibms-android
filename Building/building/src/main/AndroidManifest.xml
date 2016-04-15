@@ -10,6 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:icon="@drawable/app_icon"
         >
         <activity android:name=".activity.LoginActivity"
             android:screenOrientation="portrait">
@@ -26,6 +27,7 @@
         <activity android:name=".activity.FeedBackActivity"   android:screenOrientation="portrait"></activity>
         <activity android:name=".plugin.energymonitor.ElectricMonitorActivity"  android:screenOrientation="portrait" ></activity>
         <activity android:name=".plugin.bodyinfrared.BodyInfraredActivity"  android:screenOrientation="portrait"></activity>
+        <activity android:name=".plugin.lcd.LcdActivity"></activity>
     </application>
 
 </manifest>
