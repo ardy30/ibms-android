@@ -1,6 +1,7 @@
 package com.eastsoft.building.sdk;
 
 import android.app.ActionBar;
+import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -26,10 +27,12 @@ public abstract class BaseActivity extends FragmentActivity {
     private TextView textViewLeft;
     private ImageButton rightImageButton;
     private ImageButton leftImageButton;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dialog=MyDialog.getStaticDialog(this);
     }
 
     @Override
