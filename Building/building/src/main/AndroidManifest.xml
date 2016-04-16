@@ -28,6 +28,7 @@
         <activity android:name=".plugin.energymonitor.ElectricMonitorActivity"  android:screenOrientation="portrait" ></activity>
         <activity android:name=".plugin.bodyinfrared.BodyInfraredActivity"  android:screenOrientation="portrait"></activity>
         <activity android:name=".plugin.lcd.LcdActivity"></activity>
+        <activity android:name=".activity.IpsetActivity"></activity>
     </application>
 
 </manifest>
