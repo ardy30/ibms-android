@@ -21,7 +21,7 @@ import com.ehomeclouds.eastsoft.channel.http.response.DeviceInfo;
 public class BodyInfraredActivity extends PluginActivity implements Iview {
 
     private DeviceInfo curDevice;
-    private TextView textLight, textPeople;
+    private TextView textLight, textPeople,textDelay,textOpen,textClose;
     private EditText edCloseDelay, edOpen, edClose;
     private Button btnLow, btnMid, btnHight;
     BodyInfraredPresenter bodyInfraredPresenter;
@@ -52,11 +52,15 @@ public class BodyInfraredActivity extends PluginActivity implements Iview {
         btnLow = (Button) findViewById(R.id.sensitivity_low);
         btnMid = (Button) findViewById(R.id.sensitivity_middle);
         btnHight = (Button) findViewById(R.id.sensitivity_high);
+        textDelay= (TextView) findViewById(R.id.close_light_delay_value);
+        textOpen= (TextView) findViewById(R.id.open_light_threshold_value);
+        textClose= (TextView) findViewById(R.id.close_light_threshold_value);
         initViewListener();
         update();
         edCloseDelay.setText(bodyInfraredPresenter.getCloseDelay() + "");
         edOpen.setText(bodyInfraredPresenter.getOpen() + "");
         edClose.setText(bodyInfraredPresenter.getClose() + "");
+
     }
 
     private void update() {
@@ -81,6 +85,10 @@ public class BodyInfraredActivity extends PluginActivity implements Iview {
                 btnMid.setSelected(false);
             }
         }
+
+        textDelay.setText(bodyInfraredPresenter.getCloseDelay() + "");
+        textOpen.setText(bodyInfraredPresenter.getOpen() + "");
+        textClose.setText(bodyInfraredPresenter.getClose() + "");
     }
 
 

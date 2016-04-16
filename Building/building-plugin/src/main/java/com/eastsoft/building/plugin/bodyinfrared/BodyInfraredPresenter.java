@@ -27,7 +27,7 @@ public class BodyInfraredPresenter extends PluginBasePresenter {
 
     public BodyInfraredPresenter(Context context,Iview iview,String dk,String gatewayDk) {
         // 从activity获取参数
-        super(iview,dk);
+        super(context,iview,dk,gatewayDk);
         this.context=context;
         this.gatewayDk=gatewayDk;
         this.deviceDk=dk;
@@ -106,10 +106,10 @@ public class BodyInfraredPresenter extends PluginBasePresenter {
             limitRequest.put(KeyUtil.DEVICE_KEY,deviceDk);
             limitRequest.put(KeyUtil.CMD,KeyUtil.CMD_WRITE);
 
+            publishMessage(limitRequest.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        MqttManeger.getInstance(context).publish(limitRequest.toString(), MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain, gatewayDk, deviceDk));
 
     }
 
@@ -124,10 +124,10 @@ public class BodyInfraredPresenter extends PluginBasePresenter {
             limitRequest.put(KeyUtil.DEVICE_KEY,deviceDk);
             limitRequest.put(KeyUtil.CMD,KeyUtil.CMD_WRITE);
 
+            publishMessage(limitRequest.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        MqttManeger.getInstance(context).publish(limitRequest.toString(), MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain, gatewayDk, deviceDk));
 
     }
 }
