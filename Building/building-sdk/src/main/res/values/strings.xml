@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Building-sdk</string>
+    <string name="in_control">请稍候...</string>
 </resources>

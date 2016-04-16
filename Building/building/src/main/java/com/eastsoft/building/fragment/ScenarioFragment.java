@@ -27,38 +27,40 @@ import java.util.List;
 /**
  * Created by ll on 2016/3/31.
  */
-public class ScenarioFragment extends FragmentSubClass implements Iview {
+public class ScenarioFragment extends BaseFragment implements Iview {
     private ListView listView;
     private List<CommontAdapterData> adapterList=new LinkedList<>();
     private ScenarioAdapter scenarioAdapter;
-    private Dialog dialog;
+    View view;
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.f_scenario, container, false);
-        TextView textTitle= (TextView) view.findViewById(R.id.title);
-        textTitle.setText(getString(R.string.title_scenario));
-        listView = (ListView) view.findViewById(R.id.listview);
-        dialog=getStaticDialog(getActivity(),getString(R.string.in_control),null);
-        getAdapterData();
-        scenarioAdapter=new ScenarioAdapter(adapterList, new ScenarioAdapter.IOnStartScenario() {
-            @Override
-            public void onStartScenario(long id) {
-                dialog.show();
-                httpCloudService.startScenario(DataManeger.getInstance().userId,id,ScenarioFragment.this);
-            }
-        });
-        listView.setAdapter(scenarioAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                dialog.show();
-                Intent intent=new Intent(getActivity(), DeviceListActivity.class);
-                intent.putExtra(IntentUtil.INTENT_ID,adapterList.get(position).id);
-                intent.putExtra(IntentUtil.INTENT_TYPE, UtilityInfo.TYPE_SCENARIO);
-                startActivity(intent);
-                dialog.dismiss();
-            }
-        });
+        if (view==null){
+             view = inflater.inflate(R.layout.f_scenario, container, false);
+            TextView textTitle= (TextView) view.findViewById(R.id.title);
+            textTitle.setText(getString(R.string.title_scenario));
+            listView = (ListView) view.findViewById(R.id.listview);
+            getAdapterData();
+            scenarioAdapter=new ScenarioAdapter(adapterList, new ScenarioAdapter.IOnStartScenario() {
+                @Override
+                public void onStartScenario(long id) {
+                    dialog.show();
+                    httpCloudService.startScenario(DataManeger.getInstance().userId,id,ScenarioFragment.this);
+                }
+            });
+            listView.setAdapter(scenarioAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    dialog.show();
+                    Intent intent=new Intent(getActivity(), DeviceListActivity.class);
+                    intent.putExtra(IntentUtil.INTENT_ID,adapterList.get(position).id);
+                    intent.putExtra(IntentUtil.INTENT_TYPE, UtilityInfo.TYPE_SCENARIO);
+                    startActivity(intent);
+                    dialog.dismiss();
+                }
+            });
+        }
+
         return view;
     }
     private void getAdapterData() {

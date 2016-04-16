@@ -51,10 +51,16 @@ public class LoginActivity extends BaseActivity {
         String email=sharedPreferences.getString(StringStaticUtils.SHAREP_EMAIL, "");
         String psd=sharedPreferences.getString(StringStaticUtils.SHAREP_PSD,"");
 //        autoLogin();
-//        mEmailView.setText(email);
-        mEmailView.setText("admin");
-        mPasswordView.setText("admin");
-//        mPasswordView.setText(psd);
+        mEmailView.setText(email);
+//        mEmailView.setText("admin");
+//        mPasswordView.setText("admin");
+        mPasswordView.setText(psd);
+        findViewById(R.id.iv_ip).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,IpsetActivity.class));
+            }
+        });
     }
 
     @Override

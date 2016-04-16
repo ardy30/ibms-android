@@ -8,6 +8,7 @@ package com.eastsoft.building.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,10 @@ import com.eastsoft.building.sdk.BaseActivity;
 import com.ehomeclouds.eastsoft.channel.http.api.Cancel;
 import com.eastsoft.building.sdk.DataManeger;
 import com.ehomeclouds.eastsoft.channel.mqtt.MqttManeger;
+import com.ehomeclouds.eastsoft.channel.mqtt.model.MqttConnectStatus;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 /**
  * @author qianj
@@ -61,27 +66,6 @@ public class MainActivity extends BaseActivity {
 
 
 
-//    private void registerNetBad() {
-//        RxBus.getDefault().toObserverable(MqttConnectStatus.class).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<MqttConnectStatus>() {
-//            @Override
-//            public void call(MqttConnectStatus s) {
-//                if (s.getConnectStatus() == MqttConnectStatus.CONNECT_SUCCESS) {
-//                    textNetbad.setVisibility(View.GONE);
-//                } else {
-//                    textNetbad.setVisibility(View.VISIBLE);
-//                }
-//            }
-//        }, new Action1<Throwable>() {
-//            @Override
-//            public void call(Throwable throwable) {
-//
-//                Log.d("subscription", throwable.toString());
-//
-//            }
-//        });
-//
-//
-//    }
 
     /**
      * 初始化组件
