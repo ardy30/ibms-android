@@ -123,7 +123,7 @@ public class DeviceType {
     /**
      * LCD触摸开关
      */
-    public static final String EASTSOFT_DEVICE_LCD_CATEGORY = "3171302";
+    public static final String EASTSOFT_DEVICE_LCD_CATEGORY = "3171301";
     public static final String EASTSOFT_DEVICE_LCD_SUBJOIN = "00";
 
     /**

@@ -53,22 +53,11 @@ public abstract class HttpCloudServiceBase {
     protected Retrofit getRetrofit(Context ctx) throws CertificateException, UnrecoverableKeyException, NoSuchAlgorithmException, IOException, KeyManagementException, KeyStoreException {
         String ip;
         String port;
-        SharedPreferences mySharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx);
-        ip = mySharedPreferences.getString("ip_edittext_preference", "");
-        if (ip.equals("")) {
-            ip = mySharedPreferences.getString("ip_list_preference", "");
-        }
-        if (ip.equals("")) {
-            ip = "api.ehomeclouds.com.cn";
-        }
-        port = mySharedPreferences.getString("port_edittext_preference", "10443");
+        SharedPreferences mySharedPreferences = ctx.getSharedPreferences("setip",Context.MODE_PRIVATE);
+        ip = mySharedPreferences.getString("ip", "129.1.18.189");
+        port = mySharedPreferences.getString("port", "8080");
         String url;
-        if (!port.equals("10443")) {
-            url = "http://" + ip + ":" + port + "/";
-        } else {
-            url = "https://" + ip + ":" + port + "/";
-        }
-        url = "http://129.1.18.98:8080";
+        url = "http://" + ip + ":" + port ;
         Retrofit restAdapter = new Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())

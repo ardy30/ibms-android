@@ -5,13 +5,24 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_bg"
     android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_ip"
+            android:layout_width="@dimen/width40"
+            android:layout_height="@dimen/width40"
+            android:background="@drawable/set_feedback"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/width10"/>
 
+    </RelativeLayout>
     <ImageView
         android:id="@+id/img_login_logo"
         android:layout_width="@dimen/width58"
         android:layout_height="@dimen/width53"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/width103"
+        android:layout_marginTop="@dimen/width23"
         android:background="@drawable/icon_logol" />
 
     <TextView
@@ -91,5 +102,6 @@
             android:textColor="#ffffff"
             android:textSize="@dimen/textsize16" />
     </com.andexert.library.RippleView>
+
 
 </LinearLayout>

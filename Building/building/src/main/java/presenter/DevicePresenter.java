@@ -2,6 +2,7 @@ package presenter;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.eastsoft.building.model.DeviceType;
 import com.eastsoft.building.model.RxBus;
@@ -155,6 +156,7 @@ public class DevicePresenter {
         String topic = MqttTopicManeger.getPubTopic(DataManeger.getInstance().brokerDomain, deviceInfo.gateway_device_key, deviceInfo.device_key);
 
         MqttManeger.getInstance(context).publish(deviceJson.toString(), topic);
+        Toast.makeText(context,"下发成功",Toast.LENGTH_LONG).show();
     }
 
 
@@ -164,7 +166,7 @@ public class DevicePresenter {
             public void onSuccess(Object object) {
 //                iview.onSuccess("");
                 DataManeger.getInstance().areaInfoArrayList = (AreaInfo[]) object;
-                getType(iview);
+//                getType(iview);
             }
 
             @Override
@@ -204,6 +206,7 @@ public class DevicePresenter {
     }
 
     public void getDeviceList(final Context context, long areaId, String typeId, int pageNumber, int pageSize, final Iview iview) {
+
         httpCloudService.getDeviceList(DataManeger.getInstance().userId, areaId, typeId, pageNumber, pageSize, new Iview() {
             @Override
             public void onSuccess(Object object) {

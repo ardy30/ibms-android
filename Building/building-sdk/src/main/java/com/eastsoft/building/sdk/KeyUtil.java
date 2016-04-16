@@ -36,5 +36,5 @@ public class KeyUtil {
     public static final String LIGHT_INDUCTION_SENSITY_HIGH = "high";
 
 
-
+    public static String MESSAGE="message";
 }

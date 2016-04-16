@@ -2,6 +2,7 @@ package com.eastsoft.building.fragment;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -40,7 +41,7 @@ import rx.functions.Action1;
 /**
  * Created by ll on 2016/3/31.
  */
-public class DeviceFragment extends FragmentSubClass implements Iview {
+public class DeviceFragment extends BaseFragment implements Iview {
     private ListView listView;
     private List<CommontAdapterData> adapterList = new LinkedList<>();
     private DeviceAdapter deviceAdapter;
@@ -52,39 +53,67 @@ public class DeviceFragment extends FragmentSubClass implements Iview {
     private long areaId;
     private String deviceTypeCode = "";
     int posArea, posType;
-    private Dialog dialog;
+    View view;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        devicePresenter = new DevicePresenter(httpCloudService, this);
+        devicePresenter.connectBroker(getActivity());
 
+        subMqtt();
+        getAreaList();
+        getTypeList();
+    }
+
+//        private void registerNetBad() {
+//        RxBus.getDefault().toObserverable(MqttConnectStatus.class).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<MqttConnectStatus>() {
+//            @Override
+//            public void call(MqttConnectStatus s) {
+//                if (s.getConnectStatus() == MqttConnectStatus.CONNECT_SUCCESS) {
+//                    textNetbad.setVisibility(View.GONE);
+//                } else {
+//                    textNetbad.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        }, new Action1<Throwable>() {
+//            @Override
+//            public void call(Throwable throwable) {
+//
+//                Log.d("subscription", throwable.toString());
+//
+//            }
+//        });
+
+
+//    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.f_device, container, false);
-        TextView textTitle = (TextView) view.findViewById(R.id.title);
-        textTitle.setText(getString(R.string.title_device));
-        dialog=getStaticDialog(getActivity(),getString(R.string.in_control),null);
-        devicePresenter = new DevicePresenter(httpCloudService,this);
-        initTypeView(view);
-        listView = (ListView) view.findViewById(R.id.listview);
-        deviceAdapter = new DeviceAdapter(adapterList, new DeviceAdapter.IOnDeviceClick() {
-            @Override
-            public void onClickSwitch(int pos, boolean on) {
-                devicePresenter.publishSwitch(getActivity(), deviceInfoArrayList.get(pos).device_key,deviceInfoArrayList.get(pos).channel, on);
-            }
+        if (view==null){
+            view = inflater.inflate(R.layout.f_device, container, false);
+            TextView textTitle = (TextView) view.findViewById(R.id.title);
+            textTitle.setText(getString(R.string.title_device));
+            initTypeView(view);
+            listView = (ListView) view.findViewById(R.id.listview);
+            deviceAdapter = new DeviceAdapter(adapterList, new DeviceAdapter.IOnDeviceClick() {
+                @Override
+                public void onClickSwitch(int pos, boolean on) {
+                    devicePresenter.publishSwitch(getActivity(), deviceInfoArrayList.get(pos).device_key, deviceInfoArrayList.get(pos).channel, on);
+                }
 
-            @Override
-            public void onClickDetail(String dk) {
-                devicePresenter.startPluginActivity(dk);
-            }
-        });
-        listView.setAdapter(deviceAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                @Override
+                public void onClickDetail(String dk) {
+                    devicePresenter.startPluginActivity(dk);
+                }
+            });
+            listView.setAdapter(deviceAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                PluginLoad.load(getActivity(),DataManeger.getInstance().deviceInfoMap.get(adapterList.get(position).dk));
-            }
-        });
-
-        devicePresenter.connectBroker(getActivity());
-        subMqtt();
+                    PluginLoad.load(getActivity(), DataManeger.getInstance().deviceInfoMap.get(adapterList.get(position).dk));
+                }
+            });
+        }
         return view;
     }
 
@@ -93,7 +122,8 @@ public class DeviceFragment extends FragmentSubClass implements Iview {
             @Override
             public void onSuccess(Object object) {
 
-                getDeviceList();
+                showToast("获取区域列表成功");
+//                getDeviceList();
             }
 
             @Override
@@ -107,17 +137,40 @@ public class DeviceFragment extends FragmentSubClass implements Iview {
         });
 
     }
+    public void getTypeList(){
+        devicePresenter.getType(new Iview() {
+            @Override
+            public void onSuccess(Object object) {
+                showToast("获取类型成功");
+            }
+
+            @Override
+            public void onFailed(String errorStr) {
+
+                showToast(errorStr);
+            }
+
+            @Override
+            public void showProgress(boolean show) {
+
+            }
+        });
+    }
 
     public void getDeviceList() {
+        dialog.show();
         devicePresenter.getDeviceList(getActivity(), areaId, deviceTypeCode, 1, 100, new Iview() {
             @Override
             public void onSuccess(Object object) {
+                dialog.dismiss();
+
                 update();
             }
 
             @Override
             public void onFailed(String errorStr) {
                 showToast(errorStr);
+                dialog.dismiss();
 
             }
 
@@ -127,18 +180,20 @@ public class DeviceFragment extends FragmentSubClass implements Iview {
             }
         });
     }
-ArrayList<DeviceInfo> deviceInfoArrayList=new ArrayList<>();
+
+    ArrayList<DeviceInfo> deviceInfoArrayList = new ArrayList<>();
+
     private void update() {
         adapterList.clear();
-        deviceInfoArrayList= devicePresenter.getMyDevice();
-        for (DeviceInfo deviceInfo :deviceInfoArrayList) {
+        deviceInfoArrayList = devicePresenter.getMyDevice();
+        for (DeviceInfo deviceInfo : deviceInfoArrayList) {
             CommontAdapterData commontAdapterData = new CommontAdapterData(deviceInfo.device_name, 0);
             commontAdapterData.dk = deviceInfo.device_key;
-            commontAdapterData.showDetail=devicePresenter.showDetail(deviceInfo);
-            if (DevicePresenter.switchTypeMap.containsKey(deviceInfo.device_type_code.substring(0,7))){
+            commontAdapterData.showDetail = devicePresenter.showDetail(deviceInfo);
+            if (DevicePresenter.switchTypeMap.containsKey(deviceInfo.device_type_code.substring(0, 7))) {
 
-                boolean sel=Boolean.parseBoolean(deviceInfo.paramMap.get(DevicePresenter.channelMap.get(deviceInfo.channel)).toString());
-                commontAdapterData.selected=sel;
+                boolean sel = Boolean.parseBoolean(deviceInfo.paramMap.get(DevicePresenter.channelMap.get(deviceInfo.channel)).toString());
+                commontAdapterData.selected = sel;
             }
             adapterList.add(commontAdapterData);
         }
@@ -256,7 +311,8 @@ ArrayList<DeviceInfo> deviceInfoArrayList=new ArrayList<>();
             @Override
             public void call(MqttConnectStatus mqttConnectStatus) {
                 if (mqttConnectStatus.getConnectStatus() == MqttConnectStatus.CONNECT_SUCCESS) {
-                    getAreaList();
+
+                    getDeviceList();
                     netbad.setVisibility(View.GONE);
                 } else {
                     netbad.setVisibility(View.VISIBLE);
