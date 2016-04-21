@@ -14,7 +14,7 @@
         android:background="#fff">
 
         <TextView
-            style="@style/text_18_464646"
+            style="@style/text_15_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -22,7 +22,7 @@
             android:text="@string/light_value" />
 
         <TextView
-            style="@style/text_18_464646"
+            style="@style/text_15_464646"
             android:id="@+id/light_value"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            style="@style/text_18_464646"
+            style="@style/text_15_464646"
             android:layout_marginLeft="@dimen/width30"
             android:text="@string/people_exit" />
         <TextView
@@ -55,7 +55,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/text_over_p"
             android:layout_marginLeft="@dimen/width5"
-            style="@style/text_18_464646"
+            style="@style/text_15_464646"
             android:layout_height="wrap_content"
             android:text="@string/test_number"/>
 
@@ -78,21 +78,21 @@
             android:layout_marginLeft="@dimen/width30">
             <TextView
             android:id="@+id/text_over_v"
-                style="@style/text_18_464646"
+                style="@style/text_15_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/close_light_delay" />
-            <!--<TextView-->
-                <!--android:id="@+id/close_light_delay_value"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--style="@style/text_18_464646"-->
-                <!--android:layout_toRightOf="@+id/text_over_v"-->
-                <!--android:text="@string/test_number"/>-->
+            <TextView
+                android:id="@+id/close_light_delay_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_15_464646"
+                android:layout_toRightOf="@+id/text_over_v"
+                android:text=""/>
 
             <TextView
                 android:id="@+id/text_over_v_tip"
-                style="@style/text_15_464646"
+                style="@style/text_15_959595"
                 android:layout_width="@dimen/width150"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_over_v"
@@ -132,20 +132,20 @@
             android:layout_marginLeft="@dimen/width30">
             <TextView
                 android:id="@+id/open_light_threshold"
-                style="@style/text_18_464646"
+                style="@style/text_15_464646"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/open_light_threshold" />
-            <!--<TextView-->
-                <!--android:id="@+id/open_light_threshold_value"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--style="@style/text_18_464646"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_toRightOf="@+id/open_light_threshold"-->
-                <!--android:text="@string/test_number"/>-->
+            <TextView
+                android:id="@+id/open_light_threshold_value"
+                android:layout_width="wrap_content"
+                style="@style/text_15_464646"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/open_light_threshold"
+                android:text=""/>
 
             <TextView
-                style="@style/text_15_464646"
+                style="@style/text_15_959595"
                 android:layout_width="@dimen/width150"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/open_light_threshold"
@@ -187,20 +187,20 @@
             android:layout_marginLeft="@dimen/width30">
             <TextView
                 android:id="@+id/close_light_threshold"
-                style="@style/text_18_464646"
+                style="@style/text_15_464646"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/close_light_threshold" />
-            <!--<TextView-->
-                <!--android:id="@+id/close_light_threshold_value"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--style="@style/text_18_464646"-->
-                <!--android:layout_toRightOf="@+id/close_light_threshold"-->
-                <!--android:text="@string/test_number"/>-->
+            <TextView
+                android:id="@+id/close_light_threshold_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_15_464646"
+                android:layout_toRightOf="@+id/close_light_threshold"
+                android:text=""/>
 
             <TextView
-                style="@style/text_15_464646"
+                style="@style/text_15_959595"
                 android:layout_width="@dimen/width150"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/close_light_threshold"
@@ -236,10 +236,10 @@
         android:layout_gravity="center"
         android:background="#fff">
         <TextView
+            style="@style/text_15_959595"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/textsize17"
-            android:textColor="#464646"
+            android:textSize="@dimen/textsize15"
             android:text="@string/notes"/>
     </RelativeLayout>
     <View

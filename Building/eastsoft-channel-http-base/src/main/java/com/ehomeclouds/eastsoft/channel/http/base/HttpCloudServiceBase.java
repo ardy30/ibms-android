@@ -54,7 +54,7 @@ public abstract class HttpCloudServiceBase {
         String ip;
         String port;
         SharedPreferences mySharedPreferences = ctx.getSharedPreferences("setip",Context.MODE_PRIVATE);
-        ip = mySharedPreferences.getString("ip", "129.1.18.189");
+        ip = mySharedPreferences.getString("ip", "129.1.3.24");
         port = mySharedPreferences.getString("port", "8080");
         String url;
         url = "http://" + ip + ":" + port ;

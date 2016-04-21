@@ -10,6 +10,7 @@ import android.util.Log;
 import com.eastsoft.building.model.RxBus;
 import com.ehomeclouds.eastsoft.channel.mqtt.model.MqttConnectStatus;
 import com.ehomeclouds.eastsoft.channel.mqtt.model.MqttData;
+import com.ehomeclouds.eastsoft.channel.mqtt.model.PublishState;
 import com.ehomeclouds.eastsoft.channel.mqtt.util.KeyUtil;
 import com.ehomeclouds.eastsoft.channel.mqtt.util.MyTag;
 import com.ehomeclouds.eastsoft.channel.mqtt.util.Numbers;
@@ -114,6 +115,8 @@ public class MqttManeger {
                     // publish后会执行到这里
                     System.out.println("deliveryComplete---------"
                             + token.isComplete());
+                    RxBus.getDefault().post(new PublishState(PublishState.SUCCESS));
+
                 }
 
                 public void messageArrived(String topicName, MqttMessage message)
@@ -225,8 +228,12 @@ public class MqttManeger {
             token.waitForCompletion();
 
         } catch (MqttPersistenceException e) {
+            RxBus.getDefault().post(new PublishState(PublishState.FAILED));
+
             e.printStackTrace();
         } catch (MqttException e) {
+            RxBus.getDefault().post(new PublishState(PublishState.FAILED));
+
             e.printStackTrace();
         }
 

@@ -72,6 +72,7 @@ public class LoginBackGroundActivity extends BaseActivity {
                     @Override
                     public void onFailed(String errorStr) {
 
+                        showToast(errorStr);
                     }
 
                     @Override

@@ -53,6 +53,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/width11"
+            android:visibility="gone"
             android:background="@drawable/array_right_defalult" />
     </RelativeLayout>
     <!--<RelativeLayout-->
@@ -89,6 +90,8 @@
         android:id="@+id/about_app"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/width50"
+        android:layout_marginTop="@dimen/width20"
+
         android:background="#fff">
 
         <ImageView
@@ -134,7 +137,6 @@
         android:id="@+id/feedback"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/width50"
-        android:layout_marginTop="@dimen/width20"
         android:background="#fff">
 
         <ImageView

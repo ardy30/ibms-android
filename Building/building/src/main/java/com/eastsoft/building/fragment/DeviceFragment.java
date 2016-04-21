@@ -54,6 +54,8 @@ public class DeviceFragment extends BaseFragment implements Iview {
     private String deviceTypeCode = "";
     int posArea, posType;
     View view;
+     View arrayArea;
+     View arrayType;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +115,8 @@ public class DeviceFragment extends BaseFragment implements Iview {
                     PluginLoad.load(getActivity(), DataManeger.getInstance().deviceInfoMap.get(adapterList.get(position).dk));
                 }
             });
+          arrayArea=view.findViewById(R.id.iv_area_array);
+          arrayType=view.findViewById(R.id.iv_type_array);
         }
         return view;
     }
@@ -212,6 +216,7 @@ public class DeviceFragment extends BaseFragment implements Iview {
         popupWindow = new PopupWindow(popView,
                 WindowManager.LayoutParams.FILL_PARENT, WindowManager.LayoutParams.FILL_PARENT,
                 true);
+
         ly_area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -223,9 +228,11 @@ public class DeviceFragment extends BaseFragment implements Iview {
                     }
                 }
 
+                arrayArea.setSelected(true);
                 showPopWind(nam, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        arrayArea.setSelected(false);
 
                         popupWindow.dismiss();
                         posArea = position;
@@ -245,7 +252,7 @@ public class DeviceFragment extends BaseFragment implements Iview {
         ly_type.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                arrayType.setSelected(true);
                 final List<String> nam = new ArrayList<>();
                 nam.add("无");
                 if (DataManeger.getInstance().deviceTypeArrayList != null) {
@@ -257,6 +264,8 @@ public class DeviceFragment extends BaseFragment implements Iview {
                 showPopWind(nam, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        arrayType.setSelected(false);
+
                         popupWindow.dismiss();
                         posType = position;
                         text_type.setText(nam.get(position));
@@ -289,6 +298,8 @@ public class DeviceFragment extends BaseFragment implements Iview {
 
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
+                arrayArea.setSelected(false);
+                arrayType.setSelected(false);
                 popupWindow.dismiss();
                 return false;
             }
@@ -297,6 +308,8 @@ public class DeviceFragment extends BaseFragment implements Iview {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                arrayArea.setSelected(false);
+                arrayType.setSelected(false);
                 popupWindow.dismiss();
                 return false;
             }

@@ -22,6 +22,7 @@
         android:layout_marginLeft="@dimen/width25"
         style="@style/text_15_464646"
         android:layout_gravity="center"
+        android:singleLine="true"
         android:gravity="left|center_vertical"
         android:text="设备名称"/>
 

@@ -76,6 +76,11 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         power.setText(electricMonitorPresenter.getPower() + "KW");
 
 
+        text_over_v.setText(electricMonitorPresenter.getOverVoltage()+"");
+        text_under_v.setText(electricMonitorPresenter.getUnderVoltage()+"");
+        text_over_a.setText(electricMonitorPresenter.getOverCurrent()+"");
+        text_over_p.setText(electricMonitorPresenter.getOverPower()+"");
+
         // 获取阈值
 //        maxVoltage = electricMonitorPresenter.getOverVoltage();
 //        minVoltage = electricMonitorPresenter.getUnderVoltage();
@@ -115,10 +120,10 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         et_minvoltage= (EditText) findViewById(R.id.edit_under_v);
         et_over_current= (EditText) findViewById(R.id.edit_a);
         et_overpower= (EditText) findViewById(R.id.edit_power);
-        text_over_v= (TextView) findViewById(R.id.text_over_v);
-        text_under_v= (TextView) findViewById(R.id.text_under_v);
-        text_over_a= (TextView) findViewById(R.id.text_over_a);
-        text_over_p= (TextView) findViewById(R.id.text_over_p);
+        text_over_v= (TextView) findViewById(R.id.text_over_v_value);
+        text_under_v= (TextView) findViewById(R.id.text_under_v_value);
+        text_over_a= (TextView) findViewById(R.id.text_over_a_value);
+        text_over_p= (TextView) findViewById(R.id.text_over_power_value);
 
     }
 

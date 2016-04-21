@@ -11,6 +11,10 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/width100"
         android:textColor="@drawable/tab_home_font_style"
+        android:textSize="@dimen/width14"
+        android:singleLine="true"
+        android:ellipsize="end"
+
         android:text="123"
         />
     <ImageView

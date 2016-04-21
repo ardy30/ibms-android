@@ -11,11 +11,14 @@
     <TextView
         android:id="@+id/item_name"
         style="@style/text_15_464646"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/width25"
+        android:layout_marginRight="@dimen/width150"
         android:gravity="left|center_vertical"
+        android:singleLine="true"
+        android:ellipsize="end"
         android:text="设备名称" />
 
     <Button

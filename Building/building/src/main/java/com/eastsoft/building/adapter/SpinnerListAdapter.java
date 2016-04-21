@@ -60,8 +60,10 @@ public class SpinnerListAdapter extends BaseAdapter {
 		}
 		if (position==pos){
 			holder.checked.setVisibility(View.VISIBLE);
+			holder.name.setSelected(true);
 		}else{
 			holder.checked.setVisibility(View.GONE);
+			holder.name.setSelected(false);
 		}
 		return view;
 	}

@@ -2,6 +2,7 @@ package com.eastsoft.building.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.eastsoft.building.R;
 import com.eastsoft.building.activity.AboutUSActivity;
 import com.eastsoft.building.activity.FeedBackActivity;
 import com.eastsoft.building.sdk.BaseFragment;
+import com.ehomeclouds.eastsoft.channel.http.base.Util.StringStaticUtils;
 
 /**
  * 
@@ -23,7 +25,6 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 	private String userEmilName;
 	private RelativeLayout aboutUs,advice,advanceSetting;
 	private Intent intent;
-	private Context context;
 	private TextView title;
 
 	@Override
@@ -32,6 +33,8 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 		TextView textTitle= (TextView) view.findViewById(R.id.title);
 		textTitle.setText(getString(R.string.title_account));
 		initData(view);
+		TextView account= (TextView) view.findViewById(R.id.account);
+		account.setText(getUserEmilName());
 		return view;
 	}
 
@@ -41,7 +44,12 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 		aboutUs.setOnClickListener(this);
 		advice.setOnClickListener(this);
 	}
-
+	private String getUserEmilName(){
+		String userEmilName="";
+		SharedPreferences sharedPreferences=getActivity().getSharedPreferences(StringStaticUtils.SHAREP_NAME, Context.MODE_PRIVATE);
+		userEmilName=sharedPreferences.getString(StringStaticUtils.SHAREP_EMAIL,"");
+		return  userEmilName;
+	}
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()){

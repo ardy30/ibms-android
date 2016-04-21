@@ -216,16 +216,20 @@ public class DevicePresenter {
                 for (DeviceInfo deviceInfo : DataManeger.getInstance().deviceInfoArrayList) {
 
                     String param = deviceInfo.param;
-                    try {
-                        JSONObject jsonObject = new JSONObject(param);
-                        Iterator<String> keys = jsonObject.keys();
-                        while (keys.hasNext()) {
-                            String key = keys.next();
-                            deviceInfo.paramMap.put(key, jsonObject.get(key));
+                    if (param!=null&&!param.equals("")){
+                        try {
+                            JSONObject jsonObject = new JSONObject(param);
+                            Iterator<String> keys = jsonObject.keys();
+                            while (keys.hasNext()) {
+                                String key = keys.next();
+                                deviceInfo.paramMap.put(key, jsonObject.get(key));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
+
+
 
                     DataManeger.getInstance().deviceInfoMap.put(deviceInfo.device_key, deviceInfo);
 //                    if(switchTypeMap.containsKey(deviceInfo.device_type_code.substring(0,7))){

@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,6 +14,11 @@ import android.support.v4.app.FragmentActivity;
 
 import com.eastsoft.building.model.RxBus;
 import com.ehomeclouds.eastsoft.channel.http.api.Cancel;
+import com.ehomeclouds.eastsoft.channel.mqtt.model.PublishState;
+
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 
 /**
@@ -28,17 +34,37 @@ public abstract class BaseActivity extends FragmentActivity {
     private ImageButton rightImageButton;
     private ImageButton leftImageButton;
     private Dialog dialog;
+    private Subscription subscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dialog=MyDialog.getStaticDialog(this);
+        subscription=RxBus.getDefault().toObserverable(PublishState.class).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<PublishState>() {
+            @Override
+            public void call(PublishState publishState) {
+
+                if (publishState.publishState == PublishState.SUCCESS) {
+                    showToast("下发成功");
+                } else {
+                    showToast("下发失败");
+
+                }
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                Log.e("publish", "error");
+            }
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        if (subscription!=null&&!subscription.isUnsubscribed()){
+            subscription.unsubscribe();
+        }
     }
     protected void showToast(String toastStr){
         Toast.makeText(this,toastStr,Toast.LENGTH_SHORT).show();

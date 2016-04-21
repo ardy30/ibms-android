@@ -15,7 +15,7 @@
 
         <TextView
             android:id="@+id/text_switch"
-            style="@style/text_18_464646"
+            style="@style/text_15_464646"
             android:layout_width="@dimen/width90"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -53,7 +53,7 @@
 
         <TextView
             android:id="@+id/text_over_p"
-            style="@style/text_18_464646"
+            style="@style/text_15_464646"
             android:layout_width="@dimen/width90"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -109,15 +109,22 @@
                 android:visibility="gone"/>
             <TextView
                 android:id="@+id/text_over_v"
-                style="@style/text_18_464646"
+                style="@style/text_15_464646"
                 android:layout_toRightOf="@+id/over_v"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/over_v" />
+            <TextView
+                android:id="@+id/text_over_v_value"
+                style="@style/text_15_464646"
+                android:layout_toRightOf="@+id/text_over_v"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/over_v" />
 
             <TextView
                 android:id="@+id/text_over_v_tip"
-                style="@style/text_15_464646"
+                style="@style/text_15_959595"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/text_over_v"
@@ -172,15 +179,23 @@
                 android:visibility="gone"/>
             <TextView
                 android:id="@+id/text_under_v"
-                style="@style/text_18_464646"
+                style="@style/text_15_464646"
                 android:layout_toRightOf="@+id/under_v"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/under_v" />
 
             <TextView
-                android:id="@+id/text_under_v_tip"
+                android:id="@+id/text_under_v_value"
                 style="@style/text_15_464646"
+                android:layout_toRightOf="@+id/text_under_v"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/under_v" />
+
+            <TextView
+                android:id="@+id/text_under_v_tip"
+                style="@style/text_15_959595"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_under_v"
@@ -238,15 +253,22 @@
 
             <TextView
             android:id="@+id/text_over_a"
-            style="@style/text_18_464646"
+            style="@style/text_15_464646"
             android:layout_toRightOf="@+id/over_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/over_a" />
+            <TextView
+            android:id="@+id/text_over_a_value"
+            style="@style/text_15_464646"
+            android:layout_toRightOf="@+id/text_over_a"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/over_a" />
 
             <TextView
                 android:id="@+id/text_over_a_tip"
-                style="@style/text_15_464646"
+                style="@style/text_15_959595"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_over_a"
@@ -305,15 +327,23 @@
 
             <TextView
                 android:id="@+id/text_over_power"
-                style="@style/text_18_464646"
+                style="@style/text_15_464646"
                 android:layout_toRightOf="@+id/over_power"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/over_power" />
+            <TextView
+                android:id="@+id/text_over_power_value"
+                style="@style/text_15_464646"
+                android:layout_toRightOf="@+id/text_over_power"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/over_power" />
 
             <TextView
                 android:id="@+id/text_over_power_tip"
-                style="@style/text_15_464646"
+                style="@style/text_15_959595"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_over_power"
@@ -356,7 +386,7 @@
         android:background="#fff">
         <TextView
             android:id="@+id/elc_text"
-            style="@style/text_18_464646"
+            style="@style/text_15_464646"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -365,7 +395,7 @@
 
         <TextView
             android:id="@+id/text_elc"
-            style="@style/text_18_464646"
+            style="@style/text_15_464646"
             android:layout_toRightOf="@+id/elc_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

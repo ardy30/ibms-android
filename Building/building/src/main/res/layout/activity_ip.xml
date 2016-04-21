@@ -36,7 +36,7 @@
             android:layout_height="@dimen/width43"
             android:layout_gravity="center"
             android:gravity="center|left"
-            android:hint="ip"
+            android:hint="port"
             android:inputType="number"
             android:paddingRight="@dimen/width18"
             android:singleLine="true"

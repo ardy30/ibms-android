@@ -32,6 +32,9 @@ public class IpsetActivity extends BaseActivity {
             public void OnRightClick(View view) {
 
                 if (checkIP(editIp.getText().toString())) {
+                    if (editPort.getText().toString()==null||editPort.getText().toString().equals("")){
+                        showToast("端口号不能为空");
+                    }
                     editor.putString("ip",editIp.getText().toString());
                     editor.putString("port",editPort.getText().toString());
                     editor.commit();
