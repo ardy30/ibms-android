@@ -8,6 +8,9 @@ public class KeyUtil {
     public static final String KEY_SWITCH_CH2="switch_ch2";
     public static final String KEY_SWITCH_CH3="switch_ch3";
     public static final String KEY_SWITCH_CH4="switch_ch4";
+    public static final String KEY_SWITCH_CH="switch_ch";
+
+
     public static final String KEY_TAG="tag";
     public static final String CMD="cmd";
     public static final String CMD_WRITE="write";
@@ -34,6 +37,7 @@ public class KeyUtil {
     public static final String LIGHT_INDUCTION_SENSITY_LOW = "low";
     public static final String LIGHT_INDUCTION_SENSITY_MIDDLE = "middle";
     public static final String LIGHT_INDUCTION_SENSITY_HIGH = "high";
+    public static final String CONFIGTATION = "configuration";
 
 
     public static String MESSAGE="message";

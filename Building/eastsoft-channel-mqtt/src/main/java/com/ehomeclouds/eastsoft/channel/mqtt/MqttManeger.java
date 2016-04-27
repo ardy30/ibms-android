@@ -156,44 +156,29 @@ public class MqttManeger {
         }
         return client.isConnected();
     }
-    public void unSubscribe(String topic){
-        if (client!=null){
-            try {
-                client.unsubscribe(topic);
-            } catch (MqttException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
-    public void unSubscribe(String[] topic){
-        if (client!=null){
-            try {
-                client.unsubscribe(topic);
-            } catch (MqttException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-
-    public void subscribe(String topic) {
+    public void unsubscribe(String topic[]) {
         if (client != null && client.isConnected()) {
             try {
-                client.subscribe(topic, QOS);
+
+                client.unsubscribe(topic);
+                Log.d(MyTag.TAG, "-unsubscibe");
+
             } catch (MqttException e) {
                 e.printStackTrace();
             }
         }
-//        else {
-//            try {
-//                client.connect();
-//            } catch (MqttException e) {
-//                e.printStackTrace();
-//            }
-//        }
+    }
+    public void subscribe(String[] topic) {
+        if (client != null && client.isConnected()) {
+            try {
+                client.subscribe(topic);
+                Log.d(MyTag.TAG, "+subscibe");
 
-
+            } catch (MqttException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 //    public void publish(String payload, String mac) {

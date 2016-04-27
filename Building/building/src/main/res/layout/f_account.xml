@@ -37,9 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/width5"
+            android:layout_marginLeft="@dimen/width15"
             android:layout_toRightOf="@+id/account_name"
             android:text="7777@qq.com"
+            android:textSize="@dimen/width14"
             android:textColor="@color/home_font_color" />
 
         <View

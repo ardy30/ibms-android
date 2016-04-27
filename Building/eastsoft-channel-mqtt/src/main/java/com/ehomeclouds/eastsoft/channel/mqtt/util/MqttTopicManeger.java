@@ -8,8 +8,8 @@ public class MqttTopicManeger {
         return domain+"/"+groupId+"/"+deviceId+"/"+"command";
     }
 
-    public static String getSubTopic(String domain, String groupId,String deviceId){
-        return domain+"/"+groupId+"/"+deviceId;
+    public static String getSubTopic(String domain, String groupId){
+        return domain+"/"+groupId+"/+";
     }
 
     private static String getSubGroupTopic(String domain, String groupId){

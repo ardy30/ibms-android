@@ -1,6 +1,7 @@
 package presenter;
 
 import android.content.Context;
+import android.util.ArrayMap;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,8 +27,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -40,7 +43,7 @@ import rx.functions.Action1;
  */
 public class DevicePresenter {
 
-    HashMap<String, Object> typeMap = new HashMap<String, Object>() {
+    public HashMap<String, Object> typeMap = new HashMap<String, Object>() {
         {
             put(DeviceType.EASTSOFT_DEVICE_FOUR_WAY_SWITCH_CATEGORY, "");
             put(DeviceType.EASTSOFT_DEVICE_BODY_INDUCTOR_CATEGORY, "");
@@ -99,7 +102,7 @@ public class DevicePresenter {
 
     public ArrayList<DeviceInfo> getMyDevice() {
         ArrayList<DeviceInfo> mtList = new ArrayList<>();
-        for (DeviceInfo deviceInfo : DataManeger.getInstance().deviceInfoArrayList) {
+        for (DeviceInfo deviceInfo : DataManeger.getInstance().deviceInfoMap.values()) {
             if (typeMap.containsKey(deviceInfo.device_type_code.substring(0, 7))) {
                 mtList.add(deviceInfo);
             }
@@ -111,8 +114,8 @@ public class DevicePresenter {
     public void handleControl(String dk, String paload,Iview iview) {
         try {
             JSONObject jsonObject = new JSONObject(paload);
-            for (DeviceInfo device :DataManeger.getInstance().deviceInfoArrayList) {
-                if (device.device_key.equals(dk)) {
+                if (DataManeger.getInstance().deviceInfoMap.keySet().contains(dk)) {
+                    DeviceInfo device=DataManeger.getInstance().deviceInfoMap.get(dk);
 //                    if (device.device_type_code.substring(0,7).equals(DeviceType.EASTSOFT_DEVICE_FOUR_WAY_SWITCH_CATEGORY)){
 //
 //                    }
@@ -124,12 +127,20 @@ public class DevicePresenter {
                             device.paramMap.put(key, functions.get(key));
                         }
                     }
-                    DataManeger.getInstance().deviceInfoMap.put(device.device_key, device);
 
+                    if (!jsonObject.isNull(KeyUtil.CONFIGTATION)) {
+                        JSONObject functions = jsonObject.getJSONObject(KeyUtil.CONFIGTATION);
+                        Iterator<String> keys = functions.keys();
+                        while (keys.hasNext()) {
+                            String key = keys.next();
+                            device.paramMap.put(key, functions.get(key));
+                        }
+                    }
+                    DataManeger.getInstance().deviceInfoMap.put(dk, device);
+
+                    iview.onSuccess(dk);
                 }
-            }
 
-            iview.onSuccess("");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -188,7 +199,6 @@ public class DevicePresenter {
             @Override
             public void onSuccess(Object object) {
                 DataManeger.getInstance().deviceTypeArrayList = (DeviceTypeInfo[]) object;
-                iview.onSuccess("");
             }
 
             @Override
@@ -210,11 +220,17 @@ public class DevicePresenter {
         httpCloudService.getDeviceList(DataManeger.getInstance().userId, areaId, typeId, pageNumber, pageSize, new Iview() {
             @Override
             public void onSuccess(Object object) {
-                DataManeger.getInstance().deviceInfoArrayList.clear();
-                DataManeger.getInstance().deviceInfoArrayList.addAll((ArrayList<DeviceInfo>) object);
-
-                for (DeviceInfo deviceInfo : DataManeger.getInstance().deviceInfoArrayList) {
-
+                if (DataManeger.getInstance().gatewayMap!=null){
+                    MqttManeger.getInstance(context).unsubscribe((String[]) (DataManeger.getInstance().gatewayMap.values().toArray(new String[DataManeger.getInstance().gatewayMap.size()])));
+                }
+                for (DeviceInfo deviceInfo :(ArrayList<DeviceInfo>) object) {
+                    if (!typeMap.containsKey(deviceInfo.device_type_code.substring(0, 7))) {
+                        continue;
+                    }
+                    String gatewayDk=deviceInfo.gateway_device_key;
+                    if (!DataManeger.getInstance().gatewayMap.containsKey(gatewayDk)){
+                        DataManeger.getInstance().gatewayMap.put(gatewayDk,MqttTopicManeger.getSubTopic(DataManeger.getInstance().brokerDomain,gatewayDk));
+                    }
                     String param = deviceInfo.param;
                     if (param!=null&&!param.equals("")){
                         try {
@@ -228,20 +244,15 @@ public class DevicePresenter {
                             e.printStackTrace();
                         }
                     }
-
-
-
                     DataManeger.getInstance().deviceInfoMap.put(deviceInfo.device_key, deviceInfo);
-//                    if(switchTypeMap.containsKey(deviceInfo.device_type_code.substring(0,7))){
-
-                        MqttManeger.getInstance(context).subscribe(MqttTopicManeger.getSubTopic(DataManeger.getInstance().brokerDomain,
-                                deviceInfo.gateway_device_key,
-                                deviceInfo.device_key));
-//                    }
                 }
 
+                String [] topicarr= (String[]) DataManeger.getInstance().gatewayMap.values().toArray(new String[ DataManeger.getInstance().gatewayMap.size()]);
 
-                iview.onSuccess("");
+                if (topicarr!=null){
+                    MqttManeger.getInstance(context).subscribe(topicarr);
+                }
+                iview.onSuccess((ArrayList<DeviceInfo>) object);
             }
 
             @Override

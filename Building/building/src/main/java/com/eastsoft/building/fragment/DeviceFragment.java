@@ -24,11 +24,14 @@ import com.eastsoft.building.plugin.PluginLoad;
 import com.eastsoft.building.sdk.BaseFragment;
 import com.eastsoft.building.sdk.DataManeger;
 import com.eastsoft.building.sdk.KeyUtil;
+import com.eastsoft.building.sdk.MyDialog;
 import com.ehomeclouds.eastsoft.channel.http.CloudService.Iview;
 import com.ehomeclouds.eastsoft.channel.http.response.AreaInfo;
 import com.ehomeclouds.eastsoft.channel.http.response.DeviceInfo;
 import com.ehomeclouds.eastsoft.channel.http.response.DeviceTypeInfo;
 import com.ehomeclouds.eastsoft.channel.mqtt.model.MqttConnectStatus;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -42,7 +45,7 @@ import rx.functions.Action1;
  * Created by ll on 2016/3/31.
  */
 public class DeviceFragment extends BaseFragment implements Iview {
-    private ListView listView;
+    private PullToRefreshListView listView;
     private List<CommontAdapterData> adapterList = new LinkedList<>();
     private DeviceAdapter deviceAdapter;
     private View ly_area, ly_type, netbad;
@@ -54,12 +57,40 @@ public class DeviceFragment extends BaseFragment implements Iview {
     private String deviceTypeCode = "";
     int posArea, posType;
     View view;
-     View arrayArea;
-     View arrayType;
+    View arrayArea;
+    View arrayType;
+    private boolean isRefresh = true;
+    private int pageNum = 1;
+    private Dialog dialog;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        devicePresenter = new DevicePresenter(httpCloudService, this);
+        devicePresenter = new DevicePresenter(httpCloudService, new Iview() {
+            @Override
+            public void onSuccess(Object object) {
+                String dk= (String) object;
+                DeviceInfo deviceInfo=DataManeger.getInstance().deviceInfoMap.get(dk);
+
+                for (CommontAdapterData commontAdapterData:adapterList){
+                    if (commontAdapterData.dk.equals(dk)){
+                        boolean sel = Boolean.parseBoolean(deviceInfo.paramMap.get(KeyUtil.KEY_SWITCH_CH + commontAdapterData.channel).toString());
+                        commontAdapterData.selected=sel;
+                    }
+                }
+                deviceAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailed(String errorStr) {
+
+            }
+
+            @Override
+            public void showProgress(boolean show) {
+
+            }
+        });
         devicePresenter.connectBroker(getActivity());
 
         subMqtt();
@@ -87,19 +118,19 @@ public class DeviceFragment extends BaseFragment implements Iview {
 //        });
 
 
-//    }
+    //    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (view==null){
+        if (view == null) {
             view = inflater.inflate(R.layout.f_device, container, false);
             TextView textTitle = (TextView) view.findViewById(R.id.title);
             textTitle.setText(getString(R.string.title_device));
             initTypeView(view);
-            listView = (ListView) view.findViewById(R.id.listview);
+            listView = (PullToRefreshListView) view.findViewById(R.id.listview);
             deviceAdapter = new DeviceAdapter(adapterList, new DeviceAdapter.IOnDeviceClick() {
                 @Override
                 public void onClickSwitch(int pos, boolean on) {
-                    devicePresenter.publishSwitch(getActivity(), deviceInfoArrayList.get(pos).device_key, deviceInfoArrayList.get(pos).channel, on);
+                    devicePresenter.publishSwitch(getActivity(),adapterList.get(pos).dk, adapterList.get(pos).channel, on);
                 }
 
                 @Override
@@ -108,15 +139,32 @@ public class DeviceFragment extends BaseFragment implements Iview {
                 }
             });
             listView.setAdapter(deviceAdapter);
+            listView.setMode(PullToRefreshBase.Mode.BOTH);
+
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    PluginLoad.load(getActivity(), DataManeger.getInstance().deviceInfoMap.get(adapterList.get(position).dk));
+                    PluginLoad.load(getActivity(), DataManeger.getInstance().deviceInfoMap.get(adapterList.get((int) id).dk));
                 }
             });
-          arrayArea=view.findViewById(R.id.iv_area_array);
-          arrayType=view.findViewById(R.id.iv_type_array);
+            listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+                @Override
+                public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                    isRefresh = true;
+                    pageNum = 1;
+                    getDeviceList(1);
+                }
+
+                @Override
+                public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                    pageNum++;
+                    isRefresh = false;
+                    getDeviceList(pageNum);
+                }
+            });
+            arrayArea = view.findViewById(R.id.iv_area_array);
+            arrayType = view.findViewById(R.id.iv_type_array);
         }
         return view;
     }
@@ -141,7 +189,8 @@ public class DeviceFragment extends BaseFragment implements Iview {
         });
 
     }
-    public void getTypeList(){
+
+    public void getTypeList() {
         devicePresenter.getType(new Iview() {
             @Override
             public void onSuccess(Object object) {
@@ -161,20 +210,22 @@ public class DeviceFragment extends BaseFragment implements Iview {
         });
     }
 
-    public void getDeviceList() {
-        dialog.show();
-        devicePresenter.getDeviceList(getActivity(), areaId, deviceTypeCode, 1, 100, new Iview() {
+    public void getDeviceList(int count) {
+
+        devicePresenter.getDeviceList(getActivity(), areaId, deviceTypeCode, count, DataManeger.PAGESIZE, new Iview() {
             @Override
             public void onSuccess(Object object) {
                 dialog.dismiss();
-
-                update();
+                listView.onRefreshComplete();
+                update((ArrayList<DeviceInfo>) object);
             }
 
             @Override
             public void onFailed(String errorStr) {
                 showToast(errorStr);
                 dialog.dismiss();
+                listView.onRefreshComplete();
+
 
             }
 
@@ -185,17 +236,20 @@ public class DeviceFragment extends BaseFragment implements Iview {
         });
     }
 
-    ArrayList<DeviceInfo> deviceInfoArrayList = new ArrayList<>();
 
-    private void update() {
-        adapterList.clear();
-        deviceInfoArrayList = devicePresenter.getMyDevice();
-        for (DeviceInfo deviceInfo : deviceInfoArrayList) {
+    private void update(ArrayList<DeviceInfo> list) {
+        if (isRefresh){
+            adapterList.clear();
+        }
+        for (DeviceInfo deviceInfo : list) {
+            if (!devicePresenter.typeMap.containsKey(deviceInfo.device_key)){
+                continue;
+            }
             CommontAdapterData commontAdapterData = new CommontAdapterData(deviceInfo.device_name, 0);
             commontAdapterData.dk = deviceInfo.device_key;
             commontAdapterData.showDetail = devicePresenter.showDetail(deviceInfo);
+            commontAdapterData.channel= (int) deviceInfo.channel;
             if (DevicePresenter.switchTypeMap.containsKey(deviceInfo.device_type_code.substring(0, 7))) {
-
                 boolean sel = Boolean.parseBoolean(deviceInfo.paramMap.get(DevicePresenter.channelMap.get(deviceInfo.channel)).toString());
                 commontAdapterData.selected = sel;
             }
@@ -221,7 +275,7 @@ public class DeviceFragment extends BaseFragment implements Iview {
             @Override
             public void onClick(View v) {
                 final List<String> nam = new ArrayList<>();
-                nam.add("无");
+                nam.add("全部");
                 if (DataManeger.getInstance().areaInfoArrayList != null) {
                     for (AreaInfo areaInfo : DataManeger.getInstance().areaInfoArrayList) {
                         nam.add(areaInfo.areaName);
@@ -242,7 +296,13 @@ public class DeviceFragment extends BaseFragment implements Iview {
                         } else {
                             areaId = DataManeger.getInstance().areaInfoArrayList[position - 1].id;
                         }
-                        getDeviceList();
+                        getDeviceList(1);
+                        pageNum=1;
+                        isRefresh=true;
+                        dialog= MyDialog.getStaticDialog(getActivity());
+                        dialog.show();
+
+
 
                     }
                 }, posArea);
@@ -254,7 +314,7 @@ public class DeviceFragment extends BaseFragment implements Iview {
             public void onClick(View v) {
                 arrayType.setSelected(true);
                 final List<String> nam = new ArrayList<>();
-                nam.add("无");
+                nam.add("全部");
                 if (DataManeger.getInstance().deviceTypeArrayList != null) {
                     for (DeviceTypeInfo deviceTypeInfo : DataManeger.getInstance().deviceTypeArrayList) {
                         nam.add(deviceTypeInfo.type_name);
@@ -275,7 +335,12 @@ public class DeviceFragment extends BaseFragment implements Iview {
 
                             deviceTypeCode = DataManeger.getInstance().deviceTypeArrayList[position - 1].type_code;
                         }
-                        getDeviceList();
+                        getDeviceList(1);
+                        pageNum=1;
+                        isRefresh=true;
+                        dialog= MyDialog.getStaticDialog(getActivity());
+                        dialog.show();
+
 
                     }
                 }, posType);
@@ -325,7 +390,11 @@ public class DeviceFragment extends BaseFragment implements Iview {
             public void call(MqttConnectStatus mqttConnectStatus) {
                 if (mqttConnectStatus.getConnectStatus() == MqttConnectStatus.CONNECT_SUCCESS) {
 
-                    getDeviceList();
+                    getDeviceList(1);
+                    pageNum=1;
+                    dialog= MyDialog.getStaticDialog(getActivity());
+                    dialog.show();
+
                     netbad.setVisibility(View.GONE);
                 } else {
                     netbad.setVisibility(View.VISIBLE);
@@ -345,7 +414,7 @@ public class DeviceFragment extends BaseFragment implements Iview {
     @Override
     public void onSuccess(Object object) {
 
-        update();
+        update((ArrayList<DeviceInfo>) object);
     }
 
     @Override

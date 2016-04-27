@@ -16,13 +16,12 @@ import com.ehomeclouds.eastsoft.channel.http.api.HttpCloudService;
  */
 public class BaseFragment extends Fragment {
    protected HttpCloudService httpCloudService;
-    protected Dialog dialog;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         httpCloudService=new HttpCloudService(getActivity());
-        dialog=MyDialog.getStaticDialog(getActivity());
     }
 
     protected void  showToast(String str){

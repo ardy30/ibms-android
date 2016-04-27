@@ -35,6 +35,8 @@ public abstract class BaseActivity extends FragmentActivity {
     private ImageButton leftImageButton;
     private Dialog dialog;
     private Subscription subscription;
+    protected int pageNum=1;
+    protected  boolean isRefresh=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

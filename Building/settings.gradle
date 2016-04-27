@@ -1,1 +1,2 @@
-include ':building', ':building-sdk', ':building-model', ':eastsoft-channel-http', ':eastsoft-channel-mqtt', ':eastsoft-channel-http-base', ':building-plugin'
+include ':building', ':building-sdk', ':building-model', ':eastsoft-channel-http', ':eastsoft-channel-mqtt',
+        ':eastsoft-channel-http-base', ':building-plugin',':PullToRefresh'

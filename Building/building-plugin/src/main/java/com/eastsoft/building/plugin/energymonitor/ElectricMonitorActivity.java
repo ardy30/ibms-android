@@ -54,10 +54,10 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         initBtn();
 
         update();
-        et_maxvoltage.setText(electricMonitorPresenter.getOverVoltage() + "");
-        et_minvoltage.setText(electricMonitorPresenter.getUnderVoltage() + "");
-        et_over_current.setText(electricMonitorPresenter.getOverCurrent() + "");
-        et_overpower.setText(electricMonitorPresenter.getOverPower() + "");
+        et_maxvoltage.setText((int)electricMonitorPresenter.getOverVoltage() + "");
+        et_minvoltage.setText((int)electricMonitorPresenter.getUnderVoltage() + "");
+        et_over_current.setText((int)electricMonitorPresenter.getOverCurrent() + "");
+        et_overpower.setText((int)electricMonitorPresenter.getOverPower() + "");
 
     }
 
@@ -76,10 +76,10 @@ public class ElectricMonitorActivity extends BaseActivity implements Iview {
         power.setText(electricMonitorPresenter.getPower() + "KW");
 
 
-        text_over_v.setText(electricMonitorPresenter.getOverVoltage()+"");
-        text_under_v.setText(electricMonitorPresenter.getUnderVoltage()+"");
-        text_over_a.setText(electricMonitorPresenter.getOverCurrent()+"");
-        text_over_p.setText(electricMonitorPresenter.getOverPower()+"");
+        text_over_v.setText((int)electricMonitorPresenter.getOverVoltage()+"");
+        text_under_v.setText((int)electricMonitorPresenter.getUnderVoltage()+"");
+        text_over_a.setText((int)electricMonitorPresenter.getOverCurrent()+"");
+        text_over_p.setText((int)electricMonitorPresenter.getOverPower()+"");
 
         // 获取阈值
 //        maxVoltage = electricMonitorPresenter.getOverVoltage();
